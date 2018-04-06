@@ -8,11 +8,11 @@ class User {
 
     // Constructor
     public function __construct($query = 0, $o = []) {
-        // If we've got an ID
+        // If we've got an ID   ....   or Strict Mode
         if (is_numeric($query) && $o['GET_MODE'] != 'login' ) {$this->InitUser($query, $o); return;}
         // If we've got a SIGN_UP request
         if ($query === 'SIGN_UP_MODE' && $o['signup_proof'] === true) {$this->SignUp($o); return;}
-        // If we've got User's login
+        // If we've got User's login ... or Strict Mode
         if (is_string($query) && $o['GET_MODE'] != 'id') {$this->InitByLogin($query, $o); return;}
     }
 
