@@ -6,16 +6,23 @@ api::required("codes");
 
 $ra['response'] = [];
 
+// Handle Multi-requests
 $codes = explode(",", $secure["codes"]);
 
+// Handle each
 foreach ($codes as $v) {
+    // Only numbers
     if (!is_numeric($v)) api::error(3, 0, ["error_field" => "query"]);
+    // Code deadline = 2 minutes
     $min_time = time() - 60*2;
+    // Look up for the code
     $search_code = $pdo->prepare("SELECT * from `pair_codes` WHERE `code` = ? AND `time` > ?");
     $search_code->execute([$v, $min_time]);
-    $uidcode = $search_code->fetchColumn();
-    if ($uidcode > 0) {
-    $u = new User($uidcode, ['IGNORE_EXCEPTIONS' => true]);
+    $uidcode = $search_code->fetch();
+    // If found
+    if ($uidcode["id"] > 0) {
+        // Get the user
+    $u = new User($uidcode["uid"], ['IGNORE_EXCEPTIONS' => true]);
     $info = $u->get();
     $ra['response'][] = $info;
     }
