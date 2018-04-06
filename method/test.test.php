@@ -4,6 +4,7 @@ require_once('inc/api.php');
 
 // Requires fields which you can call from $secure array
 api::required('name, surname');
+//      .....       ^ Space is important
 
 // Requires token
 new Auth;
