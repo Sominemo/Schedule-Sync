@@ -12,6 +12,10 @@
             {
                 "code": 2,
                 "info": "Unfilled required parameters"
+            },
+            {
+                "code": 3,
+                "info": "Incorrect field type"
             }
         ],
         [
