@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+ErrorDocument 304 /inc/api_error_doc.php
+ErrorDocument 400 /inc/api_error_500.php
+ErrorDocument 401 /inc/api_error_doc.php
+ErrorDocument 403 /inc/api_error_doc.php
+ErrorDocument 404 /inc/api_error_doc.php
+ErrorDocument 406 /inc/api_error_500.php
+ErrorDocument 500 /inc/api_error_500.php
+ErrorDocument 502 /inc/api_error_500.php
