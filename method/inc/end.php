@@ -1,4 +1,4 @@
-<?
+<?php
 
 // Setting params for return
 $ra = security::filter($ra);

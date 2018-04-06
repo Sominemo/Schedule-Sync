@@ -1,4 +1,4 @@
-<?
+<?php
 // DB data
 define ('DBHOST', 'sominemo.mysql.tools');
 define ('DBNAME', 'sominemo_schedul');

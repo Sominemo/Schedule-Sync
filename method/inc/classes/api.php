@@ -1,4 +1,4 @@
-<?
+<?php
 class api {
     // [bool--DIE] Private checker for required keys in array
     // check_required("field1, field2"*, $array)

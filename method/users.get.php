@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('inc/api.php');
 
 new Auth();

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class security {
     // Make variables and arrays secure and clear

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Report {
     private $report_table = "api_report";
