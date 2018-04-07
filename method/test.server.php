@@ -28,7 +28,7 @@ if (isset($secure['randoms']) && is_numeric($secure['randoms']) && $secure['rand
 // If int_value has sent
 if (isset($secure['int_value'])) {
     // If is NOT int - error
-    if (!is_int($secure['int_value'])) error(2,0,["error_field" => "int_value"]);
+    if (!is_int($secure['int_value'])) api::error(3,0,["error_field" => "int_value"]);
     // Output it
     $ra['got_int'] = $secure['int_value'];
 }
@@ -36,7 +36,7 @@ if (isset($secure['int_value'])) {
 // If we got str_value
 if (isset($secure['str_value'])) {
     // Output it
-    $ra['got_int'] = strval($secure['int_value']);
+    $ra['got_str'] = strval($secure['str_value']);
 }
 
 // Output time
