@@ -22,7 +22,7 @@ while (!$unique) {
 // Output data
 $ra = [
     "code" => $code,
-    "time" => time()
+    "expires" => time()+60*2 // Code expires in 2 minutes
 ];
 
 // Rewriting it for DB

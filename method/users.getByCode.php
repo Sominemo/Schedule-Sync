@@ -13,11 +13,9 @@ $codes = explode(",", $secure["codes"]);
 foreach ($codes as $v) {
     // Only numbers
     if (!is_numeric($v)) api::error(3, 0, ["error_field" => "query"]);
-    // Code deadline = 2 minutes
-    $min_time = time() - 60*2;
     // Look up for the code
-    $search_code = $pdo->prepare("SELECT * from `pair_codes` WHERE `code` = ? AND `time` > ?");
-    $search_code->execute([$v, $min_time]);
+    $search_code = $pdo->prepare("SELECT * from `pair_codes` WHERE `code` = ? AND `expires` > ?");
+    $search_code->execute([$v, time()]);
     $uidcode = $search_code->fetch();
     // If found
     if ($uidcode["id"] > 0) {
