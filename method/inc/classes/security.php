@@ -6,12 +6,12 @@ class security {
         if (!is_array($a) && is_string($a)) $r = security::clean($a);
         else $r = $a;
 
-        foreach ($a as $k => $v) {
-            $a[$k] = security::filter($v);
-            if ($a[$k] === '') unset($a[$k]);
+        foreach ($r as $k => $v) {
+            $r[$k] = security::filter($v);
+            if ($r[$k] === '') unset($r[$k]);
         }
 
-        return $a;
+        return $r;
     }
 
     // Make variables clear and correct
