@@ -1,0 +1,19 @@
+{
+    "methods": {
+        "Users": [
+            "users.get",
+            "users.getByCode",
+            "users.new"
+        ],
+        "Account": [
+            "account.shareByCode"
+        ],
+        "Token": [
+            "token.get"
+        ],
+        "Test": [
+            "test.server"
+        ]
+    },
+    "build": 13
+}

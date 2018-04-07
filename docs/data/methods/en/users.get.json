@@ -1,0 +1,19 @@
+{
+    "name": "users.get",
+    "display": "users.get",
+
+    "request": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Authentication data"
+        },
+        {
+            "name": "query",
+            "type": "comma_string",
+            "important": true,
+            "info": "Required users' logins"
+        }
+    ]
+}

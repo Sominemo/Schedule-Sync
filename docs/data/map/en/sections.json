@@ -1,0 +1,37 @@
+{
+    "tabs": [
+        {
+            "name": "Methods",
+            "display": "Methods",
+            "sections": [
+                {
+                    "name": "Users",
+                    "display": "Users"
+                },
+                {
+                    "name": "Account",
+                    "display": "Account"
+                },
+                {
+                    "name": "Token",
+                    "display": "Token"
+                },
+                {
+                    "name": "Test",
+                    "display": "Test"
+                }
+            ]
+        },
+        {
+            "name": "Info",
+            "display": "Info",
+            "sections": [
+                {
+                    "name": "Installation",
+                    "display": "Installation"
+                }
+            ]
+        }
+    ],
+    "build": 13
+}
