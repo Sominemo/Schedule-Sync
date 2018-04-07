@@ -10,8 +10,9 @@ $u = new User('SIGN_UP_MODE', [
         "login" => $secure["login"],
         "password" => $secure["password"]
     ],
-    "signup_proof" => true
-]);
+    "signup_proof" => true,
+    "U_GET" => true
+    ]);
 
 // Return the user
 $ra = $u->get();

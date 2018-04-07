@@ -46,6 +46,7 @@ foreach ($_POST as $key => $value) {
 // Checking GET and SERVER parametrs to avoid mothers' hackers
 $secure = security::filter($_GET);
 $_SERVER = security::filter($_SERVER);
+if (!$_SERVER['HTTP_USER_AGENT']) $_SERVER['HTTP_USER_AGENT'] = "null"; 
 
 // If report enabled - record URL
 $global_report_data['link'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

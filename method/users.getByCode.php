@@ -12,7 +12,7 @@ $codes = explode(",", $secure["codes"]);
 // Handle each
 foreach ($codes as $v) {
     // Only numbers
-    if (!is_numeric($v)) api::error(3, 0, ["error_field" => "query"]);
+    if (!is_numeric($v)) api::error(3, 0, ["error_field" => "codes"]);
     // Look up for the code
     $search_code = $pdo->prepare("SELECT * from `pair_codes` WHERE `code` = ? AND `expires` > ?");
     $search_code->execute([$v, time()]);
@@ -20,7 +20,7 @@ foreach ($codes as $v) {
     // If found
     if ($uidcode["id"] > 0) {
         // Get the user
-    $u = new User($uidcode["uid"], ['IGNORE_EXCEPTIONS' => true]);
+    $u = new User($uidcode["uid"], ['U_GET' => true]);
     $info = $u->get();
     $ra['response'][] = $info;
     }

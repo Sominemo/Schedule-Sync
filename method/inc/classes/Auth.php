@@ -55,7 +55,7 @@ class Auth {
     }
 
     private function check($t) {
-        global $pdo, $api_token_data, $user;
+        global $pdo, $api_token_data, $user, $curr_user;
 
         if ($api_token_data["verify"]) return true;
 
@@ -74,6 +74,8 @@ class Auth {
         $api_token_data["verify"] = 1;
 
         $user = new User($l['user_id']);
+        $curr_user = $user;
+        $curr_user->ReInitUser(["U_GET" => true]);
 
         return true;
     }

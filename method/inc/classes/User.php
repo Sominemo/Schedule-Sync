@@ -18,7 +18,7 @@ class User {
 
     // Init User by id
     private function InitUser($id, $o = []) {
-        global $pdo;
+        global $pdo, $secure;
         
         // Parse integer
         $id = intval($id);
@@ -38,14 +38,37 @@ class User {
         // Fetch data
         $ur = $ur->fetch();
 
+        // Set required fields by default
+        $fm['surname'] = false;
+        $fm['online'] = false;
+
+        // Fetch required fields
+        if ($o['U_GET'] && isset($secure['user_fields'])) {
+            // Explode each
+            $epr = explode(',', $secure['user_fields']);
+            foreach ($epr as $v) {
+                // Set true for needed
+                if($fm[$v] === false) $fm[$v] = true;
+            }
+        } else if (!$o['U_GET']) {
+            // If is not U_OUTPUT - get all 
+            foreach ($fm as $k => $v) {
+                $fm[$k] = true;
+            }
+        }
+        
         // Get main data
         $this->id = $ur->id;
         $this->data['id'] = $ur->id;
         $this->data['login'] = $ur->login;
         $this->data['name'] = $ur->name;
+    if ($fm['surname']) {
         $this->data['surname'] = $ur->surname;
+    }
+    if ($fm['online']) {
         $this->data['visit'] = $ur->visit;
         $this->data['online'] = (time() - $ur->visit <= 30 ? true : false);
+    }
 
         // Extended, secured data
         if ($o['GET_UNSECURE_DATA']) {
@@ -57,7 +80,11 @@ class User {
 
     public function ReInitUser($o = []) {
         // Gives ability to change returned fields in already initialized User
+        // Clear data
+        $this->data = [];
+        // Get new one
         if ($this->id !== false) $this->InitUser($this->id, $o);
+        // Return the data
         return $this->data;
     }
 
