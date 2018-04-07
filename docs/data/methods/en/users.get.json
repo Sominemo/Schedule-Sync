@@ -1,6 +1,8 @@
 {
     "name": "users.get",
     "display": "users.get",
+    "purpose": "Get users' data by login",
+    "way": "Returns each User data from query field. This method allows to get User ONLY by login. If user doesn't exist `false` will be returned. If query is empty current user will be returned.",
 
     "request": [
         {
@@ -11,9 +13,17 @@
         },
         {
             "name": "query",
-            "type": "comma_string",
-            "important": true,
+            "type": "comma string",
+            "important": false,
             "info": "Required users' logins"
+        }
+    ],
+    "answer": [
+        {
+            "name": "response",
+            "type": "array class user",
+            "importnat": true,
+            "info": "Result by query or current user"
         }
     ]
 }
