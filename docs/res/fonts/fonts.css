@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+English:400,400italic|Product+Sans');
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('res/fonts/MaterialIcons-Regular'), url('res/fonts/MaterialIcons-Regular.woff2') format('woff2'), url('res/fonts/MaterialIcons-Regular.woff') format('woff'), url(MaterialIcons-Regular.ttf) format('truetype');
+}
+
+icon {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
