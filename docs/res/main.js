@@ -1,7 +1,7 @@
 var app = {
     lang: "en",
-    build: 19,
-    version: "1.0"
+    build: 25,
+    version: "1.2"
 }
 
 function xhr(url, callback, onerror) {
@@ -16,9 +16,9 @@ function xhr(url, callback, onerror) {
   
       if (xhr.status != 200) {
         console.error(xhr.status + ': ' + xhr.statusText);
-        if (onerror !== undefined) onerror();
+        if (onerror !== undefined) onerror(url);
       } else {
-        if (callback !== undefined) callback(xhr.responseText);
+        if (callback !== undefined) callback(xhr.responseText, url);
       }
   
     }
@@ -179,11 +179,13 @@ var engines = {
         alert('Coming soon');
     },
     loading: function() {
-        ui.sidebar(0);
         document.getElementById("main").innerHTML = '<div class="centration-div"> <svg width="56px" height="56px" version="1" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"> <style type="text/css">.qp-circular-loader { width:28px; height:28px; } .qp-circular-loader-path { stroke-dasharray: 58.9; stroke-dashoffset: 58.9; } .qp-circular-loader, .qp-circular-loader * { -webkit-transform-origin: 50% 50%; } /* Rotating the whole thing */ @-webkit-keyframes rotate { from {-webkit-transform: rotate(0deg);} to {-webkit-transform: rotate(360deg);} } .qp-circular-loader { -webkit-animation-name: rotate; -webkit-animation-duration: 1568.63ms; -webkit-animation-iteration-count: infinite; -webkit-animation-timing-function: linear; } /* Filling and unfilling the arc */ @-webkit-keyframes fillunfill { from { stroke-dashoffset: 58.8; } 50% { stroke-dashoffset: 0; } to { stroke-dashoffset: -58.4; } } @-webkit-keyframes rot { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(-360deg); } } @-webkit-keyframes colors { from { stroke: var(--main-color); } to { stroke: var(--main-color); } } .qp-circular-loader-path { -webkit-animation-name: fillunfill, rot, colors; -webkit-animation-duration: 1333ms, 5332ms, 5332ms; -webkit-animation-iteration-count: infinite, infinite, infinite; -webkit-animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1), steps(4), linear; -webkit-animation-play-state: running, running, running; -webkit-animation-fill-mode: forwards; }</style> <g class="qp-circular-loader"> <path class="qp-circular-loader-path" d="M 14,1.5 A 12.5,12.5 0 1 1 1.5,14" fill="none" stroke-linecap="square" stroke-width="3"/> </g> </svg> </div>';
     },
     cleanMain: function() {
         document.getElementById("main").innerHTML = '';
+    },
+    cleanPath: function() {
+        document.getElementsByClassName("way-path")[0].innerHTML = '<div class="el" id="home-path-el" onclick="getMain()">' + _('home') + '</div>';
     }
 };
 

@@ -9,7 +9,10 @@
         "main-grand-logo": "Центр документации",
         "about": "О приложении",
         "about_screen": "<h1>Центр документации %replace::app_version%</h1><p>Сборка %replace::app_build%</p><p>Приспособление для создания документации к API<br>Исходный код: <a href='https://github.com/Sominemo/Schedule-Sync' target='_blank'>GitHub</a>.<br>Это приложение абсолютно открыто и бесплатно. Проблемы? Добро пожаловать в GitHub.</p><p>Создано Сергеем Дилонгом в 2018 году.</p>",
-        "cant_load_lang": "Якыковый пакет недоступен"
+        "cant_load_lang": "Якыковый пакет недоступен",
+        "no_data": "Нет данных",
+        "token_att_text": "Этот объект может требовать авторизацию",
+        "hints": "Подсказки"
     },
     "auto_change": {
         "home-path-el": "Главная",
