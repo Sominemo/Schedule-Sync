@@ -119,14 +119,14 @@ main {
 
 header .heading .logo {
     --logo-font-size: 18px;
-    padding: calc(calc(var(--header-height) * 0.65 / 2) - (var(--logo-font-size) / 2));
+    padding: calc(var(--header-height) * 0.65 / 2 - var(--logo-font-size) / 2);
     font-weight: 500;
     font-size: var(--logo-font-size);
 }
 
 header .heading .actions .action-icon {
     --icon-height: 24px;
-    padding: calc(calc(var(--header-height) * 0.65 / 2) - (var(--icon-height) / 2));
+    padding: calc(var(--header-height) * 0.65 / 2 - var(--icon-height) / 2);
     cursor: pointer;
     position: relative;
 }
