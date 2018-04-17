@@ -19,6 +19,15 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+a {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .no-select {
     user-select: none;
     -moz-user-select: none;
@@ -105,12 +114,14 @@ header .subline {
 
 main {
     margin-top: calc(var(--header-height) + 5px);
+    transition: margin .2s;
 } 
 
 header .heading .logo {
-    margin-left: 10.75px;
+    --logo-font-size: 18px;
+    padding: calc(calc(var(--header-height) * 0.65 / 2) - (var(--logo-font-size) / 2));
     font-weight: 500;
-    font-size: 18px;
+    font-size: var(--logo-font-size);
 }
 
 header .heading .actions .action-icon {
@@ -148,7 +159,7 @@ header .subline .way-path .el:not(:last-child):after {
 footer {
     text-align: center;
     color: rgb(173, 173, 173);
-    margin-top: 10px;
+    margin: 10px;
 } 
 
 .centration-div {
@@ -205,4 +216,65 @@ p {
 
 h1 {
     margin-left: 10px;
+}
+
+.icon_container {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    background: var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+}
+
+.card .item.flex-hint {
+    display: flex;
+    align-items: center;
+}
+
+.card .item.flex-hint .hint-text {
+    padding: 10px;
+    word-break: break-word;
+}
+
+table.fields-table {
+    width: calc(100% - 40px);
+    padding: 20px;
+    border-collapse: collapse;
+    box-sizing: content-box;
+    margin: 20px;
+    table-layout: fixed;
+}
+
+table.fields-table td {
+    padding: 5px;
+    vertical-align: top;
+    word-break: break-word;
+
+}
+
+table.fields-table td:nth-child(1) {
+    font-weight: 700;
+    width: 25%;
+    min-width: 50px;
+    max-width: 100px;
+}
+
+table.fields-table td:nth-child(2) {
+    padding-left: 10px;
+}
+
+table.fields-table td:nth-child(2) > div:nth-child(2) {
+    color: grey;
+}
+
+table.fields-table tr:not(:last-child) {
+    border-bottom: solid 1px #eee;
+}
+
+#header, #header * {
+    transition: all .2s;
 }

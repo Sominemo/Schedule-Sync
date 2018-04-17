@@ -1,7 +1,7 @@
 var app = {
     lang: "en",
-    build: 25,
-    version: "1.2"
+    build: 31,
+    version: "1.5"
 }
 
 function xhr(url, callback, onerror) {
@@ -22,6 +22,18 @@ function xhr(url, callback, onerror) {
       }
   
     }
+  };
+
+  function sxhr(url, callback, onerror) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.send();
+      if (xhr.status != 200) {
+        console.error(xhr.status + ': ' + xhr.statusText);
+        return "error "+xhr.status;
+      } else {
+        return xhr.responseText;
+      }
   };
 
 var _ = function(index, p) {

@@ -1,0 +1,9 @@
+@media(min-width: 1200px) {
+    :not(.--scrolled-body):root {
+        --header-height: 140px;
+    }
+
+    :not(.--scrolled-body):root header .heading .logo {
+        --logo-font-size: 24px;
+    }
+}

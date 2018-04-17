@@ -13,7 +13,20 @@
         "no_data": "No data",
         "token_att_text": "This object could require authentication",
         "request": "Request",
-        "hints": "Hints"
+        "hints": "Hints",
+        "required_field": "required field",
+        "response": "Response",
+        "class": "Class",
+        "that_contains": "that contains",
+        "objects": "objects",
+        "of_type": "of type",
+
+        "type__int": "integer",
+        "type__string": "string",
+        "type__ints": "integers",
+        "type__strings": "strings",
+        "type__comma_separated": "separated by comma",
+        "type__array": "array"
     },
     "auto_change": {
         "home-path-el": "Home",

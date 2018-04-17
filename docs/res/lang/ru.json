@@ -12,7 +12,21 @@
         "cant_load_lang": "Якыковый пакет недоступен",
         "no_data": "Нет данных",
         "token_att_text": "Этот объект может требовать авторизацию",
-        "hints": "Подсказки"
+        "request": "Запрос",
+        "hints": "Замечания",
+        "required_field": "обязательный параметр",
+        "response": "Ответ",
+        "class": "Класс",
+        "that_contains": "который содержит",
+        "objects": "объекты",
+        "of_type": "типа",
+
+        "type__int": "целое число",
+        "type__string": "строка",
+        "type__ints": "целые числа",
+        "type__strings": "строки",
+        "type__comma_separated": "разделенные запятой",
+        "type__array": "массив"
     },
     "auto_change": {
         "home-path-el": "Главная",
