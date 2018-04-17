@@ -23,6 +23,8 @@ document.onscroll = function (a) {
     }
 }
 
+t = localStorage.getItem("lang");
+if (t) app.lang = t;
 _.prototype.loadLang();
 
 function getMain() {

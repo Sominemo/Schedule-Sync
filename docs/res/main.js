@@ -1,7 +1,7 @@
 var app = {
     lang: "en",
-    build: 31,
-    version: "1.5"
+    build: 32,
+    version: "1.51"
 }
 
 function xhr(url, callback, onerror) {

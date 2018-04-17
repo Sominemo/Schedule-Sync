@@ -1,0 +1,29 @@
+{
+    "name": "users.getByCode",
+    "display": "users.getByCode",
+    "purpose": "Get users' data by temporary code",
+    "way": "Returns array of users that correspondent to temporary code(s), given in account.shareByCode method.",
+
+    "request": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Authentication data"
+        },
+        {
+            "name": "codes",
+            "type": "comma int",
+            "important": true,
+            "info": "Given users' codes"
+        }
+    ],
+    "answer": [
+        {
+            "name": "response",
+            "type": "array class user",
+            "importnat": true,
+            "info": "Result by query or current user's data"
+        }
+    ]
+}
