@@ -9,7 +9,7 @@ document.getElementById("menu-action").addEventListener("click", function(a) {
     actions.show(a.target.offsetLeft + move1 * 2, a.target.offsetTop + move0, a.target, [
         ["share", _('copy_link'), engines.copyLink],
         ["translate", _('lang'), chooserLang],
-        ["format_indent_increase", _('gen_md'), engines.getMD, (app.window !== "method" ? true : false)],
+        ["format_indent_increase", _('gen_md'), engines.getMD, (app.window_type !== "method" ? true : false)],
         ["info_outline", _('about'), aboutScreen]
     ]);
     a.preventDefault();
@@ -25,11 +25,11 @@ document.onscroll = function (a) {
 
 t = localStorage.getItem("lang");
 if (t) app.lang = t;
-_.prototype.loadLang();
+_.prototype.loadLang(windower);
 
 function getMain() {
     if (window.location.hash != "") window.location.hash = "";
-    app.window = "main";
+    app.window_type = "main";
     engines.cleanPath();
     xhr('data/map/main.json', function(a) {
         a = JSON.parse(a);
@@ -90,7 +90,7 @@ function xxhr(a, c) {
 
 var section = {
     open: function(a) {
-        app.window = "section";
+        app.window_type = "section";
         xhr('data/map/' + app.lang + '/sections.json', function(r) {
             r = JSON.parse(r);
             xhr('data/map/' + app.lang + '/methods.json', function(b) {
@@ -236,9 +236,11 @@ function varType(a) {
     }
 }
 
+var patt = [];
+
 var method = {
     open: function(a) {
-        app.window = "method";
+        app.window_type = "method";
         engines.cleanMain();
         engines.loading();
         xxhr(['data/map/' + app.lang + '/methods.json', 'data/map/' + app.lang + '/sections.json', 'data/methods/' + app.lang + '/' + a + '.json'], function(jk) {
@@ -341,14 +343,16 @@ var method = {
                 document.getElementById("main").appendChild(card);
             }
 
-            var patt = [{
+            e = l[2];
+            app.window.method_json = e;
+            e = JSON.parse(JSON.stringify(e));
+
+            patt = [{
                 "name": "token",
                 "icon": "vpn_key",
                 "text": _("token_att_text"),
                 "related_link": "#b-token.get"
             }];
-
-            e = l[2];
 
             if (e.request) {
                 card = document.createElement("div");
@@ -495,6 +499,81 @@ var method = {
     }
 }
 
+function html2MD(s) {
+    s = s.replace(/href="(#[^\s]+)"/, 'href="'+app.link+'$1"');
+    s = s.replace(/<a href="([^\s]+)".+>(.+)<\/a>/, "[$2]($1)");
+    s = s.replace(/<b>(.+)<\/b>/, "**$1**");
+    s = s.replace(/<\/?ul>/, "");
+    s = s.replace(/<li>(.+)<\/li>/, "* $1");
+    return s;
+}
+
+function generateMD_method() {
+    let a = JSON.parse(JSON.stringify(app.window.method_json));
+    let text = "";
+    // Title
+    text += "# "+a.display + (a.display !== a.name ? "  \n("+a.name+")" : "") + "  \n";
+
+    text += "_" + a.purpose + "_  \n";
+    text += a.way + "\n";
+
+    if (a.request) {
+
+        p_a = [];
+
+        if (a.request.length > 0) {
+
+            a.request.forEach((ty, i) => {
+                let p = patt.findIndex((o) => {
+                    return o.name == ty.name
+                });
+                if (p !== -1) p_a.push([p, i]);
+            });
+
+            if (p_a.length > 0) {
+                text += "## " + _("hints") + "  \n"; 
+
+                p_a.forEach(rt => {
+                    rt = patt[rt[0]];
+                    text += "* " + (rt.related_link ? "[" : "") + rt.text + (rt.related_link ? "]("+(rt.related_link[0] == "#" ? app.link+rt.related_link : rt.related_link)+")" : "") + "  \n"; 
+                    a.request.splice(rt[1], 1);
+                });
+            }
+
+            text += "## " + _("request") + "  \n"; 
+            a.request.forEach(z => {
+                text += "* **" + z.name + "**  \n";
+                text += z.info + "  \n";
+                text += "_" + varType(z.type) + (z.important ? ", **" + _('required_field') + "**" : "") + "_  \r\n";
+            });
+
+        } else {
+            text += "_"+_("no_data")+"_  \r\n";
+        }
+    }
+
+    if (a.answer) {
+
+        p_a = [];
+
+        if (a.answer.length > 0) {
+            text += "## " + _("response") + "  \n"; 
+            a.answer.forEach(z => {
+                text += "* **" + z.name + "**  \n";
+                text += html2MD(z.info) + "  \n";
+                console.log(z.info, html2MD(z.info));
+                text += "_" + html2MD(varType(z.type)) + (z.important ? ", **" + _('required_field') + "**" : "") + "_  \r\n";
+            });
+
+        } else {
+            text += "_"+_("no_data")+"_  \r\n";
+        }
+    }
+
+
+    return text;
+}
+
 
 
 function windower() {
@@ -509,4 +588,4 @@ function windower() {
     } else window.location.hash = "";
 }
 
-window.onload = window.onhashchange = windower;
+window.onhashchange = windower;

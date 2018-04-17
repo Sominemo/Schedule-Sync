@@ -22,7 +22,7 @@
         {
             "name": "response",
             "type": "array class user",
-            "importnat": true,
+            "important": true,
             "info": "Result by query or current user's data"
         }
     ]
