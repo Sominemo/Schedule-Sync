@@ -1,7 +1,7 @@
 var app = {
     lang: "en",
-    build: 46,
-    version: "1.6",
+    build: 49,
+    version: "1.62",
     link: "https://sominemo.github.io/Schedule-Sync/",
     window: {}
 }
@@ -10,41 +10,41 @@ function xhr(url, callback, onerror) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.send();
-  
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState != 4) return;
-  
-  
-  
-      if (xhr.status != 200) {
-        console.error(xhr.status + ': ' + xhr.statusText);
-        if (onerror !== undefined) onerror(url);
-      } else {
-        if (callback !== undefined) callback(xhr.responseText, url);
-      }
-  
-    }
-  };
 
-  function sxhr(url, callback, onerror) {
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState != 4) return;
+
+
+
+        if (xhr.status != 200) {
+            console.error(xhr.status + ': ' + xhr.statusText);
+            if (onerror !== undefined) onerror(url);
+        } else {
+            if (callback !== undefined) callback(xhr.responseText, url);
+        }
+
+    }
+};
+
+function sxhr(url, callback, onerror) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, false);
     xhr.send();
-      if (xhr.status != 200) {
+    if (xhr.status != 200) {
         console.error(xhr.status + ': ' + xhr.statusText);
-        return "error "+xhr.status;
-      } else {
+        return "error " + xhr.status;
+    } else {
         return xhr.responseText;
-      }
-  };
+    }
+};
 
 var _ = function(index, p) {
     p = p || {};
     if (_.prototype.langLib.main[index] !== undefined) {
         return _.prototype.replacer(_.prototype.langLib.main[index], p);
     } else {
-        console.log('Can\'t find index ['+index+'] -', app.lang);
-        return '['+index+']';
+        console.log('Can\'t find index [' + index + '] -', app.lang);
+        return '[' + index + ']';
     }
 }
 
@@ -88,13 +88,13 @@ _.prototype.replaceLib = {
 
 _.prototype.replacer = function(text, p) {
     if (typeof p === "object") {
-        let k = Object.keys(p); 
-        k.forEach((e) => { 
-            text = text.split("{%" + e.toString() + "%}").join(p[e].toString()); 
+        let k = Object.keys(p);
+        k.forEach((e) => {
+            text = text.split("{%" + e.toString() + "%}").join(p[e].toString());
         });
     }
     Object.keys(_.prototype.replaceLib).forEach(function(a) {
-        text = text.split('%'+a+'%').join(_.prototype.replaceLib[a].toString());
+        text = text.split('%' + a + '%').join(_.prototype.replaceLib[a].toString());
     });
     return text;
 }
@@ -149,7 +149,7 @@ var actions = {
     hideAll: function() {
         [].slice.call(document.getElementsByClassName("actions_box")).forEach(function(a) {
             a.classList.add("dieing");
-            setTimeout(function(){
+            setTimeout(function() {
                 document.body.removeChild(a);
             }, 150);
         });
@@ -162,7 +162,7 @@ document.addEventListener('scroll', function() {
 
 window.addEventListener("click", function(a) {
     if (!a.target.matches('.--actions-clickable, .--actions-clickable-child *:not(.--actions-do-not-click), .--actions-clickable *:not(.--actions-do-not-click)')) {
-    actions.hideAll();
+        actions.hideAll();
     }
 });
 
@@ -191,18 +191,52 @@ var engines = {
     },
     getMD: function() {
         r = generateMD_method();
+        let linkid = "d-" + Math.random();
 
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(r));
-        element.setAttribute('download', app.window.method_json.display + ".md");
+        let info_card = document.createElement("div");
+        info_card.classList.add("card");
 
-        element.style.display = 'none';
-        document.body.appendChild(element);
+        la_hint = document.createElement("div");
+        la_hint.classList.add("item");
+        la_hint.classList.add("flex-hint");
 
-        element.click();
+        icon_holder = document.createElement("div");
+        icon_holder.classList.add("icon_container");
+        la_hint.appendChild(icon_holder);
+
+        let icon = document.createElement("icon");
+        icon.innerText = "format_indent_increase";
+        icon_holder.appendChild(icon);
+
+        let text = document.createElement("div");
+        text.classList.add("hint-text");
+
+        sdata = 'data:text/plain;charset=utf-8,' + encodeURIComponent(r);
+
+        text.innerHTML = _("md_file_successfully_generated", {
+            download_link: sdata,
+            file_name: app.window.method_json.display + ".md",
+            link_id: linkid
+        });
+        la_hint.appendChild(text);
+
+        info_card.appendChild(la_hint);
+
+        cb = document.createElement("p");
+        cb.innerHTML = _("files_contents_below") + ":";
+        info_card.appendChild(cb);
+
+        cod = document.createElement("pre");
+        cod.classList.add("grey");
+        cod.innerText = r;
+
+        info_card.appendChild(cod);
+
+        popup.liteShow(info_card, _("result"));
+        document.getElementById(linkid).click();
 
         try {
-            document.body.removeChild(element);
+            navigator.msSaveBlob(Blob([r], {type: 'text/plain'}), app.window.method_json.display + ".md");
         } catch(e) {
 
         }
@@ -224,45 +258,47 @@ var engines = {
 var popup = {
     displayed: [],
     liteShow: function(text, name) {
-    contents = document.createElement("div");
-    contents.classList.add("popup-container");
-    random = Math.random();
+        contents = document.createElement("div");
+        contents.classList.add("popup-container");
+        random = Math.random();
 
-    sh = document.createElement("div");
-    sh.classList.add("settings_header");
+        sh = document.createElement("div");
+        sh.classList.add("settings_header");
 
-    tt = document.createElement("div");
-    tt.classList.add("settings_title");
-    tt.innerHTML = name;
-    sh.appendChild(tt);
+        tt = document.createElement("div");
+        tt.classList.add("settings_title");
+        tt.innerHTML = name;
+        sh.appendChild(tt);
 
-    clb = document.createElement("icon");
-    clb.classList.add("addripple");
-    clb.classList.add("blackripple");
-    clb.innerText = "close";
-    clb.onclick = function(){popup.hide(random)};
-    sh.appendChild(clb);
+        clb = document.createElement("icon");
+        clb.classList.add("addripple");
+        clb.classList.add("blackripple");
+        clb.innerText = "close";
+        clb.onclick = function() {
+            popup.hide(random)
+        };
+        sh.appendChild(clb);
 
-    contents.appendChild(sh);
+        contents.appendChild(sh);
 
-    contents.appendChild(text);
+        contents.appendChild(text);
 
-    lpopup = contents;
+        lpopup = contents;
 
-    document.getElementById('popups').appendChild(lpopup);
-    popup.displayed.push(random);
-    document.getElementById('popups').classList.add('active');
-    document.getElementById('popups').onclick = function(a) {
-        if (!a.target.matches("#popups *")) {
-            let clickFunc = a.target.getAttribute('onclick');
-            if (clickFunc === null || clickFunc.indexOf('popup.hide') == -1) {
-                popup.hideAll();
+        document.getElementById('popups').appendChild(lpopup);
+        popup.displayed.push(random);
+        document.getElementById('popups').classList.add('active');
+        document.getElementById('popups').onclick = function(a) {
+            if (!a.target.matches("#popups *")) {
+                let clickFunc = a.target.getAttribute('onclick');
+                if (clickFunc === null || clickFunc.indexOf('popup.hide') == -1) {
+                    popup.hideAll();
+                }
             }
         }
-    }
-    setTimeout(function() {
-        document.getElementById('popups').style.opacity = 1;
-    }, 50);
+        setTimeout(function() {
+            document.getElementById('popups').style.opacity = 1;
+        }, 50);
 
     },
     show: function(text, name, params) {
@@ -271,7 +307,9 @@ var popup = {
             let bgImage = new Image;
             bgImage.src = params.bgImage;
             params.imageWasLoaded = 1;
-            bgImage.onload = function() {popup.show(text,name,params);};
+            bgImage.onload = function() {
+                popup.show(text, name, params);
+            };
             return;
         }
         var random_id = Math.random();
@@ -280,12 +318,15 @@ var popup = {
         lpopup.id = "popup-" + random_id;
         if (name === undefined) name = '';
         let body = '';
-        if (params.bgImage && params.bgColor) {lpopup.style.padding = 0; lpopup.style.borderRadius = 0;}
-        if (params.bgImage && params.bgColor) body += '<div class="headStyledPopup" style="background-image: url(\''+params.bgImage+'\'); background-repeat: no-repeat; background-color: '+params.bgColor+'; height: 150px; color: white; '+(!params.fullSizeBg ? 'background-size: auto 60%; background-position-x: 0; background-position-y: 65%; padding: 10px; ' : 'background-size: cover; padding: 15px;') + ' padding-bottom: 10%; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">';
-        body +=  '<div class="settings_header"><div class="settings_title">' + name + '</div><icon class="addripple blackripple" onclick="popup.hide(' + random_id + ')">close</icon></div>';
+        if (params.bgImage && params.bgColor) {
+            lpopup.style.padding = 0;
+            lpopup.style.borderRadius = 0;
+        }
+        if (params.bgImage && params.bgColor) body += '<div class="headStyledPopup" style="background-image: url(\'' + params.bgImage + '\'); background-repeat: no-repeat; background-color: ' + params.bgColor + '; height: 150px; color: white; ' + (!params.fullSizeBg ? 'background-size: auto 60%; background-position-x: 0; background-position-y: 65%; padding: 10px; ' : 'background-size: cover; padding: 15px;') + ' padding-bottom: 10%; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">';
+        body += '<div class="settings_header"><div class="settings_title">' + name + '</div><icon class="addripple blackripple" onclick="popup.hide(' + random_id + ')">close</icon></div>';
         if (params.bgImage && params.bgColor) body += '</div>';
-        body +=  '<div class="contents'+(params.beautifyPtag ? ' bpt-padding' : '')+'"'+(params.bgImage && params.bgColor ? ' style="padding: 20px; max-width: calc(100% - 40px);"' : '')+'>' + text.split('%popup_id%').join(random_id);
-        if (params.buttons) body += '<div class="settingsDoc">'+params.buttons.split('%popup_id%').join(random_id)+'</div>';
+        body += '<div class="contents' + (params.beautifyPtag ? ' bpt-padding' : '') + '"' + (params.bgImage && params.bgColor ? ' style="padding: 20px; max-width: calc(100% - 40px);"' : '') + '>' + text.split('%popup_id%').join(random_id);
+        if (params.buttons) body += '<div class="settingsDoc">' + params.buttons.split('%popup_id%').join(random_id) + '</div>';
         body += '</div>';
         lpopup.innerHTML = body;
         document.getElementById('popups').appendChild(lpopup);
