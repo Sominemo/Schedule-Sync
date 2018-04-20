@@ -15,8 +15,8 @@ document.getElementById("menu-action").addEventListener("click", function(a) {
     a.preventDefault();
 });
 
-document.onscroll = function (a) {
-    if (window.scrollY > 10) {
+document.onscroll = function(a) {
+    if (window.scrollY > 0) {
         document.documentElement.classList.add("--scrolled-body");
     } else {
         document.documentElement.classList.remove("--scrolled-body");
@@ -45,6 +45,14 @@ function getMain() {
                 heading.classList.add("head");
                 heading.innerHTML = e.display;
                 card.appendChild(heading);
+
+                e.sections.sort((a, b) => {
+                    var nameA = a.display.toUpperCase();
+                    var nameB = b.display.toUpperCase();
+                    if (nameA < nameB) return -1;
+                    if (nameA > nameB) return 1;
+                    return 0;
+                });
 
                 e.sections.forEach(m => {
                     l = document.createElement("div");
@@ -140,9 +148,18 @@ var section = {
                 });
 
                 xxhr(ls, function(kk) {
+                    xxhry[kk].results.forEach((q, i) => xxhry[kk].results[i] = JSON.parse(q));
+                    xxhry[kk].results.sort((a, b) => {
+                        if (a == false) return -1;
+                        if (b == false) return 0;
+                        var nameA = a.display.toUpperCase();
+                        var nameB = b.display.toUpperCase();
+                        if (nameA < nameB) return -1;
+                        if (nameA > nameB) return 1;
+                        return 0;
+                    });
                     xxhry[kk].results.forEach(q => {
                         if (q != false) {
-                            q = JSON.parse(q);
                             let method = document.createElement("div");
                             method.classList.add("item");
                             method.innerHTML = q.name + '<span class="light-color"> — ' + q.purpose + '</span>';
@@ -197,7 +214,9 @@ function varType(a) {
 
     switch (a[0]) {
         case "int":
-            return _("type__int");
+            if (a[1] == "timestamp") return _("type__timestamp");
+            else
+                return _("type__int");
             break;
 
         case "string":
@@ -213,25 +232,25 @@ function varType(a) {
 
             re = "";
 
-            o = sxhr("data/methods/"+app.lang+"/class."+a[1]+".json");
+            o = sxhr("data/methods/" + app.lang + "/class." + a[1] + ".json");
             try {
                 o = JSON.parse(o);
                 name = o.display;
-            } catch(e) {
-                name =  _("class") + " ???";
-            } 
-            re = '<a href="#b-class.'+a[1]+'" target="_blank">'+name+"</a>";
+            } catch (e) {
+                name = _("class") + " ???";
+            }
+            re = '<a href="#b-class.' + a[1] + '" target="_blank">' + name + "</a>";
             return re;
             break;
 
-        case "array": 
+        case "array":
             if (a[1] === "class") {
-                rt = varType("class "+a[2]);
+                rt = varType("class " + a[2]);
                 return _("type__array") + ", " + _("that_contains") + " " + _("objects") + " " + _("of_type") + " " + rt;
             }
-    
+
         default:
-        return "???";
+            return "???";
             break;
     }
 }
@@ -420,19 +439,19 @@ var method = {
                     table.classList.add("fields-table");
                     e.request.forEach(z => {
                         row = document.createElement("tr");
-                        
+
                         name_f = document.createElement("td");
                         name_f.innerHTML = z.name;
                         row.appendChild(name_f);
 
                         info = document.createElement("td");
-                        
+
                         infy = document.createElement("div");
                         infy.innerHTML = z.info;
-                        
+
                         type = document.createElement("div");
                         type.innerHTML = varType(z.type) + (z.important ? ", <b>" + _('required_field') + "</b>" : "");
-                        
+
                         info.appendChild(infy);
                         info.appendChild(type);
 
@@ -447,7 +466,7 @@ var method = {
                     item.innerHTML = '<span class="light-color">' + _("no_data") + '</span>';
                     card.appendChild(item);
                 }
-                document.getElementById("main").appendChild(card);
+                if (e.request.length > 0) document.getElementById("main").appendChild(card);
             }
 
             if (e.answer) {
@@ -465,19 +484,19 @@ var method = {
                     table.classList.add("fields-table");
                     e.answer.forEach(z => {
                         row = document.createElement("tr");
-                        
+
                         name_f = document.createElement("td");
                         name_f.innerHTML = z.name;
                         row.appendChild(name_f);
 
                         info = document.createElement("td");
-                        
+
                         infy = document.createElement("div");
                         infy.innerHTML = z.info;
-                        
+
                         type = document.createElement("div");
                         type.innerHTML = varType(z.type) + (z.important ? ", <b>" + _('required_field') + "</b>" : "");
-                        
+
                         info.appendChild(infy);
                         info.appendChild(type);
 
@@ -500,7 +519,7 @@ var method = {
 }
 
 function html2MD(s) {
-    s = s.replace(/href="(#[^\s]+)"/, 'href="'+app.link+'$1"');
+    s = s.replace(/href="(#[^\s]+)"/, 'href="' + app.link + '$1"');
     s = s.replace(/<a href="([^\s]+)".+>(.+)<\/a>/, "[$2]($1)");
     s = s.replace(/<b>(.+)<\/b>/, "**$1**");
     s = s.replace(/<\/?ul>/, "");
@@ -512,10 +531,10 @@ function generateMD_method() {
     let a = JSON.parse(JSON.stringify(app.window.method_json));
     let text = "";
     // Title
-    text += "# "+a.display + (a.display !== a.name ? "  \n("+a.name+")" : "") + "  \n";
+    text += "# " + a.display + (a.display !== a.name ? "  \n(" + a.name + ")" : "") + "  \n";
 
-    text += "_" + a.purpose + "_  \n";
-    text += a.way + "\n";
+    text += "_" + html2MD(a.purpose) + "_  \n";
+    text += html2MD(a.way) + "\n";
 
     if (a.request) {
 
@@ -531,24 +550,24 @@ function generateMD_method() {
             });
 
             if (p_a.length > 0) {
-                text += "## " + _("hints") + "  \n"; 
+                text += "## " + _("hints") + "  \n";
 
                 p_a.forEach(rt => {
                     rt = patt[rt[0]];
-                    text += "* " + (rt.related_link ? "[" : "") + rt.text + (rt.related_link ? "]("+(rt.related_link[0] == "#" ? app.link+rt.related_link : rt.related_link)+")" : "") + "  \n"; 
+                    text += "* " + (rt.related_link ? "[" : "") + html2MD(rt.text) + (rt.related_link ? "](" + (rt.related_link[0] == "#" ? app.link + rt.related_link : rt.related_link) + ")" : "") + "  \n";
                     a.request.splice(rt[1], 1);
                 });
             }
 
-            text += "## " + _("request") + "  \n"; 
+            if (a.request.length > 0) text += "## " + _("request") + "  \n";
             a.request.forEach(z => {
                 text += "* **" + z.name + "**  \n";
-                text += z.info + "  \n";
-                text += "_" + varType(z.type) + (z.important ? ", **" + _('required_field') + "**" : "") + "_  \r\n";
+                text += html2MD(z.info) + "  \n";
+                text += "_" + html2MD(varType(z.type)) + (z.important ? ", **" + _('required_field') + "**" : "") + "_  \r\n";
             });
 
         } else {
-            text += "_"+_("no_data")+"_  \r\n";
+            text += "_" + _("no_data") + "_  \r\n";
         }
     }
 
@@ -557,16 +576,15 @@ function generateMD_method() {
         p_a = [];
 
         if (a.answer.length > 0) {
-            text += "## " + _("response") + "  \n"; 
+            text += "## " + _("response") + "  \n";
             a.answer.forEach(z => {
                 text += "* **" + z.name + "**  \n";
                 text += html2MD(z.info) + "  \n";
-                console.log(z.info, html2MD(z.info));
                 text += "_" + html2MD(varType(z.type)) + (z.important ? ", **" + _('required_field') + "**" : "") + "_  \r\n";
             });
 
         } else {
-            text += "_"+_("no_data")+"_  \r\n";
+            text += "_" + _("no_data") + "_  \r\n";
         }
     }
 

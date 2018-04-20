@@ -29,7 +29,8 @@
         "type__ints": "integers",
         "type__strings": "strings",
         "type__comma_separated": "separated by comma",
-        "type__array": "array"
+        "type__array": "array",
+        "type__timestamp": "PHP Timestamp"
     },
     "auto_change": {
         "home-path-el": "Home",
