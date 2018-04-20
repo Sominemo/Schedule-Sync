@@ -1,0 +1,71 @@
+{
+    "name": "test.server",
+    "display": "test.server",
+    "purpose": "Test connection with server",
+    "way": "This method was created just to test how API works & get server's time. If param `require_test` will be set fields `int_value` and `str_value` will be required.",
+
+    "request": [
+        {
+            "name": "require_test",
+            "type": "int",
+            "important": false,
+            "info": "Trigger for testing 102 error. If it was set, `int_value` and `str_value` will be required"
+        },
+        {
+            "name": "int_value",
+            "type": "int",
+            "important": false,
+            "info": "Integer, that will be returned back if it was set"
+        },
+        {
+            "name": "str_value",
+            "type": "string",
+            "important": false,
+            "info": "String, that will be returned back if it was set"
+        },
+        {
+            "name": "randoms",
+            "type": "int",
+            "important": false,
+            "info": "If it was set, API returns specified amount of randoms between 1000 and 9999"
+        }
+    ],
+    "answer": [
+        {
+            "name": "got_int",
+            "type": "int",
+            "important": false,
+            "info": "Integer from `int_value`"
+        },
+        {
+            "name": "got_str",
+            "type": "string",
+            "important": false,
+            "info": "Integer from `str_value`"
+        },
+        {
+            "name": "randoms",
+            "type": "array int",
+            "important": false,
+            "info": "Specified amount of randoms between 1000 and 9999. Max amount - 15 nums"
+        },
+        {
+            "name": "ip",
+            "type": "string",
+            "important": true,
+            "info": "User's IP"
+        },
+        {
+            "name": "ua",
+            "type": "string",
+            "important": true,
+            "info": "User's User Agent"
+        },
+        {
+            "name": "time",
+            "type": "int timestamp",
+            "important": true,
+            "info": "Time on API server"
+        }
+    ]
+}

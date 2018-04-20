@@ -162,7 +162,7 @@ var section = {
                         if (q != false) {
                             let method = document.createElement("div");
                             method.classList.add("item");
-                            method.innerHTML = q.name + '<span class="light-color"> — ' + q.purpose + '</span>';
+                            method.innerHTML = q.display + '<span class="light-color"> — ' + q.purpose + '</span>';
                             method.classList.add("clickable");
                             method.onclick = () => {
                                 window.location.hash = "#b-" + q.name
@@ -244,10 +244,8 @@ function varType(a) {
             break;
 
         case "array":
-            if (a[1] === "class") {
-                rt = varType("class " + a[2]);
+             rt = varType(a.slice(1).join(" "));
                 return _("type__array") + ", " + _("that_contains") + " " + _("objects") + " " + _("of_type") + " " + rt;
-            }
 
         default:
             return "???";
