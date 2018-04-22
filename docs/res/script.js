@@ -191,7 +191,8 @@ function chooserLang() {
         r.innerText = a.toUpperCase();
         container.appendChild(r);
         r.addEventListener("click", () => {
-            toggleLang(a)
+            toggleLang(a);
+            popup.hideAll();
         });
     });
 
