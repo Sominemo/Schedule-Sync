@@ -12,6 +12,7 @@
         "cant_load_lang": "Якыковый пакет недоступен",
         "no_data": "Нет данных",
         "token_att_text": "Этот объект может требовать авторизацию",
+        "user_fields_att_text": "Ответ этого объекта может быть модифицирован с помощью глобального параметра `user_fields`",
         "request": "Запрос",
         "hints": "Замечания",
         "required_field": "обязательный параметр",
@@ -20,13 +21,18 @@
         "that_contains": "который содержит",
         "objects": "объекты",
         "of_type": "типа",
+        "result": "Результат",
+        "md_file_successfully_generated": "Файл был успешно сгенерирован. Вы можете использовать его для GitHub wiki, Markdown редакторов, MD2HTML конверторов или просто для сохранения метода в автономном режиме. Если загрузка не началась автоматически, нажмите <a href=\"{%download_link%}\" download=\"{%file_name%}\" id=\"{%link_id%}\">здесь</a>.",
+        "files_contents_below": "Сгенерированный файл приведен ниже",
 
         "type__int": "целое число",
         "type__string": "строка",
         "type__ints": "целые числа",
         "type__strings": "строки",
         "type__comma_separated": "разделенные запятой",
-        "type__array": "массив"
+        "type__array": "массив",
+        "type__timestamp": "PHP Timestamp",
+        "type__bool": "логический"
     },
     "auto_change": {
         "home-path-el": "Главная",

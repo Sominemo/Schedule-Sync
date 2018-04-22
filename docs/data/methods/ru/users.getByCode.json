@@ -1,0 +1,29 @@
+{
+    "name": "users.getByCode",
+    "display": "users.getByCode",
+    "purpose": "Получите данные пользователя с помощью временного кода",
+    "way": "Возвращает массив пользователей, которые отвечают кодам доступа, полученных в методе account.shareByCode.",
+
+    "request": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Данные для авторизации"
+        },
+        {
+            "name": "codes",
+            "type": "comma int",
+            "important": true,
+            "info": "Полученные коды пользователей"
+        }
+    ],
+    "answer": [
+        {
+            "name": "response",
+            "type": "array class user",
+            "importnat": true,
+            "info": "Результат по запросу"
+        }
+    ]
+}

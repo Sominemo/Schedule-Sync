@@ -9,25 +9,25 @@
             "name": "name",
             "type": "string",
             "important": true,
-            "info": "User's name"
+            "info": "User's name (Length MIN/MAX: 1/15)"
         },
         {
             "name": "surname",
             "type": "string",
             "important": false,
-            "info": "User's surname"
+            "info": "User's surname (Length MIN/MAX: 0/15)"
         },
         {
             "name": "login",
             "type": "string",
             "important": true,
-            "info": "User's login"
+            "info": "User's login. It must start with a letter, contain only English letters and numbers of any register. (Length MIN/MAX: 5/16)"
         },
         {
             "name": "password",
             "type": "string",
             "important": true,
-            "info": "User's password"
+            "info": "User's password (Length MIN/MAX: 8/200)"
         }
     ],
     "answer": [
@@ -35,7 +35,7 @@
             "name": "user",
             "type": "class user",
             "important": true,
-            "info": "Current user"
+            "info": "Registred user"
         }
     ]
 }

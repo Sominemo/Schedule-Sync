@@ -1,0 +1,51 @@
+{
+    "name": "class.user",
+    "display": "User class",
+    "purpose": "Describes profile object",
+    "request": [
+        {
+            "name": "user_fields",
+            "type": "string",
+            "important": true,
+            "info": "Parameter, which controls returned fields"
+        }
+    ],
+    "answer": [
+        {
+            "name": "id",
+            "type": "int",
+            "important": true,
+            "info": "User's unique ID"
+        },
+        {
+            "name": "login",
+            "type": "string",
+            "important": true,
+            "info": "User's unique login"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "important": true,
+            "info": "User's display name"
+        },
+        {
+            "name": "surname",
+            "type": "string",
+            "important": false,
+            "info": "User's display surname"
+        },
+        {
+            "name": "visit",
+            "type": "int timestamp",
+            "important": false,
+            "info": "User's last visit"
+        },
+        {
+            "name": "online",
+            "type": "bool",
+            "important": true,
+            "info": "User's online status"
+        }
+    ]
+}

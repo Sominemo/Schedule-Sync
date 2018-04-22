@@ -12,6 +12,7 @@
         "cant_load_lang": "Language pack is unavailable",
         "no_data": "No data",
         "token_att_text": "This object could require authentication",
+        "user_fields_att_text": "Response of this object could be modificated by `user_fields` global variable",
         "request": "Request",
         "hints": "Hints",
         "required_field": "required field",
@@ -30,7 +31,8 @@
         "type__strings": "strings",
         "type__comma_separated": "separated by comma",
         "type__array": "array",
-        "type__timestamp": "PHP Timestamp"
+        "type__timestamp": "PHP Timestamp",
+        "type__bool": "boolean"
     },
     "auto_change": {
         "home-path-el": "Home",

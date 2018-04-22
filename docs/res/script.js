@@ -223,6 +223,10 @@ function varType(a) {
             return _("type__string");
             break;
 
+        case "bool":
+            return _("type__bool");
+            break;
+
         case "comma":
             if (a[1] === "string") return _("type__strings") + ", " + _("type__comma_separated");
             if (a[1] === "int") return _("type__ints") + ", " + _("type__comma_separated");
@@ -244,8 +248,8 @@ function varType(a) {
             break;
 
         case "array":
-             rt = varType(a.slice(1).join(" "));
-                return _("type__array") + ", " + _("that_contains") + " " + _("objects") + " " + _("of_type") + " " + rt;
+            rt = varType(a.slice(1).join(" "));
+            return _("type__array") + ", " + _("that_contains") + " " + _("objects") + " " + _("of_type") + " " + rt;
 
         default:
             return "???";
@@ -364,12 +368,20 @@ var method = {
             app.window.method_json = e;
             e = JSON.parse(JSON.stringify(e));
 
-            patt = [{
-                "name": "token",
-                "icon": "vpn_key",
-                "text": _("token_att_text"),
-                "related_link": "#b-token.get"
-            }];
+            patt = [
+                {
+                    "name": "token",
+                    "icon": "vpn_key",
+                    "text": _("token_att_text"),
+                    "related_link": "#b-token.get"
+                },
+                {
+                    "name": "user_fields",
+                    "icon": "people",
+                    "text": _("user_fields_att_text"),
+                    "related_link": "#b-global_vars.user_fields"
+                }
+            ];
 
             if (e.request) {
                 card = document.createElement("div");
@@ -531,8 +543,8 @@ function generateMD_method() {
     // Title
     text += "# " + a.display + (a.display !== a.name ? "  \n(" + a.name + ")" : "") + "  \n";
 
-    text += "_" + html2MD(a.purpose) + "_  \n";
-    text += html2MD(a.way) + "\n";
+    if (a.purpose) text += "_" + html2MD(a.purpose) + "_  \n";
+    if (a.way) text += html2MD(a.way) + "\n";
 
     if (a.request) {
 

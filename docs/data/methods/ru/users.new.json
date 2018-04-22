@@ -1,0 +1,41 @@
+{
+    "name": "users.new",
+    "display": "users.new",
+    "purpose": "Создайте новую учетную запись",
+    "way": "Создает новую учетную запись и возвращает данные о ней",
+
+    "request": [
+        {
+            "name": "name",
+            "type": "string",
+            "important": true,
+            "info": "Имя пользователя (Длина MIN/MAX: 1/15)"
+        },
+        {
+            "name": "surname",
+            "type": "string",
+            "important": false,
+            "info": "Фамилия пользователя (Длина MIN/MAX: 0/15)"
+        },
+        {
+            "name": "login",
+            "type": "string",
+            "important": true,
+            "info": "Логин пользователя. Должен начинаться с буквы, содержать только латинские буквы и цифры любого регистра. (Длина MIN/MAX: 5/16)"
+        },
+        {
+            "name": "password",
+            "type": "string",
+            "important": true,
+            "info": "Пароль пользователя (Длина MIN/MAX: 8/200)"
+        }
+    ],
+    "answer": [
+        {
+            "name": "user",
+            "type": "class user",
+            "important": true,
+            "info": "Зарегристрированный пользователь"
+        }
+    ]
+}

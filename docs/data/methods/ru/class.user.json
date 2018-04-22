@@ -1,0 +1,51 @@
+{
+    "name": "class.user",
+    "display": "Класс User",
+    "purpose": "Описывает объект профиля",
+    "request": [
+        {
+            "name": "user_fields",
+            "type": "string",
+            "important": true,
+            "info": "Параметр, который контролирует возвращаемые поля"
+        }
+    ],
+    "answer": [
+        {
+            "name": "id",
+            "type": "int",
+            "important": true,
+            "info": "Уникальный ID пользователя"
+        },
+        {
+            "name": "login",
+            "type": "string",
+            "important": true,
+            "info": "Униальный login пользователя"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "important": true,
+            "info": "Выводимое имя пользователя"
+        },
+        {
+            "name": "surname",
+            "type": "string",
+            "important": false,
+            "info": "Выводимая фамилия пользователя"
+        },
+        {
+            "name": "visit",
+            "type": "int timestamp",
+            "important": false,
+            "info": "Последнее посещение пользователем"
+        },
+        {
+            "name": "online",
+            "type": "bool",
+            "important": true,
+            "info": "Статус \"В сети\""
+        }
+    ]
+}

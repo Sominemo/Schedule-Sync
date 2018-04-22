@@ -127,7 +127,15 @@ class User {
         }
 
         // Password
-        $check_pass = substr($d['signup_data']['password'],0, 60);
+        $check_pass = $d['signup_data']['password'];
+        
+        // Max password's length: 200 symbols
+        if (strlen($check_pass) > 200) {
+            if (!$o['IGNORE_EXCEPTIONS']) api::error(3, 1);
+            $this->data = false;
+            return false;
+        }
+
         // Min. length: 8 symbols
         if (strlen($check_pass) < 8) {
             if (!$o['IGNORE_EXCEPTIONS']) api::error(3, 1);

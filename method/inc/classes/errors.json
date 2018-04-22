@@ -29,11 +29,11 @@
             },
             {
                 "code": 2,
-                "info": "Incorrect login. It must start with a letter, contain only letters and numbers. Range: 5-16 symbols."
+                "info": "Incorrect login. It must start with a letter, contain only letters and numbers. Range: 5-16 characters."
             },
             {
                 "code": 3,
-                "info": "Password must contain 8+ symbols"
+                "info": "Password must contain more than 8 and less than 201 characters"
             },
             {
                 "code": 4,

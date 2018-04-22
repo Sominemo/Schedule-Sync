@@ -2,7 +2,7 @@
     "tabs": [
         {
             "name": "Methods",
-            "display": "Methods",
+            "display": "Методы",
             "sections": [
                 {
                     "name": "Users",
@@ -28,21 +28,21 @@
             "sections": [
                 {
                     "name": "Classes",
-                    "display": "Classes"
+                    "display": "Классы"
                 },
                 {
                     "name": "Global_Vars",
-                    "display": "Global variables"
+                    "display": "Глобальные параметры"
                 }
             ]
         },
         {
             "name": "Info",
-            "display": "Info",
+            "display": "Справка",
             "sections": [
                 {
                     "name": "Installation",
-                    "display": "Installation"
+                    "display": "Установка"
                 }
             ]
         }

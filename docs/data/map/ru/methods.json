@@ -1,7 +1,7 @@
 {
     "stuff": {
         "Users": {
-            "about": "Methods to work with User object: get, create, manipulate",
+            "about": "Методы для работы с объектом пользователя: получать, создавать, манипулировать",
             "methods": [
                 "users.get",
                 "users.getByCode",

@@ -41,7 +41,7 @@
             "name": "got_str",
             "type": "string",
             "important": false,
-            "info": "Integer from `str_value`"
+            "info": "String from `str_value`"
         },
         {
             "name": "randoms",

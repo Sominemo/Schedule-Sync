@@ -1,0 +1,71 @@
+{
+    "name": "test.server",
+    "display": "test.server",
+    "purpose": "Проверьте соединение с сервером",
+    "way": "Этот метод был создан просто для проверки работы API и получения времени на сервере. Если параметр `require_test` будет задан, поля `int_value` и `str_value` будут обязательны к заполнению.",
+
+    "request": [
+        {
+            "name": "require_test",
+            "type": "int",
+            "important": false,
+            "info": "Триггер для проверки ошибки 102. Если задан, `int_value` и `str_value` обязательны к заполнению"
+        },
+        {
+            "name": "int_value",
+            "type": "int",
+            "important": false,
+            "info": "Число, которое будет возвращено, если оно было задано"
+        },
+        {
+            "name": "str_value",
+            "type": "string",
+            "important": false,
+            "info": "Строка, которая будет возвращена, если она была задана"
+        },
+        {
+            "name": "randoms",
+            "type": "int",
+            "important": false,
+            "info": "Если параметр был задан, API возвращает случайные числа в промежутке от 100000 до 999999"
+        }
+    ],
+    "answer": [
+        {
+            "name": "got_int",
+            "type": "int",
+            "important": false,
+            "info": "Число из `int_value`"
+        },
+        {
+            "name": "got_str",
+            "type": "string",
+            "important": false,
+            "info": "Строка из `str_value`"
+        },
+        {
+            "name": "randoms",
+            "type": "array int",
+            "important": false,
+            "info": "Указанное количество случайных чисел из промежутка от 1000 до 9999. Максимальное количество - 15 элементов."
+        },
+        {
+            "name": "ip",
+            "type": "string",
+            "important": true,
+            "info": "IP пользователя"
+        },
+        {
+            "name": "ua",
+            "type": "string",
+            "important": true,
+            "info": "User Agent пользователя"
+        },
+        {
+            "name": "time",
+            "type": "int timestamp",
+            "important": true,
+            "info": "Время на сервере API"
+        }
+    ]
+}

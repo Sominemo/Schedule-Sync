@@ -1,7 +1,7 @@
 var app = {
     lang: "en",
-    build: 61,
-    version: "1.64",
+    build: 64,
+    version: "1.65",
     link: "https://sominemo.github.io/Schedule-Sync/",
     window: {}
 }

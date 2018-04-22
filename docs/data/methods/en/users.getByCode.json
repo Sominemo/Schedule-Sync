@@ -23,7 +23,7 @@
             "name": "response",
             "type": "array class user",
             "importnat": true,
-            "info": "Result by query or current user's data"
+            "info": "Result by query"
         }
     ]
 }
