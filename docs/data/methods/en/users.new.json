@@ -1,0 +1,41 @@
+{
+    "name": "users.new",
+    "display": "users.new",
+    "purpose": "Create new account",
+    "way": "Creates profile and returns info about new user",
+
+    "request": [
+        {
+            "name": "name",
+            "type": "string",
+            "important": true,
+            "info": "User's name"
+        },
+        {
+            "name": "surname",
+            "type": "string",
+            "important": false,
+            "info": "User's surname"
+        },
+        {
+            "name": "login",
+            "type": "string",
+            "important": true,
+            "info": "User's login"
+        },
+        {
+            "name": "password",
+            "type": "string",
+            "important": true,
+            "info": "User's password"
+        }
+    ],
+    "answer": [
+        {
+            "name": "user",
+            "type": "class user",
+            "important": true,
+            "info": "Current user"
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 {
     "stuff": {
         "Users": {
-            "about": "Wow",
+            "about": "Methods to work with User object: get, create, manipulate",
             "methods": [
                 "users.get",
                 "users.getByCode",

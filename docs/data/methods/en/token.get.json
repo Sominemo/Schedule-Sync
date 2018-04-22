@@ -1,0 +1,35 @@
+{
+    "name": "token.get",
+    "display": "token.get",
+    "purpose": "Get access token - Authorize in API",
+    "way": "Returns access token, which uses for authentication in API. To use authentication just send the token as `token` field in each request to API where user should be authorized.",
+
+    "request": [
+        {
+            "name": "login",
+            "type": "string",
+            "important": true,
+            "info": "User's login"
+        },
+        {
+            "name": "password",
+            "type": "string",
+            "important": true,
+            "info": "User's password"
+        }
+    ],
+    "answer": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Generated access token, that uses for auth"
+        },
+        {
+            "name": "user",
+            "type": "class user",
+            "important": true,
+            "info": "Current user"
+        }
+    ]
+}
