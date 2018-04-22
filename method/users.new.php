@@ -15,6 +15,6 @@ $u = new User('SIGN_UP_MODE', [
     ]);
 
 // Return the user
-$ra = $u->get();
+$ra["user"] = $u->get();
 
 include_once('inc/end.php');

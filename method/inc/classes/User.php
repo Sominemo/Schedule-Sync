@@ -96,12 +96,15 @@ class User {
         if ($this->id > 0) return;
 
         // Check all data we got
-        $tav = api::required('name, surname, login, password', $d['signup_data']);
+        $tav = api::required('name, login, password', $d['signup_data']);
         if (!$tav) {
             if (!$o['IGNORE_EXCEPTIONS']) api::error(1, 1);
             $this->data = false;
             return false;
         };
+
+        // Set surname as string if it's empty
+        if (!isset($d['signup_data']['surname'])) $d['signup_data']['surname'] = "";
 
         // Cut name
         $write['name'] = substr($d['signup_data']['name'],0, 15);
@@ -111,6 +114,13 @@ class User {
         $write['login'] = substr($d['signup_data']['login'],0, 15);
         // Only regexp characters. (5-16)
         if (!preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{5,16}$/', $write['login'])) {
+            if (!$o['IGNORE_EXCEPTIONS']) api::error(2, 1);
+            $this->data = false;
+            return false;
+        }
+
+        // Name's min length: 1 symbol
+        if (strlen($write['surname']) < 1) {
             if (!$o['IGNORE_EXCEPTIONS']) api::error(2, 1);
             $this->data = false;
             return false;
