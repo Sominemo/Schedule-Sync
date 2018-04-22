@@ -44,7 +44,7 @@
         {
             "name": "online",
             "type": "bool",
-            "important": true,
+            "important": false,
             "info": "Статус \"В сети\""
         }
     ]
