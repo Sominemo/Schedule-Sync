@@ -24,6 +24,10 @@
         "result": "Result",
         "md_file_successfully_generated": "The file was successfully generated. You can use it for GitHub wiki, Markdown editors, MD2HTML convertors or just to store the method offline. If the download doesn't start automatically, click <a href=\"{%download_link%}\" download=\"{%file_name%}\" id=\"{%link_id%}\">here</a>.",
         "files_contents_below": "Generated file presented below",
+        "404_error": "You made a mistake!",
+        "method": "Method",
+        "section": "Section",
+        "404_text": "{%object%} \"{%name%}\" doesn't exist or not documented. Check your spelling and try again.",
 
         "type__int": "integer",
         "type__string": "string",

@@ -291,3 +291,8 @@ pre.grey {
     font-family: monospace;
     font-size: 10px;
 }
+
+.popup-container .card {
+    margin: auto;
+    display: block;
+}

@@ -98,7 +98,7 @@ function xxhr(a, c) {
 
 var section = {
     open: function(a) {
-        app.window_type = "section";
+        a = a.toString();
         xhr('data/map/' + app.lang + '/sections.json', function(r) {
             r = JSON.parse(r);
             xhr('data/map/' + app.lang + '/methods.json', function(b) {
@@ -117,6 +117,48 @@ var section = {
                     });
                     return mn != undefined;
                 });
+                if (mn === undefined) {
+                    try {
+                    if (history && history.length > 0) {
+                        history.back();
+                    } else {
+                    location.hash = "";
+                    }
+                } catch (e) {
+                    location.hash = "";
+                }
+
+                let info_card = document.createElement("div");
+                info_card.classList.add("card");
+
+                la_hint = document.createElement("div");
+                la_hint.classList.add("item");
+                la_hint.classList.add("flex-hint");
+
+                icon_holder = document.createElement("div");
+                icon_holder.classList.add("icon_container");
+                la_hint.appendChild(icon_holder);
+
+                let icon = document.createElement("icon");
+                icon.innerText = "error";
+                icon_holder.appendChild(icon);
+
+                let text = document.createElement("div");
+                text.classList.add("hint-text");
+
+        text.innerHTML = _('404_text', {
+            "object": _("section"),
+            "name": a.charAt(0).toUpperCase() + a.slice(1)
+        });
+        la_hint.appendChild(text);
+
+        info_card.appendChild(la_hint);
+
+        popup.liteShow(info_card, _('404_error'));
+        return;
+
+                };
+                app.window_type = "section";
                 heading.innerHTML = mn.display;
                 card.appendChild(heading);
                 if (b.stuff[a].about) {
@@ -262,9 +304,6 @@ var patt = [];
 
 var method = {
     open: function(a) {
-        app.window_type = "method";
-        engines.cleanMain();
-        engines.loading();
         xxhr(['data/map/' + app.lang + '/methods.json', 'data/map/' + app.lang + '/sections.json', 'data/methods/' + app.lang + '/' + a + '.json'], function(jk) {
             l = xxhry[jk].results;
 
@@ -296,6 +335,51 @@ var method = {
                     return d != undefined;
                 });
             }
+
+            if (!d) {
+                try {
+                if (history && history.length > 0) {
+                    history.back();
+                } else {
+                location.hash = "";
+                }
+            } catch (e) {
+                location.hash = "";
+            }
+
+            let info_card = document.createElement("div");
+            info_card.classList.add("card");
+
+            la_hint = document.createElement("div");
+            la_hint.classList.add("item");
+            la_hint.classList.add("flex-hint");
+
+            icon_holder = document.createElement("div");
+            icon_holder.classList.add("icon_container");
+            la_hint.appendChild(icon_holder);
+
+            let icon = document.createElement("icon");
+            icon.innerText = "error";
+            icon_holder.appendChild(icon);
+
+            let text = document.createElement("div");
+            text.classList.add("hint-text");
+
+    text.innerHTML = _('404_text', {
+        "object": _("method"),
+        "name": a.charAt(0).toUpperCase() + a.slice(1)
+    });
+    la_hint.appendChild(text);
+
+    info_card.appendChild(la_hint);
+
+    popup.liteShow(info_card, _('404_error'));
+    return;
+
+            };
+            app.window_type = "method";
+        engines.cleanMain();
+        engines.loading();
 
             if (w === null) w = '???';
             if (d === null) d = w;
