@@ -41,6 +41,7 @@ body {
     background: #eee;
     max-width: 800px;
     margin: auto;
+    transition: max-width .2s ease-in-out;
 }
 
 .card {
@@ -114,7 +115,7 @@ header .subline {
 
 main {
     margin-top: calc(var(--header-height) + 5px);
-    transition: margin .2s;
+    transition: margin .2s, display .2s;
 } 
 
 header .heading .logo {
@@ -295,4 +296,5 @@ pre.grey {
 .popup-container .card {
     margin: auto;
     display: block;
+    transition: flex .2s ease-in-out;
 }

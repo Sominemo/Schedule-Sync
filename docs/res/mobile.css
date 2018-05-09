@@ -7,3 +7,25 @@
         --logo-font-size: 24px;
     }
 }
+
+@media(min-width: 2000px) {
+    body {
+        max-width: 1500px;
+    }
+    main {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,calc(-50% + var(--header-height) + 20px));
+        margin: 0;
+        width: 1500px;
+        flex-wrap: wrap;
+        z-index: -1;
+    }
+
+    .card {
+        flex: 1;
+        min-width: 300px;
+    }
+}
