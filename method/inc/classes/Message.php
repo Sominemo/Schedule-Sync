@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Message {
     private $data = [];

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class funcs {
     public static function is_in_array($array, $key, $key_value){
