@@ -1,6 +1,6 @@
 <?php
 //DB settings
-require_once('../../ex/db_credentials_data.php'); // <- Login data
+require_once('../../ex/db_credentials_data.php'); // <- Login data 
 
 define ('DBCHARSET', 'utf8mb4');
 define ('DBDSN', 'mysql:host='.DBHOST.';dbname='.DBNAME.';charset='.DBCHARSET);
