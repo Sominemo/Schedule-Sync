@@ -1,9 +1,7 @@
 <?php
-// DB data
-define ('DBHOST', 'sominemo.mysql.tools');
-define ('DBNAME', 'sominemo_schedul');
-define ('DBPASS', 'schedule');
-define ('DBUSER', 'sominemo_schedul');
+//DB settings
+require_once('../../ex/db_credentials_data.php'); // <- Login data
+
 define ('DBCHARSET', 'utf8mb4');
 define ('DBDSN', 'mysql:host='.DBHOST.';dbname='.DBNAME.';charset='.DBCHARSET);
 define ('DBOPT', [
@@ -13,7 +11,13 @@ define ('DBOPT', [
 ]);
 
 // Connecting
-$pdo = new PDO(DBDSN, DBUSER, DBPASS, DBOPT);
+    try {
+        $pdo = new PDO(DBDSN, DBUSER, DBPASS, DBOPT);
+        define('DB_CONNECTION_SUCCESS', true);
+    } catch (PDOException $e) {
+        define('DB_CONNECTION_SUCCESS', false);
+        api::error(0);
+    }
 
 // Setting encoding
 $pdo->query('SET NAMES `utf8mb4`');

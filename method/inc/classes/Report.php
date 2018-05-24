@@ -8,6 +8,8 @@ class Report {
     public function __construct($data = []) {
         global $pdo, $global_report_data, $the_return_stream, $api_token_data;
 
+        if(!DB_CONNECTION_SUCCESS) return;
+
         $global_report_data['result'] = (count($the_return_stream) > 0 ? $the_return_stream : $data);
         $global_report_data['time'] = microtime(true) - $global_report_data['time'];
         $global_report_data['user_id'] = $api_token_data['user_id'];

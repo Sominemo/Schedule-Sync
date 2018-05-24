@@ -2,7 +2,7 @@
     "name": "account.shareByCode",
     "display": "account.shareByCode",
     "purpose": "Share current user by ID and temporary code",
-    "way": "In Schedule API for global sharing you can use only login. But in some case if you wish you can share User's account by ID and temporary secret code. Suggested use for QR codes. Attention: generated code works for <b>2 minutes</b>",
+    "way": "In Temply API for global sharing you can use only login. But in some case if you wish you can share User's account by ID and temporary secret code. Suggested use for QR codes. Attention: generated code works for <b>2 minutes</b>",
 
     "request": [
         {

@@ -291,6 +291,9 @@ pre.grey {
     background: #eee;
     font-family: monospace;
     font-size: 10px;
+    overflow: auto;
+    max-width: 100%;
+    white-space: pre-wrap; 
 }
 
 .popup-container .card {

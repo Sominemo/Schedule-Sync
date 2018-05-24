@@ -113,14 +113,14 @@ class User {
         // login
         $write['login'] = substr($d['signup_data']['login'],0, 15);
         // Only regexp characters. (5-16)
-        if (!preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{5,16}$/', $write['login'])) {
+        if (!preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{4,15}$/', $write['login'])) {
             if (!$o['IGNORE_EXCEPTIONS']) api::error(2, 1);
             $this->data = false;
             return false;
         }
 
         // Name's min length: 1 symbol
-        if (strlen($write['surname']) < 1) {
+        if (strlen($write['name']) < 1) {
             if (!$o['IGNORE_EXCEPTIONS']) api::error(2, 1);
             $this->data = false;
             return false;

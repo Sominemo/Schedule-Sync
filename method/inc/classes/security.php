@@ -22,7 +22,7 @@ class security {
         else if (is_string($a)) { //STRINGify
             $a = trim($a);
             $a = preg_replace("/  +/"," ",$a);
-            $a = htmlspecialchars($a);
+            $a = htmlspecialchars($a, ENT_DISALLOWED, 'UTF-8');
         }
 
         return $a;

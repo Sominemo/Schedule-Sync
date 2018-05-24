@@ -53,6 +53,16 @@
                 "code": 2,
                 "info": "Incorrect token"
             }
+        ],
+        [
+            {
+                "code": 0,
+                "info": "Error during message proccessing"
+            },
+            {
+                "code": 1,
+                "info": "Access denied"
+            }
         ]
     ]
 }

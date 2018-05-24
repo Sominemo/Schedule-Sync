@@ -1,8 +1,8 @@
 var app = {
     lang: "en",
-    build: 68,
-    version: "1.66",
-    link: "https://sominemo.github.io/Schedule-Sync/",
+    build: 67,
+    version: "1.7",
+    link: "https://sominemo.github.io/Temply-Account/",
     window: {}
 }
 

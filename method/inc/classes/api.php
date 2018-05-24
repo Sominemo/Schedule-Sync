@@ -30,18 +30,13 @@ class api {
         return true;
     }
 
-    // [-DIE] Throws an error and dies
-    // $this::error($error_code*, $error_section, $options)
-    // Main error section by default
-    public static function error($c, $m = 0, $o = []) {
-        global $secure, $report_enabled;
-
+    public static function get_error($c, $m, $o = []) {
         // Decode error list
         $d = @json_decode(file_get_contents('inc/classes/errors.json'), true);
 
         // If we've got errors during decoding - thow error 0 with changed info
         if ($d === null && json_last_error() !== JSON_ERROR_NONE) {
-            echo '{"error": 0, info: "We have some troubles right now"}';
+            $re = @json_decode('{"error": 0, info: "We have some troubles right now"}');
         }
 
         // If we've got undefined error - thow error 0
@@ -54,6 +49,17 @@ class api {
         // Give the user more data if we can
         if (count($o) > 0) $re["extended"] = $o;
 
+        return $re;
+    }
+
+    // [-DIE] Throws an error and dies
+    // self::error($error_code*, $error_section, $options)
+    // Main error section by default
+    public static function error($c, $m = 0, $o = []) {
+        global $secure, $report_enabled;
+
+        $re = self::get_error($c, $m, $o);
+
         // Error data. CURRENT_METHOD will be returned always
         $re["data"] = [
             "method" => CURRENT_METHOD,
@@ -65,7 +71,8 @@ class api {
             // Calling Report class for dat
             $l = new Report(json_encode($re, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
             // Get the report ID for output
-            $re["data"]["report_id"] = $l->getID();
+            $ert = $l->getID();
+            if ($ert) $re["data"]["report_id"] = $ert;
         }
 
         // Remove trash

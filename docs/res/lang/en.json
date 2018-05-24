@@ -8,7 +8,7 @@
         "lang": "Language",
         "main-grand-logo": "Documentation Hub",
         "about": "About",
-        "about_screen": "<h1>Documentation Hub %replace::app_version%</h1><p>Build %replace::app_build%</p><p>Tool for creating API documentation.<br>Source Code: <a href='https://github.com/Sominemo/Schedule-Sync' target='_blank'>GitHub</a>.<br>This application is fully free and open. Any issues? Check out GitHub.</p><p>Created by Sergey Dilong in 2018.</p>",
+        "about_screen": "<h1>Documentation Hub %replace::app_version%</h1><p>Build %replace::app_build%</p><p>Tool for creating API documentation.<br>Source Code: <a href='https://github.com/Sominemo/Temply-Account' target='_blank'>GitHub</a>.<br>This application is fully free and open. Any issues? Check out GitHub.</p><p>Created by Sergey Dilong in 2018.</p>",
         "cant_load_lang": "Language pack is unavailable",
         "no_data": "No data",
         "token_att_text": "This object could require authentication",

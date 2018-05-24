@@ -1,2 +1,2 @@
-# Schedule-Sync
-Core and API for Schedule Sync platform
+# Temply-Account
+Core and API for Temply Account platform
