@@ -9,7 +9,8 @@ document.getElementById("menu-action").addEventListener("click", function(a) {
     actions.show(a.target.offsetLeft + move1 * 2, a.target.offsetTop + move0, a.target, [
         ["share", _('copy_link'), engines.copyLink],
         ["translate", _('lang'), chooserLang],
-        ["format_indent_increase", _('gen_md'), engines.getMD, (app.window_type !== "method" ? true : false)],
+        (app.window_type == "method" ? ["format_indent_increase", _('gen_md'), engines.getMD]: []),
+        ["select_all", _((app.copying ? 'deny' : 'allow') + '_selection'), () => {engines.copyRule((app.copying ? 0 : 1))}],
         ["info_outline", _('about'), aboutScreen]
     ]);
     a.preventDefault();
@@ -26,6 +27,26 @@ document.onscroll = function(a) {
 t = localStorage.getItem("lang");
 if (t) app.lang = t;
 _.prototype.loadLang(windower);
+
+
+let style01 = getComputedStyle(document.body);
+style01 = style01.getPropertyValue('--main-color');
+let m = document.createElement("meta");
+m.setAttribute("name", "theme-color");
+m.setAttribute("content", style01);
+document.head.appendChild(m);
+
+if (engines.CSSsupported("user-select","none") || engines.CSSsupported("-moz-user-select","none") || engines.CSSsupported("-webkit-user-select","none") || engines.CSSsupported("-ms-user-select","none") || engines.CSSsupported("-khtml-user-select","none")) app.css_copy_lock_supp = true;
+engines.copyRule(localStorage.getItem("copying"));
+
+document.body.onselectstart = function(e) {
+    if (app.copying == true || app.css_copy_lock_supp == true) return true;
+    if (e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA") {
+        e.preventDefault();
+        return false;
+    }
+    return true;
+}
 
 function getMain() {
     if (window.location.hash != "") window.location.hash = "";
@@ -119,43 +140,43 @@ var section = {
                 });
                 if (mn === undefined) {
                     try {
-                    if (history && history.length > 0) {
-                        history.back();
-                    } else {
-                    location.hash = "";
+                        if (history && history.length > 0) {
+                            history.back();
+                        } else {
+                            location.hash = "";
+                        }
+                    } catch (e) {
+                        location.hash = "";
                     }
-                } catch (e) {
-                    location.hash = "";
-                }
 
-                let info_card = document.createElement("div");
-                info_card.classList.add("card");
+                    let info_card = document.createElement("div");
+                    info_card.classList.add("card");
 
-                la_hint = document.createElement("div");
-                la_hint.classList.add("item");
-                la_hint.classList.add("flex-hint");
+                    la_hint = document.createElement("div");
+                    la_hint.classList.add("item");
+                    la_hint.classList.add("flex-hint");
 
-                icon_holder = document.createElement("div");
-                icon_holder.classList.add("icon_container");
-                la_hint.appendChild(icon_holder);
+                    icon_holder = document.createElement("div");
+                    icon_holder.classList.add("icon_container");
+                    la_hint.appendChild(icon_holder);
 
-                let icon = document.createElement("icon");
-                icon.innerText = "error";
-                icon_holder.appendChild(icon);
+                    let icon = document.createElement("icon");
+                    icon.innerText = "error";
+                    icon_holder.appendChild(icon);
 
-                let text = document.createElement("div");
-                text.classList.add("hint-text");
+                    let text = document.createElement("div");
+                    text.classList.add("hint-text");
 
-        text.innerHTML = _('404_text', {
-            "object": _("section"),
-            "name": a.charAt(0).toUpperCase() + a.slice(1)
-        });
-        la_hint.appendChild(text);
+                    text.innerHTML = _('404_text', {
+                        "object": _("section"),
+                        "name": a.charAt(0).toUpperCase() + a.slice(1)
+                    });
+                    la_hint.appendChild(text);
 
-        info_card.appendChild(la_hint);
+                    info_card.appendChild(la_hint);
 
-        popup.liteShow(info_card, _('404_error'));
-        return;
+                    popup.liteShow(info_card, _('404_error'));
+                    return;
 
                 };
                 app.window_type = "section";
@@ -338,48 +359,48 @@ var method = {
 
             if (!d) {
                 try {
-                if (history && history.length > 0) {
-                    history.back();
-                } else {
-                location.hash = "";
+                    if (history && history.length > 0) {
+                        history.back();
+                    } else {
+                        location.hash = "";
+                    }
+                } catch (e) {
+                    location.hash = "";
                 }
-            } catch (e) {
-                location.hash = "";
-            }
 
-            let info_card = document.createElement("div");
-            info_card.classList.add("card");
+                let info_card = document.createElement("div");
+                info_card.classList.add("card");
 
-            la_hint = document.createElement("div");
-            la_hint.classList.add("item");
-            la_hint.classList.add("flex-hint");
+                la_hint = document.createElement("div");
+                la_hint.classList.add("item");
+                la_hint.classList.add("flex-hint");
 
-            icon_holder = document.createElement("div");
-            icon_holder.classList.add("icon_container");
-            la_hint.appendChild(icon_holder);
+                icon_holder = document.createElement("div");
+                icon_holder.classList.add("icon_container");
+                la_hint.appendChild(icon_holder);
 
-            let icon = document.createElement("icon");
-            icon.innerText = "error";
-            icon_holder.appendChild(icon);
+                let icon = document.createElement("icon");
+                icon.innerText = "error";
+                icon_holder.appendChild(icon);
 
-            let text = document.createElement("div");
-            text.classList.add("hint-text");
+                let text = document.createElement("div");
+                text.classList.add("hint-text");
 
-    text.innerHTML = _('404_text', {
-        "object": _("method"),
-        "name": a.charAt(0).toUpperCase() + a.slice(1)
-    });
-    la_hint.appendChild(text);
+                text.innerHTML = _('404_text', {
+                    "object": _("method"),
+                    "name": a.charAt(0).toUpperCase() + a.slice(1)
+                });
+                la_hint.appendChild(text);
 
-    info_card.appendChild(la_hint);
+                info_card.appendChild(la_hint);
 
-    popup.liteShow(info_card, _('404_error'));
-    return;
+                popup.liteShow(info_card, _('404_error'));
+                return;
 
             };
             app.window_type = "method";
-        engines.cleanMain();
-        engines.loading();
+            engines.cleanMain();
+            engines.loading();
 
             if (w === null) w = '???';
             if (d === null) d = w;
@@ -453,8 +474,7 @@ var method = {
             app.window.method_json = e;
             e = JSON.parse(JSON.stringify(e));
 
-            patt = [
-                {
+            patt = [{
                     "name": "token",
                     "icon": "vpn_key",
                     "text": _("token_att_text"),
