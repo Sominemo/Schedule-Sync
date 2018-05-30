@@ -27,6 +27,8 @@
         "404_error": "You made a mistake!",
         "method": "Method",
         "section": "Section",
+        "allow_selection": "Allow selection",
+        "deny_selection": "Deny selection",
         "404_text": "{%object%} \"{%name%}\" doesn't exist or not documented. Check your spelling and try again.",
 
         "type__int": "integer",

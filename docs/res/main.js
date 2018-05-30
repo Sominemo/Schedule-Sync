@@ -1,8 +1,10 @@
 var app = {
     lang: "en",
-    build: 67,
-    version: "1.7",
+    build: 72,
+    version: "1.8",
     link: "https://sominemo.github.io/Temply-Account/",
+    copying: false,
+    css_copy_lock_supp: false,
     window: {}
 }
 
@@ -108,11 +110,13 @@ var actions = {
         box.style.left = (x + 3) + 'px';
         box.id = "actions" + Math.random();
         data.forEach(function(a) {
+            if (a.length > 0) { 
             item = document.createElement("div");
             item.classList.add("actionsItem");
             if (a[3]) item.classList.add("frozen");
             if (!a[3]) item.onclick = function(m) {
                 a[2](s);
+                
             };
 
             icon = document.createElement("icon");
@@ -127,7 +131,8 @@ var actions = {
 
             box.appendChild(item);
 
-        });
+        }
+    });
         box.classList.add("getting");
         document.body.appendChild(box);
         let d = 0;
@@ -252,6 +257,24 @@ var engines = {
     },
     cleanPath: function() {
         document.getElementsByClassName("way-path")[0].innerHTML = '<div class="el" id="home-path-el" onclick="getMain()">' + _('home') + '</div>';
+    },
+
+    CSSsupported: function(prop, value) {
+        var d = document.createElement('div');
+        d.style[prop] = value;
+        return d.style[prop] === value;
+      },
+
+    copyRule: function(s) {
+        if (s && s !== null) {
+            localStorage.setItem("copying", "1");
+            app.copying = true;
+            if (app.css_copy_lock_supp) document.body.classList.remove("no-select");
+        } else {
+            localStorage.setItem("copying", "0");
+            app.copying = false;
+            if (app.css_copy_lock_supp) document.body.classList.add("no-select");
+        }
     }
 };
 
