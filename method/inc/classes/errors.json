@@ -16,6 +16,10 @@
             {
                 "code": 3,
                 "info": "Incorrect field type"
+            },
+            {
+                "code": 4,
+                "info": "Fatal error"
             }
         ],
         [
@@ -58,6 +62,16 @@
             {
                 "code": 0,
                 "info": "Error during message proccessing"
+            },
+            {
+                "code": 1,
+                "info": "Access denied"
+            }
+        ],
+        [
+            {
+                "code": 0,
+                "info": "Incorrect access key format"
             },
             {
                 "code": 1,
