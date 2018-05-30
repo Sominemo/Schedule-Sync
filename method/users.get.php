@@ -13,9 +13,13 @@ if (isset($secure["query"])) {
 
     // Handle each item
     foreach ($logins as $v) {
+        try {
         // Get user     ...............................  !! Only by LOGIN
-        $u = new User($v, ['IGNORE_EXCEPTIONS' => true, 'GET_MODE' => 'login', 'U_GET' => true]);
+        $u = new User($v, ['GET_MODE' => 'login', 'U_GET' => true]);
         $ra['response'][] = $u->get();
+        } catch (apiException $e) {
+            $ra['response'][] = false;
+        }
     }
 
     // Else return only current user

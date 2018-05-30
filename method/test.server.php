@@ -1,9 +1,9 @@
 <?php
 // Call API SDK
-require_once('inc/api.php');
+require_once 'inc/api.php';
 
 // Require variables by statements
-if(isset($secure['require_test'])) { // If client wants to test field-requiring
+if (isset($secure['require_test'])) { // If client wants to test field-requiring
     api::required("int_value, str_value");
     //       ....            ^ Space is important
 }
@@ -14,11 +14,13 @@ if (isset($secure['randoms']) && is_numeric($secure['randoms']) && $secure['rand
     $random_ints = [];
 
     // Max count - 15 randoms
-    if ($secure['randoms'] > 15) $secure['randoms'] = 15;
+    if ($secure['randoms'] > 15) {
+        $secure['randoms'] = 15;
+    }
 
     // Generate each (4 numbers)
-    for ($i=0; $i < $secure['randoms']; $i++) { 
-        $random_ints[] = rand(1000,9999);
+    for ($i = 0; $i < $secure['randoms']; $i++) {
+        $random_ints[] = rand(1000, 9999);
     }
 
     // Send to output
@@ -28,7 +30,10 @@ if (isset($secure['randoms']) && is_numeric($secure['randoms']) && $secure['rand
 // If int_value has sent
 if (isset($secure['int_value'])) {
     // If is NOT int - error
-    if (!is_int($secure['int_value'])) api::error(3,0,["error_field" => "int_value"]);
+    if (!is_int($secure['int_value'])) {
+        throw new apiException(103, ["error_field" => "int_value"]);
+    }
+
     // Output it
     $ra['got_int'] = $secure['int_value'];
 }
@@ -47,5 +52,4 @@ $ra['ua'] = $_SERVER['HTTP_USER_AGENT'];
 $ra['ip'] = $_SERVER['REMOTE_ADDR'];
 
 // Finish all stuff, output the result, do other important things in API SDK
-require_once('inc/end.php');
-?>
+require_once 'inc/end.php';
