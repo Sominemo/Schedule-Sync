@@ -11,7 +11,7 @@ class Message {
         if (is_array($a) || $o['FORCE_NEW_MESSAGE']) $this->Send($a, $o);
         else if (is_int($a) || $o['FORCE_MESSAGE_GET']) $this->InitById($a, $o);
         else {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(0, 3);
+            throw new apiException(400);
             $this->data = false;
             return false;
         }
@@ -22,11 +22,8 @@ class Message {
 
         $a = intval($a);
 
-        $warns = [];
-        if ($o['IGNORE_EXCEPTIONS'] && !$o['NO_WARNS']) $w = 1;
-
         if (!is_int($a) || $a <= 0) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(1, 3);
+            throw new apiException(401);
             $this->data = false;
             return false;
         }
@@ -36,8 +33,8 @@ class Message {
 
         if ($g->rowCount() == 0) {
             $ne_a = 1;
-            if ($w) $warns[] = api::get_error(1, 3);
-            else api::error(1, 3);
+            if ($w) $warns[] = api::get_error(401);
+            else throw new apiException(401);
         }
 
         $gr = $g->fetch();
@@ -45,7 +42,7 @@ class Message {
         $d = [];
 
         if ($ne_a) {
-            $d['id'] = 0;
+            $d['id'] = $a;
             $d['deleted'] = 1;
         }
         else if ($gr['removed'] || in_array($user['id'], func::exp($gr['hidden']))) {
@@ -59,5 +56,11 @@ class Message {
             $u = new User($gr['from']);
             $d['from'] = $u->get();
         }
+
+        $this->data = $d;
+    }
+
+    public function get() {
+        return $this->data;
     }
 }

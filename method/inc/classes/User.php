@@ -29,7 +29,7 @@ class User {
 
         // Check for results
         if (!$ur->rowCount() > 0) { // No results
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(5); // Access Denied
+            throw new apiException(105); // Access Denied
 
             $this->data = false; // No data
             return false; // Exit
@@ -98,7 +98,7 @@ class User {
         // Check all data we got
         $tav = api::required('name, login, password', $d['signup_data']);
         if (!$tav) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(1, 1);
+            throw new apiException(201);
             $this->data = false;
             return false;
         };
@@ -114,14 +114,14 @@ class User {
         $write['login'] = substr($d['signup_data']['login'],0, 15);
         // Only regexp characters. (5-16)
         if (!preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{4,15}$/', $write['login'])) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(2, 1);
+            throw new apiException(202);
             $this->data = false;
             return false;
         }
 
         // Name's min length: 1 symbol
         if (strlen($write['name']) < 1) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(2, 1);
+            throw new apiException(202);
             $this->data = false;
             return false;
         }
@@ -131,21 +131,21 @@ class User {
         
         // Max password's length: 200 symbols
         if (strlen($check_pass) > 200) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(3, 1);
+            throw new apiException(203);
             $this->data = false;
             return false;
         }
 
         // Min. length: 8 symbols
         if (strlen($check_pass) < 8) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(3, 1);
+            throw new apiException(203);
             $this->data = false;
             return false;
         }
         // Hash password
         $write['password'] = password_hash($check_pass, PASSWORD_DEFAULT);
         if (!password_verify($check_pass, $write['password'])) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(0, 1);
+            throw new apiException(200);
             $this->data = false;
             return false;
         }
@@ -155,7 +155,7 @@ class User {
         $cle->execute(["login" => $write['login']]);
         $cler = $cle->fetchColumn();
         if ($cler != 0) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(4, 1);
+            throw new apiException(204);
             $this->data = false;
             return false;
         }
@@ -172,7 +172,7 @@ class User {
         $i_id = $pdo->lastInsertId();
         // If ID incorrect - do stuff
         if (!$i_id > 0) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(0, 1);
+            throw new apiException(200);
             $this->data = false;
             return false;
         }
@@ -201,7 +201,7 @@ class User {
 
         // If not found - cancel
         if (!$cler > 0) {
-            if (!$o['IGNORE_EXCEPTIONS']) api::error(1);
+            throw new apiException(101);
             $this->data = false;
             return false;
         }

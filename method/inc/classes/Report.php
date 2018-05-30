@@ -21,7 +21,7 @@ class Report {
         $r->execute($global_report_data);
         $m = intval($pdo->lastInsertId());
 
-        if (!$m > 0) {return false;}
+        if (!$m > 0) {throw new apiException(104); return false;}
         $this->id = $m;
 
         return true;

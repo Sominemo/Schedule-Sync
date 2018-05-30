@@ -21,7 +21,7 @@ class Auth {
         $u = new User($l, ['GET_UNSECURE_DATA' => true]);
         $ud = $u->get();
         if (!password_verify($p, $ud['__protect']['password'])) {
-            api::error(1, 2);
+            throw new apiException(301);
             return false;
         }
 
@@ -46,7 +46,7 @@ class Auth {
         $rc = $pdo->prepare("INSERT into `tokens` SET $insq");
         $rc->execute($ins);
         if (!intval($pdo->lastInsertId()) > 0) {
-            api::error(0, 2);
+            throw new apiException(300);
             return false;
         }
         $this->token = $ins['token'];
@@ -65,7 +65,7 @@ class Auth {
 
         $l = $q->fetch();
         if (!$l['id'] > 0) {
-            api::error(2, 2);
+            throw new apiException(302);
             return false;
         }
 
