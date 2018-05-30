@@ -1,5 +1,7 @@
 <?php
-//DB settings
+
+    try {
+    //DB settings
 require_once(__DIR__.'/../../ex/db_credentials_data.php'); // <- Login data 
 
 define ('DBCHARSET', 'utf8mb4');
@@ -11,12 +13,11 @@ define ('DBOPT', [
 ]);
 
 // Connecting
-    try {
         $pdo = new PDO(DBDSN, DBUSER, DBPASS, DBOPT);
         define('DB_CONNECTION_SUCCESS', true);
     } catch (PDOException $e) {
         define('DB_CONNECTION_SUCCESS', false);
-        api::error(0);
+        throw new apiException(0);
     }
 
 // Setting encoding

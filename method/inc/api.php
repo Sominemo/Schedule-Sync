@@ -1,7 +1,7 @@
 <?php
 // Disable errors
 //error_reporting(0);
-//ini_set('display_errors', 0);
+ini_set('display_errors', 0);
 
 
 // Trigger for logs
@@ -22,6 +22,7 @@ define('CURRENT_METHOD', $ra[0]);
 // Enable classes autoloader and connecting to DB
 require_once('autoload.php');
 require_once('classes/db.php');
+require_once('error_handler.php');
 
 // Creating arrays for checked params and output
 $secure = [];

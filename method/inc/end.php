@@ -26,6 +26,12 @@ if (isset($secure['JSONPaddingName']) && isset($secure['JSONWithPadding']) && $s
 }
 
 // Saving log
-if ($report_enabled) new Report;
+if ($report_enabled) {
+    try {
+    new Report;
+    } catch (apiException $e) {
+        
+    }
+}
 ?>
 
