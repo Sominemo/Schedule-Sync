@@ -1,7 +1,7 @@
 var app = {
     lang: "en",
-    build: 72,
-    version: "1.8",
+    build: 76,
+    version: "1.81",
     link: "https://sominemo.github.io/Temply-Account/",
     copying: false,
     css_copy_lock_supp: false,
@@ -52,7 +52,8 @@ var _ = function(index, p) {
 
 _.prototype.langLib = {
     main: {
-        cant_load_lang: "Unable to load language pack"
+        cant_load_lang: "Unable to load language pack",
+        lang_error: "Language Pack Error"
     }
 };
 
@@ -70,10 +71,11 @@ _.prototype.loadLang = function(onLoad) {
         };
         if (onLoad !== undefined) onLoad();
     }, function() {
-        alert(_('cant_load_lang'));
+        popup.show(_('cant_load_lang'), _('lang_error'));
         if (lng !== 'en') {
             app.lang = 'en';
-            _.prototype.loadLang();
+            _.prototype.loadLang(windower);
+            
         }
     });
 

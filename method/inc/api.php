@@ -12,7 +12,7 @@ $global_report_data['time'] = microtime(true);
 $global_report_data['clock'] = time();
 
 // Define consts
-define('URL', 'https://frendzona.info');
+define('URL', 'https://sominemo.top');
 define('HOME', $_SERVER['DOCUMENT_ROOT']);
 
 // Get current method
@@ -53,15 +53,8 @@ if (!$_SERVER['HTTP_USER_AGENT']) $_SERVER['HTTP_USER_AGENT'] = "null";
 $global_report_data['link'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $global_report_data['params'] = json_encode($secure, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-// A bit of basic info
-$api_token_data = [
-    'id' => 0,
-    'user_id' => 0,
-    'token' => 'none',
-    'verify' => 0
-    ];
-
-$user = false;
+// Init auth script
+Auth::Init();
 
     // Checking token if we got a token
     if (isset($secure['token'])) $auth_check_status = new Auth();

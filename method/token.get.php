@@ -5,8 +5,8 @@ require_once('inc/api.php');
 $m = new Auth('auth');
 
 // Output data
-$ra['token'] = $api_token_data['token'];
-$ra['user'] = $curr_user->get();
+$ra['token'] = Auth::getTokenData()['token'];
+$ra['user'] = Auth::User(true)->get();
 
 require_once('inc/end.php');
 ?>

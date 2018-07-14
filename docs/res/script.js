@@ -712,9 +712,9 @@ function generateMD_method() {
 function windower() {
     hash = window.location.hash;
 
-    if ((linkReg = hash.match(/#a-([a-zA-Z0-9]+)/i)) !== null) {
+    if ((linkReg = hash.match(/#a-([a-zA-Z0-9_\-]+)/i)) !== null) {
         section.open(linkReg[1]);
-    } else if ((linkReg = hash.match(/#b-([a-zA-Z0-9\.a-zA-Z0-9]+)/i)) !== null) {
+    } else if ((linkReg = hash.match(/#b-([a-zA-Z0-9\.a-zA-Z0-9_\-]+)/i)) !== null) {
         method.open(linkReg[1]);
     } else if (window.location.hash == "") {
         getMain();

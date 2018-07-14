@@ -3,6 +3,8 @@
 class Auth {
 
     private $token = false;
+    private static $data = [];
+    private static $init = false;
 
     public function __construct($act = '') {
         global $secure;
@@ -55,9 +57,9 @@ class Auth {
     }
 
     private function check($t) {
-        global $pdo, $api_token_data, $user, $curr_user;
+        global $pdo;
 
-        if ($api_token_data["verify"]) return true;
+        if (self::getTokenData()["verify"]) return true;
 
         $q = $pdo->prepare("SELECT * from `tokens` WHERE `token` = :token");
         $q->execute(["token" => $t]);
@@ -70,13 +72,41 @@ class Auth {
         }
 
         $this->token = $l['token'];
-        $api_token_data = $l;
-        $api_token_data["verify"] = 1;
+        $r = [];
+        $r["verify"] = 1;
+        $r['token'] = $l['token'];
 
-        $user = new User($l['user_id']);
-        $curr_user = $user;
-        $curr_user->ReInitUser(["U_GET" => true]);
+        $r['user'] = new User($l['user_id']);
+        $r['user_return'] = $r['user'];
+        $r['user_return']->ReInitUser(["U_GET" => true]);
+
+        self::record($r);
 
         return true;
     }
+
+    public static function Init() {
+        if (self::$init) return;
+        self::$data = [
+            'user' => false,
+            'user_return' => false,
+            'token' => false,
+            'verify' => 0
+            ];
+            self::$init = true;
+
+    }
+
+    private static function record($data) {
+        self::$data = $data;
+    }
+
+    public static function getTokenData() {
+        return ['token' => self::$data['token'], 'verify' => self::$data['verify']];
+    }
+
+    public static function User($r = false) {
+        return ($r ? self::$data['user_return'] : self::$data['user']);
+    }
+
 }

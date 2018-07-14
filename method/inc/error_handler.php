@@ -14,7 +14,8 @@ function _handleError($code, $description, $file = null, $line = null, $context 
         'context' => $context,
         'path' => $file
     );
-    return ($error === "Fatal Error" ? _logError($data) : true);
+    $lt = [1,4,16,64,256,2048,8192,16384];
+    return (in_array($level, $lt) ? _logError($data) : true);
 }
 
 function _logError($data = []) {

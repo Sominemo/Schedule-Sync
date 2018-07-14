@@ -1,25 +1,28 @@
 <?php
 
-class User {
+class User
+{
     // User id
     private $id = 0;
     // User data
     private $data = [];
 
     // Constructor
-    public function __construct($query = 0, $o = []) {
+    public function __construct($query = 0, $o = [])
+    {
         // If we've got an ID   ....   or Strict Mode
-        if (is_numeric($query) && $o['GET_MODE'] != 'login' ) {$this->InitUser($query, $o); return;}
+        if (is_numeric($query) && $o['GET_MODE'] != 'login') {$this->InitUser($query, $o);return;}
         // If we've got a SIGN_UP request
-        if ($query === 'SIGN_UP_MODE' && $o['signup_proof'] === true) {$this->SignUp($o); return;}
+        if ($query === 'SIGN_UP_MODE' && $o['signup_proof'] === true) {$this->SignUp($o);return;}
         // If we've got User's login ... or Strict Mode
-        if (is_string($query) && $o['GET_MODE'] != 'id') {$this->InitByLogin($query, $o); return;}
+        if (is_string($query) && $o['GET_MODE'] != 'id') {$this->InitByLogin($query, $o);return;}
     }
 
     // Init User by id
-    private function InitUser($id, $o = []) {
+    private function InitUser($id, $o = [])
+    {
         global $pdo, $secure;
-        
+
         // Parse integer
         $id = intval($id);
         // Prepare request
@@ -33,8 +36,8 @@ class User {
 
             $this->data = false; // No data
             return false; // Exit
-        } 
-        
+        }
+
         // Fetch data
         $ur = $ur->fetch();
 
@@ -42,33 +45,41 @@ class User {
         $fm['surname'] = false;
         $fm['online'] = false;
 
+        // Redirect user_fields if needed
+        if (is_array($o['CUSTOM_FIELDS'])) $user_f = $o['CUSTOM_FIELDS'];
+        // else use user's dedined
+        else $user_f = $secure['user_fields'];
+
         // Fetch required fields
-        if ($o['U_GET'] && isset($secure['user_fields'])) {
+        if ($o['U_GET'] && isset($user_f)) {
             // Explode each
-            $epr = explode(',', $secure['user_fields']);
+            $epr = explode(',', $user_f);
             foreach ($epr as $v) {
                 // Set true for needed
-                if($fm[$v] === false) $fm[$v] = true;
+                if ($fm[$v] === false) {
+                    $fm[$v] = true;
+                }
+
             }
         } else if (!$o['U_GET']) {
-            // If is not U_OUTPUT - get all 
+            // If is not U_GET - get all
             foreach ($fm as $k => $v) {
                 $fm[$k] = true;
             }
         }
-        
+
         // Get main data
         $this->id = $ur->id;
         $this->data['id'] = $ur->id;
         $this->data['login'] = $ur->login;
         $this->data['name'] = $ur->name;
-    if ($fm['surname']) {
-        $this->data['surname'] = $ur->surname;
-    }
-    if ($fm['online']) {
-        $this->data['visit'] = $ur->visit;
-        $this->data['online'] = (time() - $ur->visit <= 30 ? true : false);
-    }
+        if ($fm['surname']) {
+            $this->data['surname'] = $ur->surname;
+        }
+        if ($fm['online']) {
+            $this->data['visit'] = $ur->visit;
+            $this->data['online'] = (time() - $ur->visit <= 30 ? true : false);
+        }
 
         // Extended, secured data
         if ($o['GET_UNSECURE_DATA']) {
@@ -78,22 +89,29 @@ class User {
         return true;
     }
 
-    public function ReInitUser($o = []) {
+    public function ReInitUser($o = [])
+    {
         // Gives ability to change returned fields in already initialized User
         // Clear data
         $this->data = [];
         // Get new one
-        if ($this->id !== false) $this->InitUser($this->id, $o);
+        if ($this->id !== false) {
+            $this->InitUser($this->id, $o);
+        }
+
         // Return the data
         return $this->data;
     }
 
     // This function registers REAL user and calls InitUser method
-    private function SignUp($d) {
+    private function SignUp($d)
+    {
         global $pdo;
-        
+
         // check if it already filled
-        if ($this->id > 0) return;
+        if ($this->id > 0) {
+            return;
+        }
 
         // Check all data we got
         $tav = api::required('name, login, password', $d['signup_data']);
@@ -104,14 +122,16 @@ class User {
         };
 
         // Set surname as string if it's empty
-        if (!isset($d['signup_data']['surname'])) $d['signup_data']['surname'] = "";
+        if (!isset($d['signup_data']['surname'])) {
+            $d['signup_data']['surname'] = "";
+        }
 
         // Cut name
-        $write['name'] = substr($d['signup_data']['name'],0, 15);
-        $write['surname'] = substr($d['signup_data']['surname'],0, 15);
+        $write['name'] = substr($d['signup_data']['name'], 0, 15);
+        $write['surname'] = substr($d['signup_data']['surname'], 0, 15);
 
         // login
-        $write['login'] = substr($d['signup_data']['login'],0, 15);
+        $write['login'] = substr($d['signup_data']['login'], 0, 15);
         // Only regexp characters. (5-16)
         if (!preg_match('/^[A-Za-z]{1}[A-Za-z0-9]{4,15}$/', $write['login'])) {
             throw new apiException(202);
@@ -128,7 +148,7 @@ class User {
 
         // Password
         $check_pass = $d['signup_data']['password'];
-        
+
         // Max password's length: 200 symbols
         if (strlen($check_pass) > 200) {
             throw new apiException(203);
@@ -178,21 +198,24 @@ class User {
         }
         // Init. User
         $this->InitUser($i_id);
-        
+
         return true;
     }
 
-    public function getID() {
+    public function getID()
+    {
         // Just returns User's ID
         return $this->id;
     }
 
-    public function get() {
+    public function get()
+    {
         // Just returns User's data
         return $this->data;
     }
 
-    private function InitByLogin($a, $o) {
+    private function InitByLogin($a, $o)
+    {
         global $pdo;
         // Chack for login
         $cle = $pdo->prepare("SELECT `id` from `users` WHERE `login` = :login");
@@ -210,5 +233,36 @@ class User {
         $this->InitUser($cler, $o);
 
         return true;
+    }
+
+    public static function ClassesToIds($q) {
+        $r = [];
+        foreach ($q as $m) {
+            $r[] = $m->getID();
+        }
+        return $r;
+    }
+
+    public static function IdsToClasses($q, $no_false, $o = []) {
+        if (!is_array($q)) return;
+        $r = [];
+        foreach ($q as $k) {
+            try {
+            $r[] = new User($k);
+            } catch(apiException $e) {
+               if (!$no_false) $r[] = false;
+            }
+        }
+        return $r;
+    }
+
+    public static function ClassesToData($q, $no_false) {
+        if (!is_array($q)) return;
+        $r = [];
+        foreach ($q as $k) {
+            if (get_class($k) !== "User") if (!$no_false) $r[] = false;
+            else $r[] = $k->get();
+        }
+        return $r;
     }
 }

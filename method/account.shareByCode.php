@@ -29,7 +29,7 @@ $ra = [
 $wr = $ra;
 
 // Extending
-$udata = $user->get();
+$udata = Auth::User()->get();
 $wr['uid'] = $udata["id"];
 
 // Writing to table

@@ -76,6 +76,16 @@
             {
                 "code": 1,
                 "info": "Access denied"
+            },
+            {
+                "code": 2,
+                "info": "Unacceptable object type"
+            }
+        ],
+        [
+            {
+                "code": 0,
+                "info": "Unexpected error"
             }
         ]
     ]

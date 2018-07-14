@@ -23,7 +23,7 @@ if (isset($secure["query"])) {
     }
 
     // Else return only current user
-} else $ra['response'][0] = $curr_user->get();
+} else $ra['response'][0] = Auth::User(true)->get();
 
 
 
