@@ -15,7 +15,7 @@ function _handleError($code, $description, $file = null, $line = null, $context 
         'path' => $file
     );
     $lt = [1,4,16,64,256,2048,8192,16384];
-    $ee = (in_array($level, $lt) ? _logError($data) : true);
+    return (in_array($level, $lt) ? _logError($data) : true);
 }
 
 function _logError($data = []) {
