@@ -2,7 +2,9 @@
 
     try {
     //DB settings
-require_once(__DIR__.'/../../ex/db_credentials_data.php'); // <- Login data 
+        $pdo = include_once(__DIR__.'/../../ex/db_credentials_data.php'); // <- Login data 
+    // Handling data fetching error
+        if (!$pdo) throw new apiException(100, ["warning" => "Make sure you have changed DB Credentials Template file name"]);
 
 define ('DBCHARSET', 'utf8mb4');
 define ('DBDSN', 'mysql:host='.DBHOST.';dbname='.DBNAME.';charset='.DBCHARSET);
@@ -17,7 +19,7 @@ define ('DBOPT', [
         define('DB_CONNECTION_SUCCESS', true);
     } catch (PDOException $e) {
         define('DB_CONNECTION_SUCCESS', false);
-        throw new apiException(0);
+        throw new apiException(100);
     }
 
 // Setting encoding

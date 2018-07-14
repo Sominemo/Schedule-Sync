@@ -106,7 +106,7 @@ class Auth {
     }
 
     public static function User($r = false) {
-        return ($r ? self::$data['user_return'] : self::$data['user']);
+        return (self::getTokenData()["verify"] ? ($r ? self::$data['user_return'] : self::$data['user']) : false);
     }
 
 }
