@@ -13,7 +13,7 @@ class security
 
         foreach ($r as $k => $v) {
             $r[$k] = security::filter($v);
-            if ($r[$k] === '') {
+            if (preg_match('/^([\s]+)?$/', $r[$k])) {
                 unset($r[$k]);
             }
 
