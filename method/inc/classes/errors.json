@@ -25,7 +25,7 @@
         [
             {
                 "code": 0,
-                "info": "Registration failed"
+                "info": "Registration failed #2"
             },
             {
                 "code": 1,
@@ -47,7 +47,7 @@
         [
             {
                 "code": 0,
-                "info": "Error during auth"
+                "info": "Error during auth #3"
             },
             {
                 "code": 1,
@@ -61,7 +61,7 @@
         [
             {
                 "code": 0,
-                "info": "Error during message proccessing"
+                "info": "Error during message proccessing #4"
             },
             {
                 "code": 1,
@@ -85,7 +85,11 @@
         [
             {
                 "code": 0,
-                "info": "Unexpected error"
+                "info": "Unexpected error #6"
+            },
+            {
+                "code": 1,
+                "info": "Incorrect name"
             }
         ]
     ]
