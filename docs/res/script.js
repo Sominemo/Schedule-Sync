@@ -1,36 +1,39 @@
+/* global actions, _, engines, app, xhr, popup, sxhr */
+/* exported generateMD_method */
+
 // Generator XXR
 document.getElementById("menu-action").addEventListener("click", function(a) {
     let style0 = getComputedStyle(document.body);
-    style0 = parseInt(style0.getPropertyValue('--header-height'));
+    style0 = parseInt(style0.getPropertyValue("--header-height"));
     let style1 = getComputedStyle(document.getElementById("menu-action"));
-    style1 = parseInt(style1.getPropertyValue('--icon-height'));
+    style1 = parseInt(style1.getPropertyValue("--icon-height"));
     let move0 = style0 * 0.65 / 2 - style1 * 0.5;
     let move1 = style0 * 0.65 / 2 - style1 * 0.30;
     actions.show(a.target.offsetLeft + move1 * 2, a.target.offsetTop + move0, a.target, [
-        ["share", _('copy_link'), engines.copyLink],
-        ["translate", _('lang'), chooserLang],
-        (app.window_type == "method" ? ["format_indent_increase", _('gen_md'), engines.getMD]: []),
-        ["select_all", _((app.copying ? 'deny' : 'allow') + '_selection'), () => {engines.copyRule((app.copying ? 0 : 1))}],
-        ["info_outline", _('about'), aboutScreen]
+        ["share", _("copy_link"), engines.copyLink],
+        ["translate", _("lang"), chooserLang],
+        (app.window_type == "method" ? ["format_indent_increase", _("gen_md"), engines.getMD]: []),
+        ["select_all", _((app.copying ? "deny" : "allow") + "_selection"), () => {engines.copyRule((app.copying ? 0 : 1));}],
+        ["info_outline", _("about"), aboutScreen]
     ]);
     a.preventDefault();
 });
 
-document.onscroll = function(a) {
+document.onscroll = function() {
     if (window.scrollY > 0) {
         document.documentElement.classList.add("--scrolled-body");
     } else {
         document.documentElement.classList.remove("--scrolled-body");
     }
-}
+};
 
-t = localStorage.getItem("lang");
+let t = localStorage.getItem("lang");
 if (t) app.lang = t;
 _.prototype.loadLang(windower);
 
 
 let style01 = getComputedStyle(document.body);
-style01 = style01.getPropertyValue('--main-color');
+style01 = style01.getPropertyValue("--main-color");
 let m = document.createElement("meta");
 m.setAttribute("name", "theme-color");
 m.setAttribute("content", style01);
@@ -46,23 +49,22 @@ document.body.onselectstart = function(e) {
         return false;
     }
     return true;
-}
+};
 
 function getMain() {
     if (window.location.hash != "") window.location.hash = "";
     app.window_type = "main";
     engines.cleanPath();
-    xhr('data/map/main.json', function(a) {
-        a = JSON.parse(a);
+    xhr("data/map/main.json", function() {
 
-        xhr('data/map/' + app.lang + '/sections.json', function(b) {
+        xhr("data/map/" + app.lang + "/sections.json", function(b) {
             b = JSON.parse(b);
             engines.cleanMain();
             b.tabs.forEach(e => {
-                card = document.createElement("div");
+                let card = document.createElement("div");
                 card.classList.add("card");
 
-                heading = document.createElement("div");
+                let heading = document.createElement("div");
                 heading.classList.add("head");
                 heading.innerHTML = e.display;
                 card.appendChild(heading);
@@ -76,12 +78,12 @@ function getMain() {
                 });
 
                 e.sections.forEach(m => {
-                    l = document.createElement("div");
+                    let l = document.createElement("div");
                     l.classList.add("item");
                     l.classList.add("clickable");
                     l.innerHTML = m.display;
                     l.onclick = () => {
-                        window.location.hash = "#a-" + m.name
+                        window.location.hash = "#a-" + m.name;
                     };
                     card.appendChild(l);
                 });
@@ -91,38 +93,38 @@ function getMain() {
     });
 }
 
-xxhry = {};
+let xxhry = {};
 
 function xxhr(a, c) {
-    g = Math.random();
+    let g = Math.random();
     xxhry[g] = {};
     xxhry[g]["done"] = 0;
     xxhry[g]["results"] = [];
     a.forEach(e => {
         xhr(e, function(m, l) {
             xxhry[g]["done"]++;
-            ni = a.findIndex((er) => er === l);
+            let ni = a.findIndex((er) => er === l);
             xxhry[g]["results"][ni] = m;
             if (xxhry[g]["done"] === a.length) {
                 c(g);
             }
         }, function(l) {
             xxhry[g]["done"]++;
-            ni = a.findIndex((er) => er === l);
+            let ni = a.findIndex((er) => er === l);
             xxhry[g]["results"][ni] = false;
             if (xxhry[g]["done"] === a.length) {
                 c(g);
             }
-        })
+        });
     });
 }
 
 var section = {
     open: function(a) {
         a = a.toString();
-        xhr('data/map/' + app.lang + '/sections.json', function(r) {
+        xhr("data/map/" + app.lang + "/sections.json", function(r) {
             r = JSON.parse(r);
-            xhr('data/map/' + app.lang + '/methods.json', function(b) {
+            xhr("data/map/" + app.lang + "/methods.json", function(b) {
                 b = JSON.parse(b);
                 engines.cleanMain();
                 engines.cleanPath();
@@ -132,9 +134,10 @@ var section = {
 
                 let heading = document.createElement("div");
                 heading.classList.add("head");
+                let mn;
                 r.tabs.some(e => {
                     mn = e.sections.find(gl => {
-                        return gl.name == a
+                        return gl.name == a;
                     });
                     return mn != undefined;
                 });
@@ -152,11 +155,11 @@ var section = {
                     let info_card = document.createElement("div");
                     info_card.classList.add("card");
 
-                    la_hint = document.createElement("div");
+                    let la_hint = document.createElement("div");
                     la_hint.classList.add("item");
                     la_hint.classList.add("flex-hint");
 
-                    icon_holder = document.createElement("div");
+                    let icon_holder = document.createElement("div");
                     icon_holder.classList.add("icon_container");
                     la_hint.appendChild(icon_holder);
 
@@ -167,7 +170,7 @@ var section = {
                     let text = document.createElement("div");
                     text.classList.add("hint-text");
 
-                    text.innerHTML = _('404_text', {
+                    text.innerHTML = _("404_text", {
                         "object": _("section"),
                         "name": a.charAt(0).toUpperCase() + a.slice(1)
                     });
@@ -175,15 +178,15 @@ var section = {
 
                     info_card.appendChild(la_hint);
 
-                    popup.liteShow(info_card, _('404_error'));
+                    popup.liteShow(info_card, _("404_error"));
                     return;
 
-                };
+                }
                 app.window_type = "section";
                 heading.innerHTML = mn.display;
                 card.appendChild(heading);
                 if (b.stuff[a].about) {
-                    abouT = document.createElement("div");
+                    let abouT = document.createElement("div");
                     abouT.classList.add("item");
                     abouT.innerHTML = b.stuff[a].about;
                     card.appendChild(abouT);
@@ -192,20 +195,21 @@ var section = {
                     card.classList.add("card");
                 }
 
-                fre = document.getElementById("home-nav-el");
+                let fre = document.getElementById("home-nav-el");
                 if (fre !== null) fre.parentElement.removeChild(fre);
 
-                sect = document.createElement("div");
+                let sect = document.createElement("div");
                 sect.classList.add("el");
                 sect.id = "home-nav-el";
                 sect.innerHTML = mn.display;
                 document.getElementsByClassName("way-path")[0].appendChild(sect);
 
+                let l;
 
                 if (b.stuff[a]["methods"]) l = b.stuff[a]["methods"];
                 else return;
 
-                ls = [];
+                let ls = [];
                 l.forEach(w => {
                     ls.push("data/methods/" + app.lang + "/" + w + ".json");
                 });
@@ -225,11 +229,11 @@ var section = {
                         if (q != false) {
                             let method = document.createElement("div");
                             method.classList.add("item");
-                            method.innerHTML = q.display + '<span class="light-color"> — ' + q.purpose + '</span>';
+                            method.innerHTML = q.display + "<span class=\"light-color\"> — " + q.purpose + "</span>";
                             method.classList.add("clickable");
                             method.onclick = () => {
-                                window.location.hash = "#b-" + q.name
-                            }
+                                window.location.hash = "#b-" + q.name;
+                            };
 
                             card.appendChild(method);
                         }
@@ -238,18 +242,16 @@ var section = {
                 document.getElementById("main").appendChild(card);
 
             });
-        })
+        });
     }
-}
+};
 
 function chooserLang() {
-    container = document.createElement("div");
+    let container = document.createElement("div");
     container.classList.add("multi-block-choose");
 
-    i = 0;
     app.langs.forEach(a => {
-        i++;
-        r = document.createElement("div");
+        let r = document.createElement("div");
         r.classList.add("no-select");
         r.innerText = a.toUpperCase();
         container.appendChild(r);
@@ -259,12 +261,12 @@ function chooserLang() {
         });
     });
 
-    popup.liteShow(container, _('lang'));
+    popup.liteShow(container, _("lang"));
 
 }
 
 function aboutScreen() {
-    popup.show(_('about_screen'), _('about'));
+    popup.show(_("about_screen"), _("about"));
 }
 
 function toggleLang(a) {
@@ -277,47 +279,43 @@ function varType(a) {
     a = a.split(" ");
 
     switch (a[0]) {
-        case "int":
-            if (a[1] == "timestamp") return _("type__timestamp");
-            else
-                return _("type__int");
-            break;
+    case "int":
+        if (a[1] == "timestamp") return _("type__timestamp");
+        else
+            return _("type__int");
 
-        case "string":
-            return _("type__string");
-            break;
+    case "string":
+        return _("type__string");
 
-        case "bool":
-            return _("type__bool");
-            break;
+    case "bool":
+        return _("type__bool");
 
-        case "comma":
-            if (a[1] === "string") return _("type__strings") + ", " + _("type__comma_separated");
-            if (a[1] === "int") return _("type__ints") + ", " + _("type__comma_separated");
-            break;
+    case "comma":
+        if (a[1] === "string") return _("type__strings") + ", " + _("type__comma_separated");
+        if (a[1] === "int") return _("type__ints") + ", " + _("type__comma_separated");
+        break;
 
-        case "class":
+    case "class":
 
-            re = "";
+        var re = "";
 
-            o = sxhr("data/methods/" + app.lang + "/class." + a[1] + ".json");
-            try {
-                o = JSON.parse(o);
-                name = o.display;
-            } catch (e) {
-                name = _("class") + " ???";
-            }
-            re = '<a href="#b-class.' + a[1] + '" target="_blank">' + name + "</a>";
-            return re;
-            break;
+        var o = sxhr("data/methods/" + app.lang + "/class." + a[1] + ".json");
+        var name;
+        try {
+            o = JSON.parse(o);
+            name = o.display;
+        } catch (e) {
+            name = _("class") + " ???";
+        }
+        re = "<a href=\"#b-class." + a[1] + "\" target=\"_blank\">" + name + "</a>";
+        return re;
 
-        case "array":
-            rt = varType(a.slice(1).join(" "));
-            return _("type__array") + ", " + _("that_contains") + " " + _("objects") + " " + _("of_type") + " " + rt;
+    case "array":
+        var rt = varType(a.slice(1).join(" "));
+        return _("type__array") + ", " + _("that_contains") + " " + _("objects") + " " + _("of_type") + " " + rt;
 
-        default:
-            return "???";
-            break;
+    default:
+        return "???";
     }
 }
 
@@ -325,22 +323,22 @@ var patt = [];
 
 var method = {
     open: function(a) {
-        xxhr(['data/map/' + app.lang + '/methods.json', 'data/map/' + app.lang + '/sections.json', 'data/methods/' + app.lang + '/' + a + '.json'], function(jk) {
-            l = xxhry[jk].results;
+        xxhr(["data/map/" + app.lang + "/methods.json", "data/map/" + app.lang + "/sections.json", "data/methods/" + app.lang + "/" + a + ".json"], function(jk) {
+            let l = xxhry[jk].results;
 
-            w = null;
-            d = null;
+            let w = null;
+            let d = null;
 
             l.forEach((m, i) => {
                 l[i] = JSON.parse(m);
             });
 
-            x = Object.keys(l[0].stuff);
-            y = Object.values(l[0].stuff);
+            let x = Object.keys(l[0].stuff);
+            let y = Object.values(l[0].stuff);
 
             y.some((e, i) => {
-                if (e.methods) s = e.methods.find((z) => {
-                    return z === a
+                if (e.methods) var s = e.methods.find((z) => {
+                    return z === a;
                 });
                 else s = undefined;
 
@@ -371,11 +369,11 @@ var method = {
                 let info_card = document.createElement("div");
                 info_card.classList.add("card");
 
-                la_hint = document.createElement("div");
+                let la_hint = document.createElement("div");
                 la_hint.classList.add("item");
                 la_hint.classList.add("flex-hint");
 
-                icon_holder = document.createElement("div");
+                let icon_holder = document.createElement("div");
                 icon_holder.classList.add("icon_container");
                 la_hint.appendChild(icon_holder);
 
@@ -386,7 +384,7 @@ var method = {
                 let text = document.createElement("div");
                 text.classList.add("hint-text");
 
-                text.innerHTML = _('404_text', {
+                text.innerHTML = _("404_text", {
                     "object": _("method"),
                     "name": a.charAt(0).toUpperCase() + a.slice(1)
                 });
@@ -394,31 +392,31 @@ var method = {
 
                 info_card.appendChild(la_hint);
 
-                popup.liteShow(info_card, _('404_error'));
+                popup.liteShow(info_card, _("404_error"));
                 return;
 
-            };
+            }
             app.window_type = "method";
             engines.cleanMain();
             engines.loading();
 
-            if (w === null) w = '???';
+            if (w === null) w = "???";
             if (d === null) d = w;
             else d = d.display;
 
             engines.cleanMain();
             engines.cleanPath();
 
-            fre = document.getElementById("home-nav-el");
+            let fre = document.getElementById("home-nav-el");
             if (fre !== null) fre.parentElement.removeChild(fre);
 
-            sect = document.createElement("div");
+            let sect = document.createElement("div");
             sect.classList.add("el");
             sect.id = "home-nav-el";
             sect.innerHTML = d;
             sect.onclick = function() {
                 window.location.hash = "#a-" + w;
-            }
+            };
             document.getElementsByClassName("way-path")[0].appendChild(sect);
 
             fre = document.getElementById("home-meth-el");
@@ -430,18 +428,18 @@ var method = {
             sect.innerHTML = l[2].display;
             sect.onclick = function() {
                 window.location.hash = "#b-" + l[2].name;
-            }
+            };
             document.getElementsByClassName("way-path")[0].appendChild(sect);
 
-            card = document.createElement("div");
+            let card = document.createElement("div");
             card.classList.add("card");
 
-            head = document.createElement("div");
+            let head = document.createElement("div");
             head.classList.add("head");
             head.innerHTML = l[2].display;
             card.appendChild(head);
 
-            ch = false;
+            let ch = false;
             if (l[2].way && !l[2].purpose) {
                 ch = true;
                 t = l[2].way;
@@ -452,7 +450,7 @@ var method = {
             }
 
             if (t !== null) {
-                tip = document.createElement("div");
+                let tip = document.createElement("div");
                 tip.classList.add("item");
                 tip.innerHTML = t;
                 card.appendChild(tip);
@@ -463,29 +461,29 @@ var method = {
             if (!ch && l[2].way) {
                 card = document.createElement("div");
                 card.classList.add("card");
-                tip = document.createElement("div");
+                let tip = document.createElement("div");
                 tip.classList.add("item");
                 tip.innerHTML = l[2].way;
                 card.appendChild(tip);
                 document.getElementById("main").appendChild(card);
             }
 
-            e = l[2];
+            let e = l[2];
             app.window.method_json = e;
             e = JSON.parse(JSON.stringify(e));
 
             patt = [{
-                    "name": "token",
-                    "icon": "vpn_key",
-                    "text": _("token_att_text"),
-                    "related_link": "#b-token.get"
-                },
-                {
-                    "name": "user_fields",
-                    "icon": "people",
-                    "text": _("user_fields_att_text"),
-                    "related_link": "#b-global_vars.user_fields"
-                }
+                "name": "token",
+                "icon": "vpn_key",
+                "text": _("token_att_text"),
+                "related_link": "#b-token.get"
+            },
+            {
+                "name": "user_fields",
+                "icon": "people",
+                "text": _("user_fields_att_text"),
+                "related_link": "#b-global_vars.user_fields"
+            }
             ];
 
             if (e.request) {
@@ -494,42 +492,42 @@ var method = {
 
                 head = document.createElement("div");
                 head.classList.add("head");
-                head.innerHTML = _('request');
+                head.innerHTML = _("request");
                 card.appendChild(head);
 
-                p_a = [];
+                let p_a = [];
 
                 if (e.request.length > 0) {
 
                     e.request.forEach((ty, i) => {
                         let p = patt.findIndex((o) => {
-                            return o.name == ty.name
+                            return o.name == ty.name;
                         });
                         if (p !== -1) p_a.push([p, i]);
                     });
 
                     if (p_a.length > 0) {
-                        h_card = document.createElement("div");
+                        let h_card = document.createElement("div");
                         h_card.classList.add("card");
                         head = document.createElement("div");
                         head.classList.add("head");
-                        head.innerHTML = _('hints');
+                        head.innerHTML = _("hints");
                         h_card.appendChild(head);
 
                         p_a.forEach(rt => {
                             rt = patt[rt[0]];
-                            la_hint = document.createElement("div");
+                            let la_hint = document.createElement("div");
                             la_hint.classList.add("item");
-                            la_hint.classList.add("flex-hint")
+                            la_hint.classList.add("flex-hint");
                             if (rt.related_link) {
                                 la_hint.classList.add("clickable");
                                 la_hint.onclick = () => {
                                     if (rt.related_link[0] == "#") location.hash = rt.related_link;
-                                    else location.href = rt.related_link
+                                    else location.href = rt.related_link;
                                 };
                             }
 
-                            icon_holder = document.createElement("div");
+                            let icon_holder = document.createElement("div");
                             icon_holder.classList.add("icon_container");
                             la_hint.appendChild(icon_holder);
 
@@ -550,22 +548,22 @@ var method = {
                         document.getElementById("main").appendChild(h_card);
                     }
 
-                    table = document.createElement("table");
+                    let table = document.createElement("table");
                     table.classList.add("fields-table");
                     e.request.forEach(z => {
-                        row = document.createElement("tr");
+                        let row = document.createElement("tr");
 
-                        name_f = document.createElement("td");
+                        let name_f = document.createElement("td");
                         name_f.innerHTML = z.name;
                         row.appendChild(name_f);
 
-                        info = document.createElement("td");
+                        let info = document.createElement("td");
 
-                        infy = document.createElement("div");
+                        let infy = document.createElement("div");
                         infy.innerHTML = z.info;
 
-                        type = document.createElement("div");
-                        type.innerHTML = varType(z.type) + (z.important ? ", <b>" + _('required_field') + "</b>" : "");
+                        let type = document.createElement("div");
+                        type.innerHTML = varType(z.type) + (z.important ? ", <b>" + _("required_field") + "</b>" : "");
 
                         info.appendChild(infy);
                         info.appendChild(type);
@@ -576,9 +574,9 @@ var method = {
                     card.appendChild(table);
 
                 } else {
-                    item = document.createElement("div");
+                    let item = document.createElement("div");
                     item.classList.add("item");
-                    item.innerHTML = '<span class="light-color">' + _("no_data") + '</span>';
+                    item.innerHTML = "<span class=\"light-color\">" + _("no_data") + "</span>";
                     card.appendChild(item);
                 }
                 if (e.request.length > 0) document.getElementById("main").appendChild(card);
@@ -590,27 +588,27 @@ var method = {
 
                 head = document.createElement("div");
                 head.classList.add("head");
-                head.innerHTML = _('response');
+                head.innerHTML = _("response");
                 card.appendChild(head);
 
                 if (e.answer.length > 0) {
 
-                    table = document.createElement("table");
+                    let table = document.createElement("table");
                     table.classList.add("fields-table");
                     e.answer.forEach(z => {
-                        row = document.createElement("tr");
+                        let row = document.createElement("tr");
 
-                        name_f = document.createElement("td");
+                        let name_f = document.createElement("td");
                         name_f.innerHTML = z.name;
                         row.appendChild(name_f);
 
-                        info = document.createElement("td");
+                        let info = document.createElement("td");
 
-                        infy = document.createElement("div");
+                        let infy = document.createElement("div");
                         infy.innerHTML = z.info;
 
-                        type = document.createElement("div");
-                        type.innerHTML = varType(z.type) + (z.important ? ", <b>" + _('required_field') + "</b>" : "");
+                        let type = document.createElement("div");
+                        type.innerHTML = varType(z.type) + (z.important ? ", <b>" + _("required_field") + "</b>" : "");
 
                         info.appendChild(infy);
                         info.appendChild(type);
@@ -621,9 +619,9 @@ var method = {
                     card.appendChild(table);
 
                 } else {
-                    item = document.createElement("div");
+                    let item = document.createElement("div");
                     item.classList.add("item");
-                    item.innerHTML = '<span class="light-color">' + _("no_data") + '</span>';
+                    item.innerHTML = "<span class=\"light-color\">" + _("no_data") + "</span>";
                     card.appendChild(item);
                 }
                 document.getElementById("main").appendChild(card);
@@ -631,10 +629,10 @@ var method = {
 
         });
     }
-}
+};
 
 function html2MD(s) {
-    s = s.replace(/href="(#[^\s]+)"/, 'href="' + app.link + '$1"');
+    s = s.replace(/href="(#[^\s]+)"/, "href=\"" + app.link + "$1\"");
     s = s.replace(/<a href="([^\s]+)".+>(.+)<\/a>/, "[$2]($1)");
     s = s.replace(/<b>(.+)<\/b>/, "**$1**");
     s = s.replace(/<\/?ul>/, "");
@@ -653,13 +651,13 @@ function generateMD_method() {
 
     if (a.request) {
 
-        p_a = [];
+        let p_a = [];
 
         if (a.request.length > 0) {
 
             a.request.forEach((ty, i) => {
                 let p = patt.findIndex((o) => {
-                    return o.name == ty.name
+                    return o.name == ty.name;
                 });
                 if (p !== -1) p_a.push([p, i]);
             });
@@ -678,7 +676,7 @@ function generateMD_method() {
             a.request.forEach(z => {
                 text += "* **" + z.name + "**  \n";
                 text += html2MD(z.info) + "  \n";
-                text += "_" + html2MD(varType(z.type)) + (z.important ? ", **" + _('required_field') + "**" : "") + "_  \r\n";
+                text += "_" + html2MD(varType(z.type)) + (z.important ? ", **" + _("required_field") + "**" : "") + "_  \r\n";
             });
 
         } else {
@@ -688,14 +686,12 @@ function generateMD_method() {
 
     if (a.answer) {
 
-        p_a = [];
-
         if (a.answer.length > 0) {
             text += "## " + _("response") + "  \n";
             a.answer.forEach(z => {
                 text += "* **" + z.name + "**  \n";
                 text += html2MD(z.info) + "  \n";
-                text += "_" + html2MD(varType(z.type)) + (z.important ? ", **" + _('required_field') + "**" : "") + "_  \r\n";
+                text += "_" + html2MD(varType(z.type)) + (z.important ? ", **" + _("required_field") + "**" : "") + "_  \r\n";
             });
 
         } else {
@@ -707,14 +703,12 @@ function generateMD_method() {
     return text;
 }
 
-
-
 function windower() {
-    hash = window.location.hash;
-
-    if ((linkReg = hash.match(/#a-([a-zA-Z0-9_\-]+)/i)) !== null) {
+    let hash = window.location.hash;
+    var linkReg;
+    if ((linkReg = hash.match(/#a-([a-zA-Z0-9_-]+)/i)) !== null) {
         section.open(linkReg[1]);
-    } else if ((linkReg = hash.match(/#b-([a-zA-Z0-9\.a-zA-Z0-9_\-]+)/i)) !== null) {
+    } else if ((linkReg = hash.match(/#b-([a-zA-Z0-9.a-zA-Z0-9_-]+)/i)) !== null) {
         method.open(linkReg[1]);
     } else if (window.location.hash == "") {
         getMain();
