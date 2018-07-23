@@ -3,7 +3,7 @@
 
 var app = {
     lang: "en",
-    build: 76,
+    build: 77,
     version: "1.81",
     link: "https://sominemo.github.io/Temply-Account/",
     copying: false,
@@ -275,6 +275,8 @@ var engines = {
         } else {
             localStorage.setItem("copying", "0");
             app.copying = false;
+            if (window.getSelection) window.getSelection().removeAllRanges();
+            else if (document.selection) document.selection.empty();
             if (app.css_copy_lock_supp) document.body.classList.add("no-select");
         }
     }
