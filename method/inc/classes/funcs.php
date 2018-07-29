@@ -88,8 +88,22 @@ class funcs
 
         // Symbols
         if (isset($o['symbols'])) {
-            $slq = preg_quote($o['symbols']);
-            if (!preg_match('/([{$slq}]+)?/', $q)) return false;
+            $slq = $o['symbols'];
+            if (!preg_match("/^([{$slq}]+)?$/", $q)) return false;
+        }
+
+        // Numeric
+        if (isset($o['numeric']) && $o['numeric'] == true) {
+            if (!is_numeric($q)) return false;
+        }
+
+        // IntRange
+        if (isset($o['range']) && is_numeric($q)) {
+            if (is_numeric($o['range'][0]) && is_numeric($o['range'][1])) {
+                $o['range'][0] = $o['range'][0]+0;
+                $o['range'][1] = $o['range'][1]+0;
+                if ($q < $o['range'][0] || $q > $o['range'][1]) return false;
+            } 
         }
 
         return true;

@@ -73,6 +73,9 @@ class Chat
     public function Create($q, $o = []) {
         if (!is_array($q)) return false;
 
+        $name = $q['name'];
+        if (!funcs::strCheck($name, ['min' => 1, 'max' => 30])) throw new apiException(601);
+
         
     }
 
