@@ -1,0 +1,13 @@
+{
+    "info": "Contacts Errors",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Undefined contacts error"
+        },
+        {
+            "code": 1,
+            "info": "Incorrect request data"
+        }
+    ]
+}

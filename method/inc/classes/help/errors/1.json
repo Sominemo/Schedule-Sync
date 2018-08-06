@@ -1,0 +1,25 @@
+{
+    "info": "General API Erros",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Unexpected error"
+        },
+        {
+            "code": 1,
+            "info": "Undefined item"
+        },
+        {
+            "code": 2,
+            "info": "Unfilled required parameters"
+        },
+        {
+            "code": 3,
+            "info": "Incorrect field type"
+        },
+        {
+            "code": 4,
+            "info": "Fatal error"
+        }
+    ]
+}

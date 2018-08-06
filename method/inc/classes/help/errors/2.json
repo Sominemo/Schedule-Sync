@@ -1,0 +1,25 @@
+{
+    "info": "Registration Erros",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Registration failed #2"
+        },
+        {
+            "code": 1,
+            "info": "Fill all registration fields"
+        },
+        {
+            "code": 2,
+            "info": "Incorrect login. It must start with a letter, contain only letters and numbers. Range: 5-16 characters."
+        },
+        {
+            "code": 3,
+            "info": "Password must contain more than 8 and less than 201 characters"
+        },
+        {
+            "code": 4,
+            "info": "Such login is already exists"
+        }
+    ]
+}

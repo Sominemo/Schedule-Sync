@@ -1,0 +1,17 @@
+{
+    "info": "Auth Erros",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Error during auth #3"
+        },
+        {
+            "code": 1,
+            "info": "Incorrect login or password"
+        },
+        {
+            "code": 2,
+            "info": "Incorrect token"
+        }
+    ]
+}

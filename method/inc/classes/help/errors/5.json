@@ -1,0 +1,17 @@
+{
+    "info": "Access Erros",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Incorrect access key format"
+        },
+        {
+            "code": 1,
+            "info": "Access denied"
+        },
+        {
+            "code": 2,
+            "info": "Unacceptable object type"
+        }
+    ]
+}

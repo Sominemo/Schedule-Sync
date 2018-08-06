@@ -1,0 +1,13 @@
+{
+    "info": "Chat Erros",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Unexpected error #6"
+        },
+        {
+            "code": 1,
+            "info": "Incorrect name"
+        }
+    ]
+}

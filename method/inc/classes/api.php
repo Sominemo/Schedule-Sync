@@ -42,27 +42,32 @@ class api
 
     public static function get_error($l, $o = [])
     {
-        // Decode error list
-        $d = @json_decode(file_get_contents('inc/classes/errors.json'), true);
-
-        // If we've got errors during decoding - thow error 0 with changed info
-        if ($d === null && json_last_error() !== JSON_ERROR_NONE) {
-            $re = @json_decode('{"errors": [{"code": 0, "info": "We have some troubles right now"}]}');
-        }
-
         $l = strval($l);
-        $m = $l[0] - 1;
+        $m = $l[0];
         $c = intval(substr($l, 1));
-        // If we've got undefined error - thow error 0
-        if (!isset($d["errors"][$m][$c])) {
-            $m = 0;
-            $c = 0;
+        
+        $d = @json_decode(@file_get_contents("inc/classes/help/errors/$m.json"), true);
+        if (json_last_error() !== JSON_ERROR_NONE || !isset($d["errors"][$c])) {
+            $m1 = 1;
+            $c1 = 0;
+        } else {
+            $m1 = $m;
+            $c1 = $c;
+        }
+        
+        if ($m !== $m1) $d = @json_decode(@file_get_contents("inc/classes/help/errors/$m1.json"), true);
+        if (json_last_error() !== JSON_ERROR_NONE || !isset($d["errors"][$c])) {
+            $rs = [
+                "info" => "Undefined error"
+            ];
+        } else {
+            $rs = $d["errors"][$c];
         }
 
         // Record the error to output
-        $re = $d["errors"][$m][$c];
+        $re = $rs;
         // Make some beautify-changes
-        $re['error_code'] = intval(($m + 1) . ($c > 9 ? $c : "0" . $c));
+        $re['error_code'] = intval($m . ($c > 9 ? $c : "0" . $c));
         // Give the user more data if we can
         if (count($o) > 0) {
             $re["extended"] = $o;

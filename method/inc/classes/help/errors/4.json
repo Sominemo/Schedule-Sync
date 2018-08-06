@@ -1,0 +1,13 @@
+{
+    "info": "IM Erros",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Error during message proccessing #4"
+        },
+        {
+            "code": 1,
+            "info": "Access denied"
+        }
+    ]
+}
