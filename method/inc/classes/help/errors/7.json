@@ -8,6 +8,10 @@
         {
             "code": 1,
             "info": "Incorrect request data"
+        },
+        {
+            "code": 2,
+            "info": "User is already added to your contacts"
         }
     ]
 }

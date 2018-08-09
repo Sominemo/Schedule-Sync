@@ -1,8 +1,13 @@
 <?php
-// Disable errors
-//error_reporting(0);
-//ini_set('display_errors', 0);
 
+// Debug
+const DEBUG_MODE = true;
+
+// Disable errors
+if (!DEBUG_MODE) {
+error_reporting(0);
+ini_set('display_errors', 0);
+}
 
 // Trigger for logs
 $report_enabled = 1;

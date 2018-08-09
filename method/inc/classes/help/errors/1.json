@@ -20,6 +20,10 @@
         {
             "code": 4,
             "info": "Fatal error"
+        },
+        {
+            "code": 5,
+            "info": "Access denied"
         }
     ]
 }

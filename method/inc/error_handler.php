@@ -90,5 +90,12 @@ function _fatalErrorShutdownHandler() {
     return true;
 }
 
+function _handleException($e) {
+    if ($e instanceof apiException) {
+        api::error($e->getAPICode(), $e->getO());
+    }
+}
+
 set_error_handler("_handleError");
+set_exception_handler("_handleException");
 register_shutdown_function('_fatalErrorShutdownHandler');

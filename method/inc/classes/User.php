@@ -243,7 +243,7 @@ class User
         return $r;
     }
 
-    public static function IdsToClasses($q, $no_false, $o = []) {
+    public static function IdsToClasses($q, $no_false = true, $o = []) {
         if (!is_array($q)) return;
         $r = [];
         foreach ($q as $k) {
@@ -256,7 +256,7 @@ class User
         return $r;
     }
 
-    public static function ClassesToData($q, $no_false) {
+    public static function ClassesToData($q, $no_false = true) {
         if (!is_array($q)) return;
         $r = [];
         foreach ($q as $k) {
