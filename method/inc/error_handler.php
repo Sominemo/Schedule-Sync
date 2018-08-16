@@ -68,13 +68,19 @@ function _handleException($e) {
         }
 
     } else {
+        $r = __ExceptionToArray($e);
+        _handleError($r[0], $r[1], $r[2], $r[3], $r[4]);
+    }
+}
+
+function __ExceptionToArray($e) {
         $code = $e->getCode();
         $description = $e->getMessage();
         $file = $e->getFile();
         $line = $e->getLine();
         $context = $e->getTraceAsString();
-        _handleError($code, $description, $file, $line, $context);
-    }
+
+        return [$code, $description, $file, $line, $context];
 }
 
 //set_error_handler("_handleError");

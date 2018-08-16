@@ -5,15 +5,21 @@ class security
     // Make variables and arrays secure and clear
     public static function filter($a)
     {
-        if (!is_array($a) && is_string($a)) {
+        if (!is_array($a)) {
+            try {
             $r = security::clean($a);
+            } catch (Exception $e) {
+                $w = ["warning" => "Contact Administration with Report ID, please"];
+                if (DEBUG_MODE) $w["error_info"] = __ExceptionToArray($e); 
+                throw new apiException(103, $w);
+            }
         } else {
             $r = $a;
         }
 
         foreach ($r as $k => $v) {
             $r[$k] = security::filter($v);
-            if (preg_match('/^([\s]+)?$/', $r[$k])) {
+            if (is_string($r[$k]) && preg_match('/^([\s]+)?$/', $r[$k])) {
                 unset($r[$k]);
             }
 
@@ -25,6 +31,7 @@ class security
     // Make variables clear and correct
     public static function clean($a)
     {
+
         if ($a === "true" || $a === "false") {
             $a = boolval($a);
         }
