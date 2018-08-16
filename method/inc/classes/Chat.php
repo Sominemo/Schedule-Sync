@@ -23,6 +23,7 @@ class Chat
         $g = $pdo->prepare("SELECT * from `im_chats` WHERE `id` = ? AND `users` LIKE ?");
         $id = Auth::User()->get()['id'];
         $g->execute([$q, "%|$id|%"]);
+        $g = $g->fetch();
 
         $m = $pdo->prepare("SELECT `id` from `im` WHERE `chat` = ?");
         $m->execute([$g['id']]);

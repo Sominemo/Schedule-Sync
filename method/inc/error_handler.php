@@ -1,9 +1,6 @@
 <?php
 
 function _handleError($code, $description, $file = null, $line = null, $context = null) {
-    $displayErrors = ini_get("display_errors");
-    $displayErrors = strtolower($displayErrors);
-    list($error, $log) = _mapErrorCode($code);
     $data = array(
         'level' => $log,
         'code' => $code,
@@ -14,12 +11,11 @@ function _handleError($code, $description, $file = null, $line = null, $context 
         'context' => $context,
         'path' => $file
     );
-    $lt = [1,4,16,64,256,2048,8192,16384];
-    return (in_array($level, $lt) ? _logError($data) : true);
+    _logError($data);
 }
 
 function _logError($data = []) {
-    
+    $data_a = $data;
     $data = print_r($data, true);
     
     $r = ["code" => 104, "info" => "Fatal error"];
@@ -29,6 +25,10 @@ function _logError($data = []) {
     try {
        $p = new Report($data);
        $r['data']['report_id'] = $p->getID();
+     if (DEBUG_MODE) {  
+       $r['extended'] = [];
+       $r['extended']['debug'] = $data_a;
+    }
     } catch (apiException $e) {
         $r['data']['report_id'] = null;
         $salt = security::token_str(5);
@@ -40,46 +40,7 @@ function _logError($data = []) {
     
 
     echo json_encode($r, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    throw new Exception($code, $description, $file, $line);
     die();
-}
-
-function _mapErrorCode($code) {
-    $error = $log = null;
-    switch ($code) {
-        case E_PARSE:
-        case E_ERROR:
-        case E_CORE_ERROR:
-        case E_COMPILE_ERROR:
-        case E_USER_ERROR:
-            $error = 'Fatal Error';
-            $log = LOG_ERR;
-            break;
-        case E_WARNING:
-        case E_USER_WARNING:
-        case E_COMPILE_WARNING:
-        case E_RECOVERABLE_ERROR:
-            $error = 'Warning';
-            $log = LOG_WARNING;
-            break;
-        case E_NOTICE:
-        case E_USER_NOTICE:
-            $error = 'Notice';
-            $log = LOG_NOTICE;
-            break;
-        case E_STRICT:
-            $error = 'Strict';
-            $log = LOG_NOTICE;
-            break;
-        case E_DEPRECATED:
-        case E_USER_DEPRECATED:
-            $error = 'Deprecated';
-            $log = LOG_NOTICE;
-            break;
-        default :
-            break;
-    }
-    return array($error, $log);
 }
 
 function _fatalErrorShutdownHandler() {
@@ -93,9 +54,29 @@ function _fatalErrorShutdownHandler() {
 function _handleException($e) {
     if ($e instanceof apiException) {
         api::error($e->getAPICode(), $e->getO());
+    } else if ($e instanceof PDOException) {
+        $data = [
+            "error" => $e->getMessage(),
+            "line" => $e->getLine(),
+            "file" => $e->getFile(),
+            "trace" => $e->getTraceAsString()
+        ];
+        if (DEBUG_MODE) api::error(106, ["debug" => $data]);
+        else {
+            _logError($data);
+            throw new apiException(106);
+        }
+
+    } else {
+        $code = $e->getCode();
+        $description = $e->getMessage();
+        $file = $e->getFile();
+        $line = $e->getLine();
+        $context = $e->getTraceAsString();
+        _handleError($code, $description, $file, $line, $context);
     }
 }
 
-set_error_handler("_handleError");
+//set_error_handler("_handleError");
 set_exception_handler("_handleException");
 register_shutdown_function('_fatalErrorShutdownHandler');

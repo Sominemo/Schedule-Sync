@@ -24,6 +24,10 @@
         {
             "code": 5,
             "info": "Access denied"
+        },
+        {
+            "code": 6,
+            "info": "Connection error"
         }
     ]
 }

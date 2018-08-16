@@ -25,9 +25,9 @@ preg_match('/[a-zA-Z]+\.[a-zA-Z]+/', $_SERVER['REQUEST_URI'], $ra);
 define('CURRENT_METHOD', $ra[0]);
 
 // Enable classes autoloader and connecting to DB
+require_once('error_handler.php');
 require_once('autoload.php');
 require_once('classes/db.php');
-require_once('error_handler.php');
 
 // Creating arrays for checked params and output
 $secure = [];

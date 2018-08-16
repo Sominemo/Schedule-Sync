@@ -23,7 +23,10 @@ class funcs
 
     public static function exp($d, $e = false)
     {
-        $p = explode("||", substr($arr_group['admins'], 1, -1));
+        $p = explode("||", substr($d, 1, -1));
+        foreach ($p as $k => $v) {
+            if (empty($v)) unset($p[$k]);
+        }
         if (!$e) {
             return $p;
         }
@@ -47,7 +50,7 @@ class funcs
             $m = $d;
         }
 
-        return "|"+implode("||", $m)+"|";
+        return "|".implode("||", $m)."|";
     }
 
     public static function arrInArr(array $a)
