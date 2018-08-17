@@ -6,7 +6,7 @@
 //
 // 0. General Coefficient (GC)
 // 0.0 - 1.0
-// For now suspicious is 0.6+
+// For now Suspicious Coefficient Detection Limit (SCDL) is 0.6+
 // But in future this number also could be controlled by NN
 // (e.g. in case of attack it could be automaticly decreased)
 // It should be calculated by NN from other coeffs (for now: RIPCs, MSC, UUAC)
@@ -30,6 +30,15 @@
 // * Same UAs Count (SUAC) from logs (70% coincidence)
 // * Statistical Unique UA Coefficient (SUUAC) - I needed some time and data to get it
 // Formula: UUAC = SUAC / AUAC * SUUAC
+//
+// 4. Same Request Coefficient (SRC)
+// Controls same requests amount
+// * Coincidence Value Coefficient (CVC)
+// * Same Requests Amount (SRA)
+// * MSC
+// Formua: CVC * SRA * MSC
+//
+// FINAL: Request Captcha if NN Result is > SCDL - send captcha (or deny request in some cases)
 
 class rqHeuristic {
 
