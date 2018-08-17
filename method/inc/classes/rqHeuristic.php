@@ -9,6 +9,16 @@
 // For now Suspicious Coefficient Detection Limit (SCDL) is 0.6+
 // But in future this number also could be controlled by NN
 // (e.g. in case of attack it could be automaticly decreased)
+//
+// 0.1. SCDL Control example
+// * Captcha Exception Count (CEC)
+//      For minute (10) | For hour (12) | For day (3)
+// -> Captcha Exception Progressivity Coefficient (CEPC)
+//      - For all logs:
+//          To control SCDL
+//      - By method:
+//          To control MSC(ch. 2)
+//
 // It should be calculated by NN from other coeffs (for now: RIPCs, MSC, UUAC)
 //
 // 1. Request Intensivity
