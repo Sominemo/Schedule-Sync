@@ -23,7 +23,7 @@
 // Some method could be oftenly requested, some - not.
 // This value is should be provided by humans 
 // Default value - 1.
-// Formua: GC = [GC Medium Calculation] * MSC
+// Formula: GC = [GC Medium Calculation] * MSC
 //
 // 3. Unusual User Agent Coefficient (UUAC)
 // * All Unique UAs Count (AUAC) from Logs
