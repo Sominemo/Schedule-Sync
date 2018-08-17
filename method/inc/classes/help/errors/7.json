@@ -12,6 +12,10 @@
         {
             "code": 2,
             "info": "User is already added to your contacts"
+        },
+        {
+            "code": 3,
+            "info": "There is no such contact"
         }
     ]
 }

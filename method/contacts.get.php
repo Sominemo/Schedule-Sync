@@ -3,8 +3,6 @@ require_once('inc/api.php');
 
 new Auth();
 
-Contacts::Add(2);
-
-$ra['response'] = Contacts::Get();
+$ra['response'] = User::ClassesToData(Contacts::Get("me", [], ["U_GET" => true]));
 
 require_once('inc/end.php');

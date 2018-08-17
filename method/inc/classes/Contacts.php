@@ -3,7 +3,7 @@
 class Contacts
 {
 
-    public static function Get($q = "me", $o = [])
+    public static function Get($q = "me", $o = [], $u_o = [])
     {
         global $pdo;
 
@@ -33,12 +33,12 @@ class Contacts
 
         $u = funcs::exp($t);
 
-        return ($o['RETURN_IDS'] ? $u : User::IdsToClasses($u));
+        return ($o['RETURN_IDS'] ? $u : User::IdsToClasses($u, true, $u_o));
     }
 
     public static function FindByID($u, $q = "me", $o = [])
     {
-        return in_array($u, self::Get("me", ["RETURN_IDS" => true]));
+        return in_array($u, static::Get("me", ["RETURN_IDS" => true]));
 
     }
 
@@ -46,7 +46,7 @@ class Contacts
     {
         global $pdo;
 
-        if (self::FindByID($q, $u)) {
+        if (static::FindByID($u)) {
             throw new apiException(702);
         }
 
@@ -54,7 +54,7 @@ class Contacts
             throw new apiException(701);
         }
 
-        $e = self::Get($q, ["RETURN_IDS" => true]);
+        $e = static::Get($q, ["RETURN_IDS" => true]);
         $e[] = $u;
         $e = funcs::imp($e);
 

@@ -248,7 +248,7 @@ class User
         $r = [];
         foreach ($q as $k) {
             try {
-            $r[] = new User($k);
+            $r[] = new User($k, $o);
             } catch(apiException $e) {
                if (!$no_false) $r[] = false;
             }
@@ -260,7 +260,7 @@ class User
         if (!is_array($q)) return;
         $r = [];
         foreach ($q as $k) {
-            if (get_class($k) !== "User") if (!$no_false) $r[] = false;
+            if (get_class($k) !== "User") {if (!$no_false) $r[] = false;}
             else $r[] = $k->get();
         }
         return $r;
