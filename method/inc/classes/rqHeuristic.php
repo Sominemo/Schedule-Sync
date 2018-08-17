@@ -36,7 +36,7 @@
 // * Coincidence Value Coefficient (CVC)
 // * Same Requests Amount (SRA)
 // * MSC
-// Formua: CVC * SRA * MSC
+// Formula: CVC * SRA * MSC
 //
 // FINAL: Request Captcha if NN Result is > SCDL - send captcha (or deny request in some cases)
 
