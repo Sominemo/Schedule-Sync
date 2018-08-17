@@ -38,7 +38,8 @@ class Contacts
 
     public static function FindByID($u, $q = "me", $o = [])
     {
-        return in_array($u, static::Get("me", ["RETURN_IDS" => true]));
+        new User($u);
+        return in_array($u, static::Get($q, ["RETURN_IDS" => true]));
 
     }
 
