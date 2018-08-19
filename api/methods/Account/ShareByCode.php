@@ -37,6 +37,6 @@ $keys = db::values($wr);
 $write = $pdo->prepare("INSERT into `pair_codes` SET $keys");
 $write->execute($wr);
 
-require_once('inc/end.php');
+
 
 ?>

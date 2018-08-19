@@ -8,5 +8,5 @@ $m = new Auth('auth');
 $ra['token'] = Auth::getTokenData()['token'];
 $ra['user'] = Auth::User(true)->get();
 
-require_once('inc/end.php');
+
 ?>

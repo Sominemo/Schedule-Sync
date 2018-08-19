@@ -26,6 +26,6 @@ foreach ($codes as $v) {
     }
 }
 
-require_once('inc/end.php');
+
 
 ?>

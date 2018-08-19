@@ -12,4 +12,3 @@ $r = $r->get();
 }
 $ra['response'] = $r;
 
-require_once('inc/end.php');

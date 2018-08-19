@@ -27,6 +27,6 @@ if (isset($secure["query"])) {
 
 
 
-require_once('inc/end.php');
+
 
 ?>
