@@ -1,6 +1,6 @@
 <?php
-// Call API SDK
-require_once 'inc/api.php';
+// Additional instructions for Method Call Preparator
+// [!MCP]: {"mcp_parsed": true}
 
 // Require variables by statements
 if (isset($secure['require_test'])) { // If client wants to test field-requiring
@@ -51,5 +51,4 @@ $ra['time'] = time();
 $ra['ua'] = $_SERVER['HTTP_USER_AGENT'];
 $ra['ip'] = $_SERVER['REMOTE_ADDR'];
 
-// Finish all stuff, output the result, do other important things in API SDK
-require_once 'inc/end.php';
+if (DEBUG_MODE) $ra["mcp"] = MCP_PREDEFINED;

@@ -30,11 +30,16 @@
         $lc = 0;
         $r = [];
 
-        while ($lc < $max && $line = trim(fgets(fopen($file, 'r')))) {
+        $f = fopen($filepath, 'r');
+
+        while ($lc < $max && $line = fgets($f)) {
             if (preg_match("/^\/\/ \[!MCP\]: (.+)/", $line, $o)) {
                 $lc = 4;
-                $r = json_decode($o[1]);
+                $mcp_f = true;
+                $r = json_decode($o[1], true);
+                if ($r === null) $r = [];
             }
+            $lc++;
         }
         fclose($f);
         static::$mcp = $r;
