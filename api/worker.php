@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 0);
 set_exception_handler(function() {
-    echo json_encode(["error" => 100, "info" => "Something went wrong"]);
+    echo json_encode(["error" => 100, "info" => "Wrong input or output"]);
     die;
 });
 const __METHOD_GET_VARIABLE_NAME = "___method_|_name_|_context_|";

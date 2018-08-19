@@ -3,11 +3,11 @@
 class security
 {
     // Make variables and arrays secure and clear
-    public static function filter($a)
+    public static function filter($a, $n = false)
     {
         if (!is_array($a)) {
             try {
-            $r = security::clean($a);
+            $r = security::clean($a, $n);
             } catch (Exception $e) {
                 $w = ["warning" => "Contact Administration with Report ID, please"];
                 if (DEBUG_MODE) $w["error_info"] = __ExceptionToArray($e); 
@@ -29,9 +29,9 @@ class security
     }
 
     // Make variables clear and correct
-    public static function clean($a)
+    public static function clean($a, $n = false)
     {
-
+        if (!$n) {
         if ($a === "true" || $a === "false") {
             $a = boolval($a);
         }
@@ -44,6 +44,7 @@ class security
             $a = floatval($a);
         }
         //FLOATify
+    }
         else if (is_string($a)) { //STRINGify
             $a = trim($a);
             $a = preg_replace("/  +/", " ", $a);

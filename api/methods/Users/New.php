@@ -1,6 +1,5 @@
 <?php
 
-
 // Register new user by User class
 $u = new User('SIGN_UP_MODE', [
     "signup_data" => [
@@ -15,5 +14,3 @@ $u = new User('SIGN_UP_MODE', [
 
 // Return the user
 $ra["user"] = $u->get();
-
-include_once('inc/end.php');

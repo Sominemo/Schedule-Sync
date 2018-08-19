@@ -111,4 +111,13 @@ class funcs
 
         return true;
     }
+
+    public static function recursive_unset(&$array, $unwanted_key) {
+        unset($array[$unwanted_key]);
+        foreach ($array as &$value) {
+            if (is_array($value)) {
+                self::recursive_unset($value, $unwanted_key);
+            }
+        }
+    }
 }

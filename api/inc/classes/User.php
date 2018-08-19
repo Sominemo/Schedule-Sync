@@ -61,8 +61,10 @@ class User
                 }
 
             }
-        } else if (!$o['U_GET']) {
-            // If is not U_GET - get all
+        }
+        
+        if ((isset($user_f) && in_array("all", $epr)) || !$o['U_GET']) {
+            // If is not U_GET or there's an all flag - get all
             foreach ($fm as $k => $v) {
                 $fm[$k] = true;
             }

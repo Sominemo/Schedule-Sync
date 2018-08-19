@@ -1,7 +1,8 @@
 <?php
 
 // Setting params for return
-$ra = security::filter($ra);
+$ra = security::filter($ra, true);
+funcs::recursive_unset($ra, "__protected");
 
 // Doubling
 $the_return_stream = $ra;
