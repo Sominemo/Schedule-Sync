@@ -43,6 +43,9 @@ if($contentType === 'application/json'){
     $_POST = $decoded;
 }
 
+// Output Content Type
+header('Content-Type: application/json');
+
 // Transfering POST to GET
 foreach ($_POST as $key => $value) {
     if(!isset($_GET[$key])) $_GET[$key] = $value; // GET has priority
