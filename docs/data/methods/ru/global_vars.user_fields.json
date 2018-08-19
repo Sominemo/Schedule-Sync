@@ -1,0 +1,27 @@
+{
+    "name": "global_vars.user_fields",
+    "display": "user_fields",
+    "purpose": "Измените ответ класса User",
+    "way": "Изменяет ответ <a href=\"#b-class.user\">класса User</a>. Это строка параметров, разделяемая запятыми. <br>Пример использования: <code>online,surname</code><br> Ниже показаны поддерживаемые параметры: ",
+
+    "request": [
+        {
+            "name": "online",
+            "type": "string",
+            "important": false,
+            "info": "Показывает поля: <ul> <li> <b>online</b> - статус \"В сети\"</li> <li> <b>visit</b> - последнее посещение</li> </ul>"
+        },
+        {
+            "name": "surname",
+            "type": "string",
+            "important": false,
+            "info": "Показывает поля: <ul> <li> <b>surname</b> - фамилия пользователя</li> </ul>"
+        },
+        {
+            "name": "all",
+            "type": "string",
+            "important": false,
+            "info": "Принудительно показывает все доступные поля"
+        }
+    ]
+}

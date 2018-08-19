@@ -632,11 +632,13 @@ var method = {
 };
 
 function html2MD(s) {
-    s = s.replace(/href="(#[^\s]+)"/, "href=\"" + app.link + "$1\"");
-    s = s.replace(/<a href="([^\s]+)".+>(.+)<\/a>/, "[$2]($1)");
-    s = s.replace(/<b>(.+)<\/b>/, "**$1**");
-    s = s.replace(/<\/?ul>/, "");
-    s = s.replace(/<li>(.+)<\/li>/, "* $1");
+    s = s.replace(/<br>/gi, "\n");
+    s = s.replace(/href="(#[^\s]+)"/gi, "href=\"" + app.link + "$1\"");
+    s = s.replace(/<a href="([^\s]+)"(.+)?>([^<>]+)<\/a>/gi, "[$3]($1)");
+    s = s.replace(/<b>([^<>]+)<\/b>/gi, "**$1**");
+    s = s.replace(/<code>([^<>]+)<\/code>/gi, "`$1`");
+    s = s.replace(/<\/?ul>/gi, "");
+    s = s.replace(/<li>([^<>]+)<\/li>/gi, "* $1");
     return s;
 }
 

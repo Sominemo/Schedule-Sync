@@ -302,3 +302,12 @@ pre.grey {
     display: block;
     transition: flex .2s ease-in-out;
 }
+
+code {
+    background: #e9e9e9;
+    padding: 1px;
+    border: solid 1px lightgrey;
+    font-family: 'Roboto Mono', monospace;
+    display: inline-block;
+    margin: 1px;
+}

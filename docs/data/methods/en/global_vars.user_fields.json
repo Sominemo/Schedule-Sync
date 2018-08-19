@@ -1,0 +1,27 @@
+{
+    "name": "global_vars.user_fields",
+    "display": "user_fields",
+    "purpose": "Modify User class response",
+    "way": "Modifies <a href=\"#b-class.user\">User class</a> response. It's separated by comma string with parameters. <br>Example of use: <code>online,surname</code><br> Below you can find which parameters are supported: ",
+
+    "request": [
+        {
+            "name": "online",
+            "type": "string",
+            "important": false,
+            "info": "Shows fields: <ul> <li> <b>online</b> - online status</li> <li> <b>visit</b> - last visit</li> </ul>"
+        },
+        {
+            "name": "surname",
+            "type": "string",
+            "important": false,
+            "info": "Shows fields: <ul> <li> <b>surname</b> - user's last name</li> </ul>"
+        },
+        {
+            "name": "all",
+            "type": "string",
+            "important": false,
+            "info": "Shows all available fields by force"
+        }
+    ]
+}

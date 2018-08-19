@@ -2,7 +2,7 @@
     "name": "users.getByCode",
     "display": "users.getByCode",
     "purpose": "Get users' data by temporary code",
-    "way": "Returns array of users that correspondent to temporary code(s), given in account.shareByCode method.",
+    "way": "Returns array of users that correspondent to temporary code(s), given in <a href=\"#b-account.shareByCode\">account.shareByCode</a> method.",
 
     "request": [
         {
