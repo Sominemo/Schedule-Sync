@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteRule ^method\/(.*) worker.php?method_name_context=$1 [QSA]
+RewriteRule ^method\/(.*) worker.php?___method_|_name_|_context_|=$1 [QSA]
 
 ErrorDocument 304 /api/ex/api_error_doc.php
 ErrorDocument 400 /api/ex/api_error_500.php
