@@ -1,5 +1,5 @@
 <?php
-require_once('inc/api.php');
+
 
 // Call new token function
 $m = new Auth('auth');

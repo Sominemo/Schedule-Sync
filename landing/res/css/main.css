@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url(/res/img/bg1.png), url(/res/img/bg2.png);
+    background-image: url(../img/bg1.png), url(../img/bg2.png);
     background-size: 100%, 100%;
     background-repeat: repeat-x;
     background-position: 0 100%, 10vw 100%;

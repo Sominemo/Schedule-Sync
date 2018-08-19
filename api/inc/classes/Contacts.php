@@ -80,4 +80,8 @@ class Contacts
 
         return true;
     }
+
+    public static function Remove($u, $q = "me") {
+
+    }
 }

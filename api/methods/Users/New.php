@@ -1,6 +1,6 @@
 <?php
 
-require_once('inc/api.php');
+
 
 // Register new user by User class
 $u = new User('SIGN_UP_MODE', [

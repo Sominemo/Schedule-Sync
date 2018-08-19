@@ -1,5 +1,5 @@
 <?php
-require_once('inc/api.php');
+
 
 $m = new Auth();
 

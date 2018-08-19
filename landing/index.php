@@ -22,7 +22,7 @@
 <body>
     <div class="content">
         <div class="wow-image"><img src="res/img/<?=rand(1,3); ?>.png" alt="Redesign Screenshot"></div>
-        <div class="poster"><div class="big">Coming this summer</div><div class="small">Stay tuned</div></div>
+        <div class="poster"><div class="big">Coming Some Day</div><div class="small">Stay tuned</div></div>
     </div>
 </body>
 </html>

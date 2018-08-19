@@ -21,8 +21,7 @@ define('URL', 'https://sominemo.top');
 define('HOME', $_SERVER['DOCUMENT_ROOT']);
 
 // Get current method
-preg_match('/[a-zA-Z]+\.[a-zA-Z]+/', $_SERVER['REQUEST_URI'], $ra);
-define('CURRENT_METHOD', $ra[0]);
+define('CURRENT_METHOD', __MethodCaller\__Call::GetData()[1]);
 
 // Enable classes autoloader and connecting to DB
 require_once('error_handler.php');
@@ -52,6 +51,7 @@ foreach ($_POST as $key => $value) {
 // Checking GET and SERVER parametrs to avoid mothers' hackers
 $secure = security::filter($_GET);
 $_SERVER = security::filter($_SERVER);
+if (isset($secure[__METHOD_GET_VARIABLE_NAME])) unset($secure[__METHOD_GET_VARIABLE_NAME]);
 if (!$_SERVER['HTTP_USER_AGENT']) $_SERVER['HTTP_USER_AGENT'] = "null"; 
 
 // If report enabled - record URL
