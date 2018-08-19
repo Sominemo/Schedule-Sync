@@ -1,6 +1,5 @@
 <?php
 
-
 // Call new token function
 $m = new Auth('auth');
 

@@ -1,6 +1,5 @@
 <?php
 
-
 new Auth();
 
 // Triger to identificate unique key in WHILE

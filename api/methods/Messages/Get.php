@@ -1,6 +1,5 @@
 <?php
 
-
 $m = new Auth();
 
 api::required('id');

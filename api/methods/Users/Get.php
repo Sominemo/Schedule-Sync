@@ -1,6 +1,5 @@
 <?php
 
-
 new Auth();
 
 // Array for output
