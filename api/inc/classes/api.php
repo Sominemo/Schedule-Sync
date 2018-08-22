@@ -1,4 +1,9 @@
 <?php
+/**
+ * Controls output flow, error messages displaying
+ * 
+ * Basically it's used as a pallet of functions for api.php to don't 
+ */
 class api
 {
     // [bool--DIE] Private checker for required keys in array
@@ -114,7 +119,10 @@ class api
             unset($re['code']);
 
             // Echo the error and die
-            die(json_encode($re, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+            if (RESPONSE_TYPE == "XML")
+            echo HelpClasses\ArrayToXml::convert($re);
+            else echo json_encode($re, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            die();
         } catch (Exception $e) {
             die('{"code": 0, "info": "We have some troubles right now"}');
         }
