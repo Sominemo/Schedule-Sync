@@ -24,7 +24,7 @@ define ('DBOPT', [
 // Setting encoding
 $pdo->query('SET NAMES `utf8mb4`');
 
-class Temply_Account\$1 
+class db { 
     // Automize generation of SET operator in SQL queries for PDO
     public static function values($a) {
         // Checking what we've got
