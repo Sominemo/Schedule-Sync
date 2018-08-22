@@ -1,21 +1,38 @@
 <?php
-
+/**
+ * Supposed to manage messages forwarding, etc
+ * 
+ * Not ready yet
+ */
 class Access {
 
+    /** @var int Types to define them from DB and functions */
     const MESSAGE_TYPE = 2;
     const USER_TYPE = 3;
     const CHAT_TYPE = 4;
 
+    /** @var bool Was access provided */
     protected $success = false;
 
+    /** @var string[] Class names for letter-form short aliases */
     private const als = [
         "m" => "Message",
         "c" => "Chat",
         "u" => "User"
     ];
 
+    /** 
+     * Get saved in the class objects
+     * 
+     * Universal method to access objects, which were stored by extended methods.
+     * @todo Make separate flows for User class
+     * @param bool[] Options.
+     *                  * *DOWNGRADE_CHATS_TO_USERS* - Chat users lists will be extracted from Chat class and presented as User class
+     *                  * *MERGE_RESULTS* - If there's more than one object the return value will be merged
+     * @return SomeObject[] Requested objects
+     */
     public function getObjects($o = []) {
-        $m = [];
+        $m = []; // Return array
         $w = explode(",", $this->data['access']);
         $als = self::als;
         
