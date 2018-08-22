@@ -1,4 +1,4 @@
-<?php
+<?php namespace Temply_Account;
 
 // Debug
 const DEBUG_MODE = true;

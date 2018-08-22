@@ -1,4 +1,4 @@
-<?php
+<?php namespace Temply_Account;
 
     try {
     //DB settings
