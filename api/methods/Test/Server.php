@@ -44,6 +44,14 @@ if (isset($secure['str_value'])) {
     $ra['got_str'] = strval($secure['str_value']);
 }
 
+// If Auth test was requested
+if (isset($secure['auth_test'])) {
+    // Try to auth
+    Auth();
+    // If there's no exception - add a key
+    $ra['auth_test'] = true;
+}
+
 // Output time
 $ra['time'] = time();
 

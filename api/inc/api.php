@@ -1,6 +1,15 @@
 <?php
-
+/**
+ * API Init
+ * 
+ * Main API establishment
+ * 
+ * @package Temply-Account
+ * @author Sergey Dilong
+ * @license GPL-2.0
+ */
 // Debug
+/** Developer mode */
 const DEBUG_MODE = true;
 
 // Disable errors
@@ -10,6 +19,7 @@ ini_set('display_errors', 0);
 }
 
 // Trigger for logs
+/** Controls logs in \Report class */
 $report_enabled = 1;
 
 // Time counter
@@ -17,10 +27,13 @@ $global_report_data['time'] = microtime(true);
 $global_report_data['clock'] = time();
 
 // Define consts
+/** HTTP Home dir */
 define('URL', 'https://sominemo.top');
+/** Filesystem home dir  */
 define('HOME', $_SERVER['DOCUMENT_ROOT']);
 
 // Get current method
+/** Current method name */
 define('CURRENT_METHOD', __MethodCaller\__Call::GetData()[1]);
 
 // Enable classes autoloader and connecting to DB
@@ -33,6 +46,7 @@ $secure = [];
 $ra = [];
 
 // Working with JSON request
+/** Requested and supported CONTENT_TYPE */
 define("CONTENT_TYPE", (isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : ''));
 api::getInputData();
 

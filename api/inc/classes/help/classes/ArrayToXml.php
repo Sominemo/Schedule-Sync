@@ -1,8 +1,17 @@
 <?php
+/**
+ * Class <ArrayToXml>
+ * @package Temply-Account\Helpers
+ */
 namespace HelpClasses;
 use DOMElement;
 use DOMDocument;
 use DOMException;
+/**
+ * Converting Arrays to XML's
+ * 
+ * Simple class for converting Arrays to XML's
+ */
 class ArrayToXml
 {
     /**

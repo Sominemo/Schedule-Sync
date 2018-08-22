@@ -1,8 +1,20 @@
 <?php
 /**
+ * Class <api>
+ * 
+ * @package Temply-Account
+ * @license GPL-2.0
+ * @author Sergey Dilong
+ */
+
+/**
  * Controls output flow, error messages displaying
  *
  * Basically it's used as a pallet of functions for api.php to don't clutter up global namespace
+ * 
+ * @license GPL-2.0
+ * @author Sergey Dilong
+ * 
  */
 class api
 {
@@ -73,7 +85,7 @@ class api
      * Gets error from ```/classes/help/errors```
      * Finds error info by code. First number - error section, others - error number.
      * If there's no such code it fallbacks to error 100.
-     * If you would like to throw an error {@see apiException Custom Exception class} or {@see api::error() <api> class method}
+     * If you would like to throw an error use {@see apiException Custom Exception class} or {@see api::error() a class method}
      * 
      * @todo Error category > 9
      * 
@@ -81,6 +93,9 @@ class api
      * @param mixed[] $o Array, which will be returned as ```extended``` key with the error
      * 
      * @return array Error array to display
+     * 
+     * @see apiException [Recommended] Throwing Exceptions
+     * @see api::error() Setting errors
      */
     public static function get_error($l, $o = [])
     {

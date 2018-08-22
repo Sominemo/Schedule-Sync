@@ -2,5 +2,5 @@
 
 //new Auth();
 
-//new HelpClasses\ArrayToXml();
+new Access();
 $ra["wow"] = $secure;

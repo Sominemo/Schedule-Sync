@@ -33,9 +33,6 @@ class User
         // Check for results
         if (!$ur->rowCount() > 0) { // No results
             throw new apiException(105); // Access Denied
-
-            $this->data = false; // No data
-            return false; // Exit
         }
 
         // Fetch data

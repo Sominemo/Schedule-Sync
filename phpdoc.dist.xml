@@ -2,10 +2,16 @@
 <phpdoc>
   <parser>
     <target>api/docs/</target>
-    <default-package-name>Temply</default-package-name>
+    <default-package-name>Temply-Account</default-package-name>
+        <markers>
+            <item>TODO</item>
+            <item>FIXME</item>
+        </markers>
+          <visibility></visibility>
   </parser>
   <transformations>
-    <template name="responsive" />
+    <template name="checkstyle" />
+    <template name="clean" />
 </transformations>
   <transformer>
     <target>api/docs/</target>

@@ -1,21 +1,34 @@
 <?php
 /**
+ * Class <Access>
+ * 
+ * @package Temply-Account\Services\Access
+ * @license GPL-2.0
+ * @author Sergey Dilong
+ */
+
+/**
  * Supposed to manage messages forwarding, etc
  * 
  * Not ready yet
+ * 
+ * @license GPL-2.0
+ * @author Sergey Dilong
  */
 class Access {
 
-    /** @var int Types to define them from DB and functions */
+    /** Type to use it from DB and functions */
     const MESSAGE_TYPE = 2;
+    /** Type to use it from DB and functions */
     const USER_TYPE = 3;
+    /** Type to use it from DB and functions */
     const CHAT_TYPE = 4;
 
     /** @var bool Was access provided */
     protected $success = false;
 
-    /** @var string[] Class names for letter-form short aliases */
-    private const als = [
+    /** Class names for letter-form short aliases */
+    const als = [
         "m" => "Message",
         "c" => "Chat",
         "u" => "User"
@@ -26,10 +39,10 @@ class Access {
      * 
      * Universal method to access objects, which were stored by extended methods.
      * @todo Make separate flows for User class
-     * @param bool[] Options.
+     * @param bool[] $o Options.
      *                  * *DOWNGRADE_CHATS_TO_USERS* - Chat users lists will be extracted from Chat class and presented as User class
      *                  * *MERGE_RESULTS* - If there's more than one object the return value will be merged
-     * @return SomeObject[] Requested objects
+     * @return array Requested objects
      */
     public function getObjects($o = []) {
         $m = []; // Return array

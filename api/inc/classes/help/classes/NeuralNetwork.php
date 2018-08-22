@@ -1,6 +1,11 @@
-<?php namespace HelpClasses;
+<?php
 /**
- * <b>Multi-layer Neural Network in PHP</b>
+ * Class <NeuralNetwork>
+ * @package Temply-Account\Helpers
+ */
+namespace HelpClasses;
+/**
+ * Multi-layer Neural Network in PHP
  * 
  * Loosely based on source code by {@link http://www.philbrierley.com Phil Brierley},
  * that was translated into PHP by 'dspink' in sep 2005
@@ -61,7 +66,6 @@
  *  
  * @author E. Akerboom
  * @author {@link http://www.tremani.nl/ Tremani}, {@link http://maps.google.com/maps?f=q&hl=en&q=delft%2C+the+netherlands&ie=UTF8&t=k&om=1&ll=53.014783%2C4.921875&spn=36.882665%2C110.566406&z=4 Delft}, The Netherlands
- * @since feb 2007
  * @version 1.1
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */

@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * API Result Handler
+ * 
+ * Form output and exit
+ */
 // Setting params for return
 $ra = security::filter($ra, true);
 funcs::recursive_unset($ra, "__protected");

@@ -1,5 +1,28 @@
 <?php
+/**
+ * Error Handler
+ *
+ * Defines function to catch and customize exceptions
+ * 
+ * @package Temply-Account\Services
+ * @author Sergey Dilong
+ * @licence GPL-2.0
+ */
 
+/**
+ * Hanlde error
+ * 
+ * Format, log, terminate
+ * 
+ * @param int $code Error code
+ * @param string $description Description
+ * @param string $file File
+ * @param int $line Line
+ * @param string[] $context Context
+ * 
+ * @return void
+ * 
+ */
 function _handleError($code, $description, $file = null, $line = null, $context = null)
 {
     $data = array(
@@ -15,6 +38,16 @@ function _handleError($code, $description, $file = null, $line = null, $context 
     _logError($data);
 }
 
+/**
+ * Writes report and terminates
+ * 
+ * Function-helper
+ * 
+ * @see _handleError() Recommended function
+ * 
+ * @param array $data Error array
+ * @return void
+ */
 function _logError($data = [])
 {
     $data_a = $data;
@@ -44,15 +77,29 @@ function _logError($data = [])
     die();
 }
 
+/**
+ * Fatal Error Shutdown Handler
+ * 
+ * Extreme output and terminate
+ * 
+ * @return void
+ */
 function _fatalErrorShutdownHandler()
 {
     $r = error_get_last();
     if ($r['type'] === E_ERROR) {
         _handleError($r['type'], $r['message'], $r['file'], $r['line']);
     }
-    return true;
 }
 
+/**
+ * Global Exception Handler
+ * 
+ * Writes logs and terminates, does all apiException's work
+ * 
+ * @param Exception $e Unhandled exception
+ * @return void
+ */
 function _handleException($e)
 {
     try {
@@ -78,13 +125,25 @@ function _handleException($e)
         }
     } catch (Error $m) {
         $ty = ["error" => 100, "info" => "Core failed to display error message"];
-        if (DEBUG_MODE) $ty["debug"] = __ExceptionToArray($m);
+        if (DEBUG_MODE) {
+            $ty["debug"] = __ExceptionToArray($m);
+        }
+
         die(json_encode($ty));
     } finally {
         die('{"error": 100, "info": "Unhandled core-level error"}');
     }
 }
 
+/**
+ * Exception To Array
+ * 
+ * Turnes \Exception object to Array
+ * 
+ * @param Exception $e Input data
+ * 
+ * @return array Output array
+ */
 function __ExceptionToArray($e)
 {
     $code = $e->getCode();

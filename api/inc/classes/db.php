@@ -14,6 +14,10 @@ define ('DBOPT', [
 ]);
 
 // Connecting
+    /**
+     * @var PDO DB Connection 
+     * @deprecated
+     */
         $pdo = new PDO(DBDSN, DBUSER, DBPASS, DBOPT);
         define('DB_CONNECTION_SUCCESS', true);
     } catch (PDOException $e) {
@@ -24,6 +28,7 @@ define ('DBOPT', [
 // Setting encoding
 $pdo->query('SET NAMES `utf8mb4`');
 
+// TODO: To make new class with DB access
 class db { 
     // Automize generation of SET operator in SQL queries for PDO
     public static function values($a) {
