@@ -1,4 +1,4 @@
-<?php namespace Temply_Account\__MethodCaller;
+<?php namespace __MethodCaller;
     class __Call {
         public static function call404() {
             include "ex/api_error_doc.php";

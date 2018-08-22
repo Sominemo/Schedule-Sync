@@ -1,4 +1,4 @@
-<?php use Temply_Account;
+<?php
 /**
  * Supposed to manage messages forwarding, etc
  * 

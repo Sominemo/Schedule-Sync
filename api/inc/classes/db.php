@@ -1,5 +1,4 @@
-<?php namespace Temply_Account;
-
+<?php
     try {
     //DB settings
         $pdo = include_once(__DIR__.'/../../ex/db_credentials_data.php'); // <- Login data 
@@ -25,7 +24,7 @@ define ('DBOPT', [
 // Setting encoding
 $pdo->query('SET NAMES `utf8mb4`');
 
-class db { 
+class Temply_Account\$1 
     // Automize generation of SET operator in SQL queries for PDO
     public static function values($a) {
         // Checking what we've got

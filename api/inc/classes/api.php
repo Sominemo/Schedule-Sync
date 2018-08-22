@@ -1,4 +1,4 @@
-<?php namespace Temply_Account;
+<?php
 /**
  * Controls output flow, error messages displaying
  *

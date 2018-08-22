@@ -1,4 +1,4 @@
-<?php namespace Temply_Account;
+<?php
 
 // Just prepearing to Captcha implementation, based on Neural Networks. Empty class
 // It's gonna work with some coeffs

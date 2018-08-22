@@ -1,4 +1,4 @@
-<?php namespace Temply_Account;
+<?php
 
 class Report {
     private $report_table = "api_report";
