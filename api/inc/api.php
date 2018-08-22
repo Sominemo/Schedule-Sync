@@ -33,23 +33,11 @@ $secure = [];
 $ra = [];
 
 // Working with JSON request
-$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-if($contentType === 'application/json'){
-    $content = file_get_contents("php://input");
-    $decoded = json_decode($content, true);
-    if(!is_array($decoded)){
-        $decoded = [];
-    }
-    $_POST = $decoded;
-}
-
-// Output Content Type
-header('Content-Type: application/json');
+define("CONTENT_TYPE", (isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : ''));
+api::getInputData();
 
 // Transfering POST to GET
-foreach ($_POST as $key => $value) {
-    if(!isset($_GET[$key])) $_GET[$key] = $value; // GET has priority
-}
+$_GET = array_merge($_POST, $_GET);
 
 // Checking GET and SERVER parametrs to avoid mothers' hackers
 $secure = security::filter($_GET);

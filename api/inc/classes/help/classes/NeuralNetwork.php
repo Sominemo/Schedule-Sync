@@ -1,4 +1,4 @@
-<?php
+<?php namespace HelpClasses;
 /**
  * <b>Multi-layer Neural Network in PHP</b>
  * 

@@ -1,6 +1,23 @@
 <?php
 // Classes autoload
 spl_autoload_register(function ($class_name) {
-    // Including classes
-    include_once 'classes/' . $class_name . '.php';
+    // Defining folders for namespaces
+    $namespaces = [
+        "HelpClasses" => "help/classes"
+    ];
+
+    // Replacing path
+    $r = explode("\\", $class_name);
+    foreach ($r as $k => $v) {
+        if ($k+1 == count($r)) break;
+
+        $p = array_search($v, array_keys($namespaces));
+        if ($p !== false) $r[$k] = $namespaces[$v];
+    }
+
+    // Collecting
+    $name = implode("/", $r);
+
+    // Including the classe
+    include_once 'classes/' . $name . '.php';
 });

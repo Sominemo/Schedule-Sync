@@ -45,7 +45,7 @@ class api
         $l = strval($l);
         $m = $l[0];
         $c = intval(substr($l, 1));
-        
+
         $d = @json_decode(@file_get_contents("inc/classes/help/errors/$m.json"), true);
         if (json_last_error() !== JSON_ERROR_NONE || !isset($d["errors"][$c])) {
             $m1 = 1;
@@ -54,11 +54,14 @@ class api
             $m1 = $m;
             $c1 = $c;
         }
-        
-        if ($m !== $m1) $d = @json_decode(@file_get_contents("inc/classes/help/errors/$m1.json"), true);
+
+        if ($m !== $m1) {
+            $d = @json_decode(@file_get_contents("inc/classes/help/errors/$m1.json"), true);
+        }
+
         if (json_last_error() !== JSON_ERROR_NONE || !isset($d["errors"][$c])) {
             $rs = [
-                "info" => "Undefined error"
+                "info" => "Undefined error",
             ];
         } else {
             $rs = $d["errors"][$c];
@@ -115,5 +118,43 @@ class api
         } catch (Exception $e) {
             die('{"code": 0, "info": "We have some troubles right now"}');
         }
+    }
+
+    public static function getInputData()
+    {
+        if (CONTENT_TYPE === 'application/json') {
+            self::DataAsJSON();
+        } else
+        if (CONTENT_TYPE === 'application/xml') {
+            self::DataAsXML();
+        } else {
+            // Output Content Type
+        header('Content-Type: application/json');
+        }
+    }
+
+    private static function DataAsJSON()
+    {
+        $content = file_get_contents("php://input");
+        $decoded = json_decode($content, true);
+        if (!is_array($decoded)) {
+            return;
+        }
+
+        $_POST = array_merge($_POST, $decoded);
+        define("RESPONSE_TYPE", "JSON");
+        // Output Content Type
+        header('Content-Type: application/json');
+    }
+
+    private static function DataAsXML() {
+        $xmlstring = file_get_contents("php://input");
+        $xml = simplexml_load_string($xmlstring, "SimpleXMLElement", LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $array = json_decode($json, true);
+        if (is_array($array)) $_POST = array_merge($_POST, $array);   
+        define("RESPONSE_TYPE", "XML");    
+        // Output Content Type
+        header('Content-Type: application/xml');
     }
 }

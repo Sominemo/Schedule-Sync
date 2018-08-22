@@ -1,0 +1,73 @@
+
+
+[1534919447] ParseError::__set_state(array(
+   'message' => 'syntax error, unexpected \'throw\' (T_THROW)',
+   'string' => '',
+   'code' => 0,
+   'file' => '/home/sominemo/sominemo.com/temply/api/inc/error_handler.php',
+   'line' => 72,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/home/sominemo/sominemo.com/temply/api/worker.php',
+      'line' => 22,
+      'function' => 'require_once',
+    ),
+  ),
+   'previous' => NULL,
+))
+
+[1534919468] ParseError::__set_state(array(
+   'message' => 'syntax error, unexpected \'throw\' (T_THROW)',
+   'string' => '',
+   'code' => 0,
+   'file' => '/home/sominemo/sominemo.com/temply/api/inc/error_handler.php',
+   'line' => 72,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/home/sominemo/sominemo.com/temply/api/worker.php',
+      'line' => 22,
+      'function' => 'require_once',
+    ),
+  ),
+   'previous' => NULL,
+))
+
+[1534919629] ParseError::__set_state(array(
+   'message' => 'syntax error, unexpected \'throw\' (T_THROW)',
+   'string' => '',
+   'code' => 0,
+   'file' => '/home/sominemo/sominemo.com/temply/api/inc/error_handler.php',
+   'line' => 72,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/home/sominemo/sominemo.com/temply/api/worker.php',
+      'line' => 22,
+      'function' => 'require_once',
+    ),
+  ),
+   'previous' => NULL,
+))
+
+[1534919648] ParseError::__set_state(array(
+   'message' => 'syntax error, unexpected \'throw\' (T_THROW)',
+   'string' => '',
+   'code' => 0,
+   'file' => '/home/sominemo/sominemo.com/temply/api/inc/error_handler.php',
+   'line' => 72,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/home/sominemo/sominemo.com/temply/api/worker.php',
+      'line' => 22,
+      'function' => 'require_once',
+    ),
+  ),
+   'previous' => NULL,
+))

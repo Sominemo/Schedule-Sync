@@ -51,4 +51,5 @@ $ra['time'] = time();
 $ra['ua'] = $_SERVER['HTTP_USER_AGENT'];
 $ra['ip'] = $_SERVER['REMOTE_ADDR'];
 
+// Get test MCP if allowed by DEBUG_MODE
 if (DEBUG_MODE && isset($secure['get_mcp'])) $ra["mcp"] = MCP_PREDEFINED;
