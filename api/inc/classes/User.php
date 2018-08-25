@@ -419,9 +419,9 @@ class User
 
     /**
      * Classes to Data
-     * 
+     *
      * Extracts data from User classes
-     * 
+     *
      * @see self::InitUser() How data generates
      * @param User[] $q Query
      * @param bool $no_false If `true` - Return errors as false objects

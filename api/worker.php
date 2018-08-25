@@ -1,22 +1,25 @@
 <?php
 /**
  * MCP
- * 
+ *
  * Method Call Preparation - basic error handlers, requiring, parsing, etc
- * 
+ *
  * @package Temply-Account\Core\MCP
  * @author Sergey Dilong
  * @license GPL-2.0
  */
 ini_set('display_errors', 0);
-set_exception_handler(function($a) {
+set_exception_handler(function ($a) {
     try {
-    $lf = "inc/priv/mcp.log";
-    $a = var_export($a, true);
-    $l = "\n\n[".time()."] ";
-    if (file_put_contents($lf, [$l, $a], FILE_APPEND) === false) throw new Error();
-    echo ('{"error": 100, "info": "Core Initialization failed"}');
-    die;
+        $lf = "inc/priv/mcp.log";
+        $a = var_export($a, true);
+        $l = "\n\n[" . time() . "] ";
+        if (file_put_contents($lf, [$l, $a], FILE_APPEND) === false) {
+            throw new Error();
+        }
+
+        echo ('{"error": 100, "info": "Core Initialization failed"}');
+        die;
     } catch (Error $e) {
         echo ("<b>MCP failed to initialize core and write logs</b><br>");
         var_export($a);

@@ -7,8 +7,8 @@
  * @package Temply-Account\Services
  * @license GPL-2.0
  * @author Sergey Dilong
- * 
- * @throws Exception apiException 
+ *
+ * @throws Exception apiException
  * * [100] DB Connection error
  * * [100] Incorrect DB credentials
  */
@@ -33,7 +33,7 @@ try {
     ]);
 
 // Connecting
-        // PDO connection
+    // PDO connection
     $pdo = new PDO(DBDSN, DBUSER, DBPASS, DBOPT);
     /** Connection success status */
     define('DB_CONNECTION_SUCCESS', true);
@@ -50,9 +50,9 @@ $pdo->query('SET NAMES `utf8mb4`');
 // TODO: To make new class with DB access
 /**
  * DB utils and autoload via classes
- * 
+ *
  * Calls PDO connection by autoload
- * 
+ *
  * @package Temply-Account\Services
  * @license GPL-2.0
  * @author Sergey Dilong
@@ -61,11 +61,11 @@ class db
 {
     /**
      * Generate SET operator
-     * 
+     *
      *  Automize generation of SET operator in SQL queries for PDO
-     * 
+     *
      * `["a" => "foo", "b" => "bar"]` turns to ```a` = :a, `b` = :b`` for PDO::execute()
-     * 
+     *
      * @param array $a Input array
      * @return string A string for preparation query
      * */

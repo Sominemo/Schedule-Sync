@@ -39,7 +39,7 @@
 // 2. Method Sensivity Coefficient (MSC)
 // 0.0 - 2.0
 // Some method could be oftenly requested, some - not.
-// This value is should be provided by humans 
+// This value is should be provided by humans
 // Default value - 1.
 // Formula: GC = [GC Medium Calculation] * MSC
 //
@@ -67,16 +67,17 @@
  * @license GPL-2.0
  * @author Sergey Dilong
  */
-class rqHeuristic {
+class rqHeuristic
+{
 
     /** @var array $data Heuristic data */
     private $data = [];
 
     /**
      * Start
-     * 
+     *
      * Analyze docs
-     * 
+     *
      * @return array Result
      */
     public function __construct($data)

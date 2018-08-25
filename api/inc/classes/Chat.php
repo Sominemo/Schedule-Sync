@@ -1,40 +1,40 @@
 <?php
-/** 
+/**
  * File with Chat class
- * 
+ *
  * No additional classes/funtions
- * 
+ *
  * @package Temply-Account\Objects
  * @author Sergey Dilong
  * @license GPL-2.0
- * 
+ *
  */
 /**
  * Chat object
- * 
+ *
  * Controlls participants, chat settings, creates new chats, etc.
- * 
+ *
  * @package Temply-Account\Objects
  * @author Sergey Dilong
  * @license GPL-2.0
- * 
+ *
  */
 class Chat
 {
     /**
      * Construct Chat
-     * 
+     *
      * Creates new Chat object instance (Router)
-     * 
+     *
      * @param array|int $q Query
      * @param array $o Options
      * * *CREATE_CHAT_MODE* - Creates nw chat
      * @return void
-     * 
+     *
      * @see Chat::Create() New chat creation
      * @see Chat::Init() Getting chat instance
-     * 
-     * @throws apiException 
+     *
+     * @throws apiException
      * * [401] Access denied
      * * [600] Incorrect input data
      * * [601] Incorrect chat creation data
@@ -52,13 +52,13 @@ class Chat
 
     /**
      * Generate Chat instance
-     * 
+     *
      * Gets info about chat
-     * 
+     *
      * @param int $q Chat ID
      * @param array $o Options
-     * 
-     * @throws apiException 
+     *
+     * @throws apiException
      * * [401] Access denied
      * * [600] Incorrect input data
      */
@@ -123,11 +123,11 @@ class Chat
 
     /**
      * Gets Chat info
-     * 
+     *
      * Returns stored data in the class
-     * 
+     *
      * @param array $o Options
-     * 
+     *
      * @return array $r
      * @see self::__construct() Call this method outside the class
      */
@@ -149,23 +149,28 @@ class Chat
 
     /**
      * Creates new chat
-     * 
+     *
      * Creates new chat in DB
-     * 
+     *
      * @param array $q Creation info
      * @param array $o Options
-     * 
+     *
      * @return bool
      * @see self::__construct() Call this method outside the class
      * @throws apiException
      * * [601] Incorrect creation data
      * @api
      */
-    public function Create($q, $o = []) {
-        if (!is_array($q)) return false;
+    public function Create($q, $o = [])
+    {
+        if (!is_array($q)) {
+            return false;
+        }
 
         $name = $q['name'];
-        if (!funcs::strCheck($name, ['min' => 1, 'max' => 30])) throw new apiException(601);
+        if (!funcs::strCheck($name, ['min' => 1, 'max' => 30])) {
+            throw new apiException(601);
+        }
 
         return true;
     }

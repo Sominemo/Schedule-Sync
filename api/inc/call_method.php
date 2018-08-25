@@ -21,16 +21,16 @@ namespace __MethodCaller;
 
 /**
  * Execute MCP
- * 
+ *
  * Does all the stuff
- * 
+ *
  * ## MCP-Config use
  * It was created to predefine some wars for API Init section. Later it will be used for captcha sense etc.
- * 
+ *
  * @example "methods/Test/Server.php" 3 1 Yes, it's really comment, which is going to be parsed
- * @example "methods/Test/Server.php" 63 1 It can be accessed from `MCP_PREDEFINED` const
- * 
- * @package Temply-Account\Services
+ * @example "methods/Test/Server.php" 116 1 It can be accessed from `MCP_PREDEFINED` const
+ *
+ * @package Temply-Account\Core\MCP
  * @author Sergey Dilong
  * @license GPL-2.0
  */
@@ -38,9 +38,9 @@ class __Call
 {
     /**
      * Send 404 error
-     * 
+     *
      * Emulates Apache's HTTP 404 response code and terminates
-     * 
+     *
      * @return void
      */
     private static function call404()
@@ -60,11 +60,11 @@ class __Call
 
     /**
      * Init MCP
-     * 
+     *
      * Preloads API
-     * 
+     *
      * @return mixed[] self::GetData() return
-     * 
+     *
      * @see self::GetData()
      */
     public static function Init()
@@ -127,11 +127,11 @@ class __Call
 
     /**
      * Get MCP data
-     * 
+     *
      * Get data such as method info and MCP config
-     * 
-     * @example "inc/call_method.php" 132 1 Return array
-     * 
+     *
+     * @example "inc/call_method.php" 139 1 Return array
+     *
      * @return mixed[] MCP Info
      */
     public static function GetData()

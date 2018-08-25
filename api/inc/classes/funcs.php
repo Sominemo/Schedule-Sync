@@ -21,13 +21,13 @@ class funcs
 {
     /**
      * Is In Array
-     * 
+     *
      * Recursively checks array for [key => value] pair existance
-     * 
+     *
      * @param array $array Array to check
      * @param string $key Key name
      * @param string $key_value Pair's value
-     * 
+     *
      * @return bool If `true` - there is such pair
      */
     public static function is_in_array($array, $key, $key_value)
@@ -38,7 +38,7 @@ class funcs
         $within_array = false;
         // Checking each key
         foreach ($array as $k => $v) {
-            // If array 
+            // If array
             if (is_array($v)) {
                 // Recursive check
                 $within_array = is_in_array($v, $key, $key_value);
@@ -60,14 +60,14 @@ class funcs
      * Explode
      *
      * Turn string to array
-     * 
+     *
      * TF1: `|1||4||6|` => `[1, 4, 6]`
-     * 
+     *
      * TF2: `|a::1||b::4||c::6|` => `["a" => 1, "b" => 4, "c" => 6]`
-     * 
+     *
      * @param string $d Input string
      * @param bool $e Enabe TF2 mode (if `true`)
-     * 
+     *
      * @return array Result
      */
     public static function exp($d, $e = false)
@@ -98,16 +98,16 @@ class funcs
 
     /**
      * Implode
-     * 
+     *
      * Turn array to string
-     * 
+     *
      * TF1: `[1, 4, 6]` => `|1||4||6|`
-     * 
+     *
      * TF2: `["a" => 1, "b" => 4, "c" => 6]` => `|a::1||b::4||c::6|`
-     * 
+     *
      * @param array $d Input array
      * @param bool $e Enable TF2 mode
-     * 
+     *
      * @return string Result
      */
     public static function imp($d, $e = false)
@@ -131,13 +131,13 @@ class funcs
 
     /**
      * Arrays in array
-     * 
+     *
      * Get all subarrays in array
-     * 
+     *
      * `arrInArr([1,[2,3],4,[5],6,[7,[89]]])` => `[[2,3],[5],[7,[89]]]`
-     * 
+     *
      * @param array $a Input array
-     * 
+     *
      * @return array Subarrays
      */
     public static function arrInArr(array $a)
@@ -155,12 +155,12 @@ class funcs
 
     /**
      * Get array key
-     * 
+     *
      * Gets an array key from an array
-     * 
+     *
      * @param array $a Requested array
      * @param string $k Key
-     * 
+     *
      * @return mixed|bool `false` If doesn't exist
      * @deprecated
      */
@@ -177,9 +177,9 @@ class funcs
 
     /**
      * String Checks
-     * 
+     *
      * Checks string by parameters
-     * 
+     *
      * @param string $q String to check
      * @param array $o Check settings
      * * *min* [int] - MIN string length
@@ -188,7 +188,7 @@ class funcs
      * * *symbols* [string] - Which symbols the string must contain (`/^([SYMBOLS]+)?$/`)
      * * *numeric* [bool] - Is string numeric
      * * *range* [array[int, int]] - Numeric string max-min values
-     * 
+     *
      * @return bool If `true` - correct
      */
     public static function strCheck($q, $o)
@@ -264,15 +264,15 @@ class funcs
 
     /**
      * Recursive Unset
-     * 
+     *
      * Remove key from array and all subarrays
-     * 
+     *
      * **Warning**: This function changes given variable directly and doesn't return anything
-     * 
+     *
      * @param array $array Array to modify
      * @param string $unwanted_key Key name to remove
-     * 
-     * @return void 
+     *
+     * @return void
      */
     public static function recursive_unset(&$array, $unwanted_key)
     {

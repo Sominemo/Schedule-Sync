@@ -24,14 +24,14 @@ class Message
 
     /**
      * Construct
-     * 
+     *
      * Create new Message object
-     * 
+     *
      * @param array|int @a Query
      *  * *array* - new message data
      *  * *integer* - get a message
      * @param array $o Options
-     * 
+     *
      * @return void
      * @throws apiException
      * * [400] Incorrect input data
@@ -56,17 +56,17 @@ class Message
     }
     /**
      * Init Message
-     * 
+     *
      * Get message data by ID
-     * 
+     *
      * @api
      * @see self::__construct() Call this method outside the class
-     * 
+     *
      * @param int $a Message ID
      * @param array $o Options
      * * *ACCESS_KEY* [string] - Access key to get a message
      * * *CHAT_CLASS* [bool] - Get message chat as Chat object
-     * 
+     *
      * @return void
      * @throws apiException
      * * [401] Incorrect try to access
@@ -155,9 +155,9 @@ class Message
     }
     /**
      * Get Message data
-     * 
+     *
      * All requested info about message
-     * 
+     *
      * @api
      * @return bool|array If === `false` - request failed
      */

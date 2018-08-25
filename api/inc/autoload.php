@@ -1,9 +1,9 @@
 <?php
 /**
  * Classes autoload
- * 
+ *
  * Sets class autoload
- * 
+ *
  * @package Temply-Account\Core
  * @author Sergey Dilong
  * @license GPL-2.0
@@ -12,16 +12,21 @@
 spl_autoload_register(function ($class_name) {
     // Defining folders for namespaces
     $namespaces = [
-        "HelpClasses" => "help/classes"
+        "HelpClasses" => "help/classes",
     ];
 
     // Replacing path
     $r = explode("\\", $class_name);
     foreach ($r as $k => $v) {
-        if ($k+1 == count($r)) break;
+        if ($k + 1 == count($r)) {
+            break;
+        }
 
         $p = array_search($v, array_keys($namespaces));
-        if ($p !== false) $r[$k] = $namespaces[$v];
+        if ($p !== false) {
+            $r[$k] = $namespaces[$v];
+        }
+
     }
 
     // Collecting

@@ -1,7 +1,7 @@
 <?php
 /**
  * Class <api>
- * 
+ *
  * @package Temply-Account\Core
  * @license GPL-2.0
  * @author Sergey Dilong
@@ -11,11 +11,11 @@
  * Controls output flow, error messages displaying
  *
  * Basically it's used as a pallet of functions for api.php to don't clutter up global namespace
- * 
+ *
  * @package Temply-Account\Core
  * @license GPL-2.0
  * @author Sergey Dilong
- * 
+ *
  */
 class api
 {
@@ -29,13 +29,13 @@ class api
      *
      * @param string $a Comma-separated (with spaces) required keys
      * @param array|string $b Array to be checked. If === 'NULL' - it checks $secure global
-     * 
+     *
      * @return bool True if all required params are presented, false - if not.
      */
     private static function check_required($a, $b = 'NULL')
     {
         global $secure;
-        // Selecting an array for check 
+        // Selecting an array for check
         if ($b === 'NULL') {
             $t = $secure;
         } else if (!is_array($b)) {
@@ -44,11 +44,11 @@ class api
             $t = $b;
         }
 
-        // Exploding req. params 
+        // Exploding req. params
         $r = explode(", ", $a);
-        // Checking each 
+        // Checking each
         foreach ($r as $k) {
-            // Catching unfilled param 
+            // Catching unfilled param
             if (!empty($k) && !isset($t[$k])) {return $k;}
         }
         return true;
@@ -56,16 +56,16 @@ class api
 
     /**
      *  Public method for check_required
-     * 
+     *
      * A mirror for check_required {@see api::check_required() Logic of initial function}, but instead of false it throws exception
-     * 
+     *
      * @param string $a Comma-separated (with spaces) required keys
      * @param array|string $b Array to be checked. If === 'NULL' - it checks $secure global
-     * 
+     *
      * @return bool True if everything is OK
-     * @throws apiException [102] If there's no one or more required keys 
-     * @example "methods/Test/Server.php" 5 5 Fields could be required by statements
-     * 
+     * @throws apiException [102] If there's no one or more required keys
+     * @example "methods/Test/Server.php" 57 5 Fields could be required by statements
+     *
      */
     public static function required($a, $b = 'NULL')
     {
@@ -82,19 +82,19 @@ class api
 
     /**
      * Loads error from error library
-     * 
+     *
      * Gets error from ```/classes/help/errors```
      * Finds error info by code. First number - error section, others - error number.
      * If there's no such code it fallbacks to error 100.
      * If you would like to throw an error use {@see apiException Custom Exception class} or {@see api::error() a class method}
-     * 
+     *
      * @todo Error category > 9
-     * 
+     *
      * @param int $l Code number
      * @param mixed[] $o Array, which will be returned as ```extended``` key with the error
-     * 
+     *
      * @return array Error array to display
-     * 
+     *
      * @see apiException [Recommended] Throwing Exceptions
      * @see api::error() Setting errors
      */
@@ -141,14 +141,14 @@ class api
 
     /**
      * Get and terminate execution of API method with an error
-     * 
+     *
      * If you would like to throw any errors I strongly recommend you to use {@see apiException Custom Exception class}
-     * 
+     *
      * @see api::get_error() Method, which generates the error
-     * 
+     *
      * @param int $l Code number
      * @param mixed[] $o Array, which will be returned as ```extended``` key with the error
-     * 
+     *
      * @return void It just terminates the script
      */
     public static function error($l, $o = [])
@@ -197,10 +197,10 @@ class api
 
     /**
      * Define preferred data type for client
-     * 
+     *
      * This method decides which encoding could be accepted by client.
      * For now supported types are *JSON* and *XML* (but XML doesn't supported by fatal errors)
-     * 
+     *
      * @return void
      */
     public static function getInputData()
@@ -218,9 +218,9 @@ class api
 
     /**
      * Decodes and merges input data if in POST-Raw JSON-encoded data was detected
-     * 
+     *
      * Works with global variables, sets ```Content-Type: application/json``` header
-     * 
+     *
      * @return void
      */
     private static function DataAsJSON()
@@ -240,9 +240,9 @@ class api
 
     /**
      * Decodes and merges input data if in POST-Raw XML-encoded data was detected
-     * 
+     *
      * Works with global variables, sets ```Content-Type: application/xml``` header
-     * 
+     *
      * @return void
      */
     private static function DataAsXML()

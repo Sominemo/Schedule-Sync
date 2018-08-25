@@ -4,12 +4,14 @@
  * @package Temply-Account\Helpers
  */
 namespace HelpClasses;
-use DOMElement;
+
 use DOMDocument;
+use DOMElement;
 use DOMException;
+
 /**
  * Converting Arrays to XML's
- * 
+ *
  * Simple class for converting Arrays to XML's
  */
 class ArrayToXml
@@ -41,7 +43,7 @@ class ArrayToXml
     {
         $this->document = new DOMDocument($xmlVersion, $xmlEncoding);
         $this->replaceSpacesByUnderScoresInKeyNames = $replaceSpacesByUnderScoresInKeyNames;
-        if ($this->isArrayAllKeySequential($array) && ! empty($array)) {
+        if ($this->isArrayAllKeySequential($array) && !empty($array)) {
             throw new DOMException('Invalid Character Error');
         }
         $root = $this->createRootElement($rootElement);
@@ -91,12 +93,12 @@ class ArrayToXml
     private function convertElement(DOMElement $element, $value)
     {
         $sequential = $this->isArrayAllKeySequential($value);
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             $element->nodeValue = htmlspecialchars($value);
             return;
         }
         foreach ($value as $key => $data) {
-            if (! $sequential) {
+            if (!$sequential) {
                 if (($key === '_attributes') || ($key === '@attributes')) {
                     $this->addAttributes($element, $data);
                 } elseif ((($key === '_value') || ($key === '@value')) && is_string($data)) {
@@ -174,7 +176,7 @@ class ArrayToXml
      */
     protected function isArrayAllKeySequential($value)
     {
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             return false;
         }
         if (count($value) <= 0) {

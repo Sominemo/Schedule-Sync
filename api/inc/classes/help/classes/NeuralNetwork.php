@@ -73,44 +73,44 @@ namespace HelpClasses;
 class NeuralNetwork
 {
     /** @var array $nodeCount Amount of nodes */
-	protected $nodeCount = array();
-	/** @var array $nodeValue Values of nodes */
-	protected $nodeValue = array();
-	/** @var array $nodeThreshold Threshold of nodes */
-	protected $nodeThreshold = array();
-	/** @var array $edgeWeight Edge weights */
-	protected $edgeWeight = array();
-	/** @var float[] $learningRate Learning rate */
-	protected $learningRate = array(0.1);
-	/** @var int[] $layerCount Layers count */
-	protected $layerCount = 0;
-	/** @var array $previousWeightCorrection Fallback position */
-	protected $previousWeightCorrection = array();
-	/** @var float $momentum Momentumn */
-	protected $momentum = 0.8;
-	/** @var bool $isVerbose Is verbose */
-	protected $isVerbose = true;
-	/** @var bool $weightsInitialized Is inite */
-	protected $weightsInitialized = false;
-	/** @var array $trainInputs Input story */
-	public $trainInputs = array();
-	/** @var array $trainInputs Output story */
-	public $trainOutput = array();
-	/** @var array $trainDataID Training ID */
-	public $trainDataID = array();
-	/** @var array $controlInputs Input control history */
-	public $controlInputs = array();
-	/** @var array $controlOutput Output control history */
-	public $controlOutput = array();
-	/** @var array $controlDataID DataID control history */
-	public $controlDataID = array();
-	/** @var int $epoch NN epoch */
-	protected $epoch;
-	/** @var float Error epoch */
-	protected $errorTrainingset;
-	/** @var float Control error */
-	protected $errorControlset;
-	/** @var bool Success */
+    protected $nodeCount = array();
+    /** @var array $nodeValue Values of nodes */
+    protected $nodeValue = array();
+    /** @var array $nodeThreshold Threshold of nodes */
+    protected $nodeThreshold = array();
+    /** @var array $edgeWeight Edge weights */
+    protected $edgeWeight = array();
+    /** @var float[] $learningRate Learning rate */
+    protected $learningRate = array(0.1);
+    /** @var int[] $layerCount Layers count */
+    protected $layerCount = 0;
+    /** @var array $previousWeightCorrection Fallback position */
+    protected $previousWeightCorrection = array();
+    /** @var float $momentum Momentumn */
+    protected $momentum = 0.8;
+    /** @var bool $isVerbose Is verbose */
+    protected $isVerbose = true;
+    /** @var bool $weightsInitialized Is inite */
+    protected $weightsInitialized = false;
+    /** @var array $trainInputs Input story */
+    public $trainInputs = array();
+    /** @var array $trainInputs Output story */
+    public $trainOutput = array();
+    /** @var array $trainDataID Training ID */
+    public $trainDataID = array();
+    /** @var array $controlInputs Input control history */
+    public $controlInputs = array();
+    /** @var array $controlOutput Output control history */
+    public $controlOutput = array();
+    /** @var array $controlDataID DataID control history */
+    public $controlDataID = array();
+    /** @var int $epoch NN epoch */
+    protected $epoch;
+    /** @var float Error epoch */
+    protected $errorTrainingset;
+    /** @var float Control error */
+    protected $errorControlset;
+    /** @var bool Success */
     protected $success;
     /**
      * Creates a neural network.

@@ -31,15 +31,15 @@ class msgAccess extends Access
 
     /**
      * Router
-     * 
+     *
      * Get a message/prepare to forwarding
-     * 
+     *
      * @see self::getAccess() Get a message
-     * 
+     *
      * @param string|array $query Token/Message data
      * @param array $o Options
      * * *CREATE_NEW* - Creates new token
-     * 
+     *
      * @return void
      */
     public function __construct($query, $o = [])
@@ -57,9 +57,9 @@ class msgAccess extends Access
 
     /**
      * Get access to a message
-     * 
+     *
      * access_token is used for passive access to messages (eg forwarded)
-     * 
+     *
      * @see self::__construct() Access this method outside the class
      * @param string $key 32-symbols length Access key
      * @param array $o Options
@@ -90,7 +90,7 @@ class msgAccess extends Access
         // Get data
         $us = $this->getObjects(['DOWNGRADE_CHATS_TO_USERS' => true, 'MERGE_RESULTS' => true]);
         if (in_array(Auth::User()->get()['id'], $us)) {
-         return new Message($q['data']);
+            return new Message($q['data']);
         };
 
     }

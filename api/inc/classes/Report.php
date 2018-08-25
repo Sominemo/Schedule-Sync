@@ -17,7 +17,8 @@
  * @license GPL-2.0
  * @author Sergey Dilong
  */
-class Report {
+class Report
+{
     /** @var string $report_table DB table for logs */
     private $report_table = "api_report";
     /** @var bool|array $id Report DB ID */
@@ -27,20 +28,23 @@ class Report {
 
     /**
      * New report
-     * 
+     *
      * Write logs to DB
-     * 
+     *
      * @api
      * @param array $data Data to save
      * @return bool If `true` - success
      * @throws apiException
      * * [104] Failed to write log
      */
-    public function __construct($data = []) {
+    public function __construct($data = [])
+    {
         global $pdo, $global_report_data, $the_return_stream;
 
         // If connection to DB error - terminate
-        if(DB_CONNECTION_SUCCESS !== true) return false;
+        if (DB_CONNECTION_SUCCESS !== true) {
+            return false;
+        }
 
         // Stop timers, get current user and output
         $global_report_data['result'] = (count($the_return_stream) > 0 ? $the_return_stream : $data);
@@ -57,7 +61,7 @@ class Report {
         $m = intval($pdo->lastInsertId());
 
         // Report writing error
-        if (!$m > 0) {throw new apiException(104); return false;}
+        if (!$m > 0) {throw new apiException(104);return false;}
         $this->id = $m;
 
         return true;
@@ -65,25 +69,27 @@ class Report {
 
     /**
      * Get data
-     * 
+     *
      * Get report data
-     * 
+     *
      * @api
      * @return array|bool Saved data. If `false` - no data
      */
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
 
     /**
      * Get Report ID
-     * 
+     *
      * Unique ID of just saved report
-     * 
+     *
      * @api
      * @return int|bool Report ID. If `false` - Report error
      */
-    public function getID() {
+    public function getID()
+    {
         return $this->id;
     }
 }

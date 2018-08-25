@@ -1,43 +1,43 @@
 <?php
-/** 
+/**
  * File with Contacts logic
- * 
+ *
  * No additional classes/funtions
- * 
+ *
  * @package Temply-Account\Services
  * @author Sergey Dilong
  * @license GPL-2.0
- * 
+ *
  */
 /**
  * Contacts class
- * 
+ *
  * Get list of contacts who you can add to chats etc.
- * 
+ *
  * @package Temply-Account\Services
  * @author Sergey Dilong
  * @license GPL-2.0
- * 
+ *
  */
 class Contacts
 {
 
     /**
      * Get contacts
-     * 
+     *
      * Get current user's (or by id) contacts
-     * 
+     *
      * @api
      * @param int|string $q Query. If === `me` - works with current user
      * @param array $o Options
      * * *RETURN_IDS* - Users will be returned as int ids instead of classes
      * @param array $u_o Options for User class
-     * 
+     *
      * @return (User|int)[]
-     * 
+     *
      * @throws apiException
      * * [701] Incorrect query
-     * 
+     *
      */
     public static function Get($q = "me", $o = [], $u_o = [])
     {
@@ -81,17 +81,17 @@ class Contacts
 
     /**
      * Find By ID
-     * 
+     *
      * Search for a user in contacts list
-     * 
+     *
      * Returns `true` if found such ID
-     * 
+     *
      * @api
      * @param int $u Requested user
      * @param int|string $q Contacts ist owner. If === `me` - works with current user
      * @param array $o Options
-     * 
-     * @return bool 
+     *
+     * @return bool
      */
     public static function FindByID($u, $q = "me", $o = [])
     {
@@ -100,16 +100,16 @@ class Contacts
 
     }
 
-    /** 
+    /**
      * Add User to Contacts
-     * 
+     *
      * Adds a user to requested contacts list
-     * 
+     *
      * @api
      * @param int $u User ID to add
      * @param string|int $q Contacts list owner. If === `me` - works with current user
      * @param array $o Options
-     * 
+     *
      * @return bool
      * @throws apiException
      * * [701] Incorrect ID
@@ -118,7 +118,6 @@ class Contacts
     public static function Add($u, $q = "me", $o = [])
     {
         global $pdo;
-
 
         // Check type
         if (!is_int($u)) {
@@ -164,16 +163,17 @@ class Contacts
 
     /**
      * Remove Contacts
-     * 
+     *
      * Removes a contact from list
-     * 
+     *
      * **Not ready yet**
-     * 
+     *
      * @api
      * @param int $u User to remove
      * @param string|int $q Contacts ist owner. If === `me` - work with current user
      */
-    public static function Remove($u, $q = "me") {
+    public static function Remove($u, $q = "me")
+    {
         // TODO: Contacts removing
     }
 }

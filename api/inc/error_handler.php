@@ -3,7 +3,7 @@
  * Error Handler
  *
  * Defines function to catch and customize exceptions
- * 
+ *
  * @package Temply-Account\Core
  * @author Sergey Dilong
  * @licence GPL-2.0
@@ -11,17 +11,17 @@
 
 /**
  * Hanlde error
- * 
+ *
  * Format, log, terminate
- * 
+ *
  * @param int $code Error code
  * @param string $description Description
  * @param string $file File
  * @param int $line Line
  * @param string[] $context Context
- * 
+ *
  * @return void
- * 
+ *
  */
 function _handleError($code, $description, $file = null, $line = null, $context = null)
 {
@@ -40,11 +40,11 @@ function _handleError($code, $description, $file = null, $line = null, $context 
 
 /**
  * Writes report and terminates
- * 
+ *
  * Function-helper
- * 
+ *
  * @see _handleError() Recommended function
- * 
+ *
  * @param array $data Error array
  * @return void
  */
@@ -79,9 +79,9 @@ function _logError($data = [])
 
 /**
  * Fatal Error Shutdown Handler
- * 
+ *
  * Extreme output and terminate
- * 
+ *
  * @return void
  */
 function _fatalErrorShutdownHandler()
@@ -94,9 +94,9 @@ function _fatalErrorShutdownHandler()
 
 /**
  * Global Exception Handler
- * 
+ *
  * Writes logs and terminates, does all apiException's work
- * 
+ *
  * @param Exception $e Unhandled exception
  * @return void
  */
@@ -137,11 +137,11 @@ function _handleException($e)
 
 /**
  * Exception To Array
- * 
+ *
  * Turnes \Exception object to Array
- * 
+ *
  * @param Exception $e Input data
- * 
+ *
  * @return array Output array
  */
 function __ExceptionToArray($e)

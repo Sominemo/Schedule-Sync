@@ -1,9 +1,9 @@
 <?php
 /**
  * API Init
- * 
+ *
  * Main API establishment
- * 
+ *
  * @package Temply-Account\Core
  * @author Sergey Dilong
  * @license GPL-2.0
@@ -14,8 +14,8 @@ const DEBUG_MODE = true;
 
 // Disable errors
 if (!DEBUG_MODE) {
-error_reporting(0);
-ini_set('display_errors', 0);
+    error_reporting(0);
+    ini_set('display_errors', 0);
 }
 
 // Trigger for logs
@@ -37,9 +37,9 @@ define('HOME', $_SERVER['DOCUMENT_ROOT']);
 define('CURRENT_METHOD', __MethodCaller\__Call::GetData()[1]);
 
 // Enable classes autoloader and connecting to DB
-require_once('error_handler.php');
-require_once('autoload.php');
-require_once('classes/db.php');
+require_once 'error_handler.php';
+require_once 'autoload.php';
+require_once 'classes/db.php';
 
 // Creating arrays for checked params and output
 $secure = [];
@@ -56,15 +56,22 @@ $_GET = array_merge($_POST, $_GET);
 // Checking GET and SERVER parametrs to avoid mothers' hackers
 $secure = security::filter($_GET);
 $_SERVER = security::filter($_SERVER);
-if (isset($secure[__METHOD_GET_VARIABLE_NAME])) unset($secure[__METHOD_GET_VARIABLE_NAME]);
-if (!$_SERVER['HTTP_USER_AGENT']) $_SERVER['HTTP_USER_AGENT'] = "null"; 
+if (isset($secure[__METHOD_GET_VARIABLE_NAME])) {
+    unset($secure[__METHOD_GET_VARIABLE_NAME]);
+}
+
+if (!$_SERVER['HTTP_USER_AGENT']) {
+    $_SERVER['HTTP_USER_AGENT'] = "null";
+}
 
 // If report enabled - record URL
-$global_report_data['link'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$global_report_data['link'] = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $global_report_data['params'] = json_encode($secure, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 // Init auth script
 Auth::Init();
 
-    // Checking token if we got a token
-    if (isset($secure['token'])) $auth_check_status = new Auth();
+// Checking token if we got a token
+if (isset($secure['token'])) {
+    $auth_check_status = new Auth();
+}
