@@ -76,6 +76,7 @@ class Auth {
      * * [301] Invalid credentials for login
      * @return bool If `true` - login successful
      * @see Auth::__construct() Use this method outside the class
+     * @api
      */
     private function newToken($l, $p) {
         // Get DB
@@ -137,7 +138,7 @@ class Auth {
      * 
      * @return bool If `true` - token is correct
      * @see Auth::__construct() Call this method outside the class
-     * 
+     * @api
      */
     private function check($t) {
         // TODO: Token check for any string
@@ -216,6 +217,7 @@ class Auth {
      * * *verify* - [boolean] if `true` - token is checked
      * 
      * @uses self::$data as data source
+     * @api
      */
     public static function getTokenData() {
         return ['token' => self::$data['token'], 'verify' => self::$data['verify']];

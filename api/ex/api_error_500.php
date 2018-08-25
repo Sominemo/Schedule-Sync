@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * API General error
+ * 
+ * @package Temply-Account\Core\Static
+ * @author Sergey Dilong
+ * @license GPL-2.0
+ */
 $ra = [
     "error_code" => 100,
     "info" => "Something went wrong"

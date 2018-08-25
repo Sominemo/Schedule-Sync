@@ -2,6 +2,58 @@
 // Additional instructions for Method Call Preparator
 // [!MCP]: {"mcp_parsed": true}
 
+// Method description
+/**
+ * test.server
+ * 
+ * Test connection with server
+ * 
+ * This method was created just to test how API works & get server's time. If param `require_test` will be set fields `int_value` and `str_value` will be required.
+ * 
+* ## Request  
+* * **require_test**  
+* Trigger for testing 102 error. If it was set, `int_value` and `str_value` will be required  
+* _integer_  
+* * **int_value**  
+* Integer, that will be returned back if it was set  
+* _integer_  
+* * **str_value**  
+* String, that will be returned back if it was set  
+* _string_  
+* * **randoms**  
+* If it was set, API returns specified amount of randoms between 1000 and 9999  
+* _integer_  
+* * **auth_test**  
+* Checks token
+* _integer_  
+* ## Response  
+* * **got_int**  
+* Integer from `int_value`  
+* _integer_  
+* * **got_str**  
+* String from `str_value`  
+* _string_  
+* * **randoms**  
+* Specified amount of randoms between 1000 and 9999. Max amount - 15 nums  
+* _array, that contains objects of type integer_  
+* * **ip**  
+* User's IP  
+* _string, **required field**_  
+* * **ua**  
+* User's User Agent  
+* _string, **required field**_  
+* * **time**  
+* Time on API server  
+* _PHP Timestamp, **required field**_  
+* * **auth_test**  
+* If `auth_test` successed - returns true
+* _bool_  
+ * 
+ * @package Temply-Account\Methods
+ * @author Sergey Dilong
+ * @license GPL-2.0
+ */
+
 // Require variables by statements
 if (isset($secure['require_test'])) { // If client wants to test field-requiring
     api::required("int_value, str_value");

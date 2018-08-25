@@ -2,7 +2,7 @@
 /**
  * Class <api>
  * 
- * @package Temply-Account
+ * @package Temply-Account\Core
  * @license GPL-2.0
  * @author Sergey Dilong
  */
@@ -12,6 +12,7 @@
  *
  * Basically it's used as a pallet of functions for api.php to don't clutter up global namespace
  * 
+ * @package Temply-Account\Core
  * @license GPL-2.0
  * @author Sergey Dilong
  * 
@@ -231,7 +232,7 @@ class api
         }
 
         $_POST = array_merge($_POST, $decoded);
-        /** @var string Response type */
+        /** Response type */
         define("RESPONSE_TYPE", "JSON");
         // Output Content Type
         header('Content-Type: application/json');

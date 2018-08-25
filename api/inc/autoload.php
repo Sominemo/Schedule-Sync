@@ -1,4 +1,13 @@
 <?php
+/**
+ * Classes autoload
+ * 
+ * Sets class autoload
+ * 
+ * @package Temply-Account\Core
+ * @author Sergey Dilong
+ * @license GPL-2.0
+ */
 // Classes autoload
 spl_autoload_register(function ($class_name) {
     // Defining folders for namespaces

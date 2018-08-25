@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Request Heuristic
+ *
+ * Textual algo of Neural Networks-based captcha
+ *
+ * @package Temply-Account\Services
+ * @license GPL-2.0
+ * @author Sergey Dilong
+ */
 // Just prepearing to Captcha implementation, based on Neural Networks. Empty class
 // It's gonna work with some coeffs
 // In future this text model probably will be extended or changed
@@ -50,10 +58,27 @@
 //
 // FINAL: Request Captcha if NN Result is > SCDL - send captcha (or deny request in some cases)
 
+/**
+ * rqHeuristic
+ *
+ * Empty class for now
+ *
+ * @package Temply-Account\Services
+ * @license GPL-2.0
+ * @author Sergey Dilong
+ */
 class rqHeuristic {
 
+    /** @var array $data Heuristic data */
     private $data = [];
 
+    /**
+     * Start
+     * 
+     * Analyze docs
+     * 
+     * @return array Result
+     */
     public function __construct($data)
     {
         $this->data = $data;

@@ -4,7 +4,7 @@
  *
  * Prepares Methods and API to be loaded
  *
- * @package Temply-Account\Services
+ * @package Temply-Account\Core\MCP
  * @author Sergey Dilong
  * @license GPL-2.0
  */
@@ -13,7 +13,7 @@
  *
  * Gets executable method file path and parses MCP-config
  *
- * @package Temply-Account\Services
+ * @package Temply-Account\Core\MCP
  * @author Sergey Dilong
  * @license GPL-2.0
  */

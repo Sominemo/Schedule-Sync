@@ -4,7 +4,7 @@
  * 
  * Main API establishment
  * 
- * @package Temply-Account
+ * @package Temply-Account\Core
  * @author Sergey Dilong
  * @license GPL-2.0
  */

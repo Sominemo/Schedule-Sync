@@ -4,7 +4,7 @@
  *
  * Defines function to catch and customize exceptions
  * 
- * @package Temply-Account\Services
+ * @package Temply-Account\Core
  * @author Sergey Dilong
  * @licence GPL-2.0
  */
