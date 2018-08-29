@@ -171,9 +171,44 @@ class Contacts
      * @api
      * @param int $u User to remove
      * @param string|int $q Contacts ist owner. If === `me` - work with current user
+     * 
+     * @return bool Result
+     * @throws apiException
+     * * [701] Incorrect typ
+     * * [703] No such user in contacts
      */
     public static function Remove($u, $q = "me")
     {
-        // TODO: Contacts removing
+        global $pdo;
+
+        // Check type
+        if (!is_int($u)) {
+            throw new apiException(701);
+        }
+
+        // Check if not added
+        if (!$fu = static::FindByID($u)) {
+            throw new apiException(703);
+        }
+
+        // Get contacts as IDs
+        $e = static::Get($q, ["RETURN_IDS" => true]);
+        unset($e[$fu]); // Remove
+        $e = funcs::imp($e);
+
+        // If "me" - current user
+        if ($q === "me") {
+            $ru = Auth::User(1);
+            if ($ru) {
+                $ru = $ru->Get()['id'];
+            }
+        } else {
+            $ru = $q;
+        }
+
+        // Record new contact
+        $pdo->prepare("UPDATE `contacts` SET `data` = ? WHERE `user` = ?")->execute([$e, $ru]);
+
+        return true;
     }
 }

@@ -20,4 +20,9 @@
  */
 new Auth();
 
-$ra['response'] = Contacts::FindByID($secure['uid']);
+if (Contacts::FindByID($secure['uid']) !== false) {
+    $u = new User($secure['uid'], ["U_GET" => true]);
+    $ra['response'] = $u->get();
+} else {
+    $ra['response'] = false;
+}

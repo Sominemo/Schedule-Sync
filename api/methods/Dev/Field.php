@@ -11,7 +11,6 @@
  * @license GPL-2.0
  */
 
-//new Auth();
-
-new Access();
-$ra["wow"] = $secure;
+new Auth();
+Contacts::Add(1);
+$ra['response'] = User::ClassesToData(Contacts::Get());
