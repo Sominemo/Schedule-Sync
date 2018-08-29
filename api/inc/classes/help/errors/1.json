@@ -19,7 +19,7 @@
         },
         {
             "code": 4,
-            "info": "Fatal error"
+            "info": "Logic Exception"
         },
         {
             "code": 5,
