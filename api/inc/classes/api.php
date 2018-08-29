@@ -101,8 +101,14 @@ class api
     public static function get_error($l, $o = [])
     {
         $l = strval($l); // Stringify
-        $m = $l[0]; // Get first number
-        $c = intval(substr($l, 1)); // Get error number
+        // If code < 1000
+        if (strlen($l) == 3) {
+            $m = $l[0]; // Get first number
+            $c = intval(substr($l, 1)); // Get error number
+        } else {
+            $m = $l[0].$l[1]; // Get first two
+            $c = intval(substr($l, 2)); // Get error number
+        }
 
         $d = @json_decode(@file_get_contents("inc/classes/help/errors/$m.json"), true); // Get error list
         if (json_last_error() !== JSON_ERROR_NONE || !isset($d["errors"][$c])) { // If not found - fallback to error 100
