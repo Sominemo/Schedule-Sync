@@ -88,7 +88,6 @@ class api
      * If there's no such code it fallbacks to error 100.
      * If you would like to throw an error use {@see apiException Custom Exception class} or {@see api::error() a class method}
      *
-     * @todo Error category > 9
      *
      * @param int $l Code number
      * @param mixed[] $o Array, which will be returned as ```extended``` key with the error

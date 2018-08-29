@@ -99,13 +99,13 @@ class Chat
         // Detect chat type (2 users or multiuser)
         $type = (in_array($g['type'], self::CHAT_TYPE) ? $g['type'] : self::CHAT_TYPE['UNDEFINED_CHAT']);
 
-        // Get admin
-        // TODO: Few admins
-        // TODO: If 2 users - both are admins
-        $admins = [new User($g['creator'], ['U_GET' => 1])];
-
         // Convert users in chat to classes
         $us = User::IdsToClasses(funcs::exp($g['users']), true, ['U_GET' => 1]);
+
+        // Get admin
+        // TODO: Few admins
+        if (count($us) === 2) $admins = $us;
+        else $admins = [new User($g['creator'], ['U_GET' => 1])];
 
         // Generate output
         $d['id'] = $g['id'];
@@ -113,6 +113,7 @@ class Chat
         $d['admins'] = $admins;
         $d['type'] = $type;
         $d['default'] = ($type === Chat::CHAT_TYPE['PRIVATE_CHAT'] ? $g['default'] : 0);
+        $d['users'] = $us;
 
         // Write data
         $this->data = $d;
