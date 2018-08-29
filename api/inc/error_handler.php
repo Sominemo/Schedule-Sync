@@ -53,7 +53,7 @@ function _logError($data = [])
     $data_a = $data;
     $data = print_r($data, true);
 
-    $r = ["code" => 104, "info" => "Fatal error"];
+    $r = ["code" => 104, "info" => "Logic Exception"];
 
     $r['data'] = [];
 
