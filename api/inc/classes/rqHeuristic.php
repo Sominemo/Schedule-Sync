@@ -38,8 +38,8 @@
 //
 // 2. Method Sensivity Coefficient (MSC)
 // 0.0 - 2.0
-// Some method could be oftenly requested, some - not.
-// This value is should be provided by humans
+// Some methods could be oftenly requested, some - not.
+// This value should be provided by humans
 // Default value - 1.
 // Formula: GC = [GC Medium Calculation] * MSC
 //

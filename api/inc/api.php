@@ -20,6 +20,7 @@ if (!DEBUG_MODE) {
 
 // Trigger for logs
 /** Controls logs in \Report class */
+// TODO: Use constant
 $report_enabled = 1;
 
 // Time counter
