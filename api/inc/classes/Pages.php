@@ -4,7 +4,7 @@ use __MethodCaller\__Call;
 /**
  * Pages
  *
- * Displays contant by pages
+ * Displays content by pages
  *
  * @package Temply-Account\Services
  * @license GPL-2.0
@@ -38,10 +38,7 @@ class Pages
     /** @var mixed[] $data Data for pagination */
     private $data = [];
 
-    /** @var mixed[] $default_params Default settings
-     *
-     * [offset, count, page, jumpAllowed]
-     */
+    /** @var mixed[] $default_params Default settings */
     private static $default_params = [0, 10, 1, 1];
 
     /** @var mixed[] $p Settings for the object **/
@@ -49,10 +46,23 @@ class Pages
 
     /** @var int[] $limits Limits for the Pages */
     private $limits = [self::SYSTEM_MIN, self::SYSTEM_MAX];
-    /*
-     * Set new page data
+   
+    
+    /**
+     * __construct
+     * 
+     * Creates Pages object
+     * 
+     * The Pages object is used to give via API big arrays by parts
      *
-     * Creates the stuff
+     * @param  mixed $data The array to display
+     * @param  mixed $id ID to control the object (could be not just unique)
+     * @param  mixed $limits Count limits [min, max]
+     * @param  mixed $default Default rules [offset, count, page, jumpAllowed]. You can fall back to default values using "_" string or by not adding them if they are at the end.
+     *
+     * @return void
+     * 
+     * @throws apiException [104] Wrong rules, critical parse errors
      */
     public function __construct(array $data, int $id, array $limits = [], array $default = [])
     {
@@ -85,9 +95,17 @@ class Pages
         // Apply user rules
         $this->applyRules($this->parseRules($gotRules));
         
+        // Save work data
         $this->data = $data;
     }
 
+    /**
+     * RegID
+     *
+     * @param  mixed $id Control ID to register
+     *
+     * @return void
+     */
     private function RegID($id) {
         // Record ID
         $this->id = $id;
@@ -97,7 +115,9 @@ class Pages
     /**
      * Parse Rules
      *
-     * Checks and converts rules to understandable look
+     * Checks and autofills given rules
+     * 
+     * @param mixed $rules The rules to work with
      *
      * @return void
      */
@@ -123,17 +143,22 @@ class Pages
             ],
         ];
 
+        // Cut
         $rules = array_slice($rules, 0, 4);
+
+        // Fill end-defaults
         $c = count($rules);
         if ($c < 4) $rules = array_merge($rules, array_fill(0, 4 - $c, '_'));
 
+        // Fallback to defaults if needed
         foreach ($rules as $k => $v) {
             if ($v === "_") {
                 $r[$k] = $parsed[$k];
                 continue;
             }
 
-            foreach ($keyCheck[$k] as $kv) {
+        // Check it
+        foreach ($keyCheck[$k] as $kv) {
                 $kv->set($v);
             }
 
@@ -144,20 +169,26 @@ class Pages
         return $r;
     }
 
+    /**
+     * Just saves the rules
+     *
+     * @param  mixed $rules Rules to save
+     *
+     * @return void
+     */
     private function applyRules($rules) {
         $this->p = $rules;
     }
 
     /**
-     * applyRules
-     *
-     * @param  array $r
+     * Gets users By-ID Control data from request
      *
      * @return void
      */
     private static function prepareRules()
     {
         global $secure;
+        // Already parsed
         if (is_array(self::$parsed)) return self::$parsed;
         // Parse rules
         $r = funcs::exp($secure['pages_config'], true);
@@ -169,11 +200,17 @@ class Pages
             $w[$key] = explode(",", $value);
         }
 
+        // Save result
         self::$parsed = $w;
 
         return $w;
     }
 
+    /**
+     * Searches for parsed rules for current id or returns fallback config ("_"s)
+     *
+     * @return void
+     */
     private function getRules() {
         $d = self::prepareRules();
 
@@ -181,11 +218,21 @@ class Pages
         else return array_fill(0, 4, "_");
     } 
 
+    /**
+     * Public function to get all rules that are already in use
+     *
+     * @return void
+     */
     public function getCurrentRules()
     {
         return $this->p;
     }
 
+    /**
+     * Gets the data using rules
+     *
+     * @return void
+     */
     public function get() {
         // Prepare
         $work = $this->data;
