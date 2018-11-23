@@ -1,6 +1,4 @@
 <?php
-
-use __MethodCaller\__Call;
 /**
  * Pages
  *
