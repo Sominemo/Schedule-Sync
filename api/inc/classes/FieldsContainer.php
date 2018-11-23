@@ -92,17 +92,17 @@ class FieldsContainer
      */
     public function set($a)
     {
-        if (!is_array($a)) throw new apiException(104);
+        if (!is_array($a)) throw new apiException(107);
         $tr = $this->type;
-        if (!$tr) throw new apiException(104);
+        if (!$tr) throw new apiException(107);
         if ($tr[0] === "array") {
             $tr[0] = range(0, count($a) - 1);
             $tr[1] = array_fill(0, count($a), $tr[1]);
         }
         $e = [];
-        foreach ($tr[0] as $v) {
+        foreach ($tr[0] as $mkn => $v) {
             $sc = 0;
-            if (!isset($a[$v])) throw new apiException(104);
+            if (!isset($a[$v])) throw new apiException(107, ["invalid_value_key" => $mkn]);
             if (array_key_exists($v, $tr[1])) {
                 if ($tr[1][$v] instanceof FieldChecker || $tr[1][$v] instanceof FieldsContainer) {
                     $y = $tr[1][$v];

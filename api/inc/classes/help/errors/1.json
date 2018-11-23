@@ -28,6 +28,10 @@
         {
             "code": 6,
             "info": "Connection error"
+        },
+        {
+            "code": 7,
+            "info": "Invalid data"
         }
     ]
 }
