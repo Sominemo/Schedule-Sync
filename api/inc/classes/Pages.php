@@ -39,6 +39,9 @@ class Pages
     /** @var mixed[] $default_params Default settings */
     private static $default_params = [0, 10, 1, 1];
 
+    /** @var mixed[] $default_params_user User's universal defaults */
+    private static $default_params_user = ["_", "_", "_", "_"];
+
     /** @var mixed[] $p Settings for the object **/
     private $p = [];
 
@@ -84,14 +87,19 @@ class Pages
         // Apply given rules
         $this->applyRules($this->parseRules($default));
 
+        // Parse User Rules
         try {
             $gotRules = $this->getRules();
         } catch (apiException $e) {
             $gotRules = array_fill(0, 4, "_");
         }
 
+        // User universal defaults
+        $this->applyRules($this->parseRules(static::$default_params_user));
+
         // Apply user rules
-        $this->applyRules($this->parseRules($gotRules));
+        $parsed = $this->parseRules($gotRules);
+        $this->applyRules($parsed);
         
         // Save work data
         $this->data = $data;
@@ -127,7 +135,7 @@ class Pages
         // Checkers
         $keyCheck = [
             [
-                new FieldChecker(["isint" => true]),
+                new FieldChecker(["isint" => true, "range" => [0, PHP_INT_MAX]]),
             ],
             [
                 new FieldChecker(["isint" => true, "range" => [self::SYSTEM_MIN, self::SYSTEM_MAX]]),
@@ -190,12 +198,20 @@ class Pages
         if (is_array(self::$parsed)) return self::$parsed;
         // Parse rules
         $r = funcs::exp($secure['pages_config'], true);
-        // Check if it's correct
-        if (!is_array($r)) throw new apiException(104);
-        // Format
         $w = [];
+        // Check if we've got complex config
+        if (!is_array($r)) {
+            $w[0] = explode(",", $secure['pages_config']);
+        }
+
+        // Format
         foreach ($r as $key => $value) {
             $w[$key] = explode(",", $value);
+        }
+        
+        // If ID0 simplified universal
+        if (isset($w[0])) {
+            static::$default_params_user = $w[0];
         }
 
         // Save result
