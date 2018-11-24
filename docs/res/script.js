@@ -355,7 +355,7 @@ var method = {
                 });
             }
 
-            if (!d) {
+            if (typeof l[2] !== "object") {
                 try {
                     if (history && history.length > 0) {
                         history.back();
