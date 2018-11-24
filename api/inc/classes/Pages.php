@@ -200,7 +200,7 @@ class Pages
         $r = funcs::exp($secure['pages_config'], true);
         $w = [];
         // Check if we've got complex config
-        if (!is_array($r)) {
+        if (isset($secure['pages_config']) && !is_array($r)) {
             $w[0] = explode(",", $secure['pages_config']);
         }
 
