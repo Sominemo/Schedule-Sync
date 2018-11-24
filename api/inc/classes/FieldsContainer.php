@@ -62,7 +62,9 @@
 
 class FieldsContainer
 {
+    /** @var mixed $data Data to check */
     private $data = false;
+    /** @var mixed $type Rules for checking */
     private $type = false;
     
     /**
@@ -115,10 +117,24 @@ class FieldsContainer
         $this->data = $e;
         return true;
     }
+    /**
+     * Get
+     *
+     * Get checked rules
+     * 
+     * @return mixed Checked data
+     */
     public function get()
     {
         return $this->data;
     }
+    /**
+     * getType
+     * 
+     * Get rules
+     *
+     * @return mixed Rules
+     */
     public function getType()
     {
         return $this->type;
