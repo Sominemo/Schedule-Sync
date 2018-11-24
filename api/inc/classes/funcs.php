@@ -68,10 +68,13 @@ class funcs
      * @param string $d Input string
      * @param bool $e Enabe TF2 mode (if `true`)
      *
-     * @return array Result
+     * @return array Result. Also it could be False if it's unexplodable string
      */
     public static function exp($d, $e = false)
     {
+        // Check explode type
+        if (!($d[0] === "|" && $d[strlen($d)-1] === "|")) return false;
+
         // Basic explode
         $p = explode("||", substr($d, 1, -1));
         foreach ($p as $k => $v) {
