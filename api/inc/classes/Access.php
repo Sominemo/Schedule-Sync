@@ -12,6 +12,7 @@
  *
  * Not ready yet
  *
+ * @package Temply-Account\Services\Access
  * @license GPL-2.0
  * @author Sergey Dilong
  */
