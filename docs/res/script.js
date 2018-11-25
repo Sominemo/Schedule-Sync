@@ -290,6 +290,9 @@ function varType(a) {
     case "bool":
         return _("type__bool");
 
+    case "mixed":
+        return _("type__mixed");
+
     case "comma":
         if (a[1] === "string") return _("type__strings") + ", " + _("type__comma_separated");
         if (a[1] === "int") return _("type__ints") + ", " + _("type__comma_separated");
