@@ -141,7 +141,7 @@ class Chat
             "admins" => User::ClassesToData($a['admins']),
             "users" => User::ClassesToData($this->users),
             "type" => $a['type'],
-            "default" => $a['type'],
+            "default" => $a['default'],
             "message" => $this->message,
         ];
 
