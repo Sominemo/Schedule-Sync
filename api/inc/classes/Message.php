@@ -143,7 +143,6 @@ class Message
         } else {
             // If exists
             $d['id'] = $gr['id'];
-            $d['deleted'] = 0;
             $d['text'] = $gr['text'];
             $u = new User($gr['from']);
             $d['from'] = $u->get();
