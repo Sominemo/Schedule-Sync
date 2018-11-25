@@ -39,7 +39,8 @@
         "type__comma_separated": "разделенные запятой",
         "type__array": "массив",
         "type__timestamp": "PHP Timestamp",
-        "type__bool": "логический"
+        "type__bool": "логический",
+        "type__mixed": "[не предопределено]"
     },
     "auto_change": {
         "home-path-el": "Главная",

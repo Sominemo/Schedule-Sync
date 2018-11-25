@@ -39,7 +39,8 @@
         "type__comma_separated": "separated by comma",
         "type__array": "array",
         "type__timestamp": "PHP Timestamp",
-        "type__bool": "boolean"
+        "type__bool": "boolean",
+        "type__mixed": "[not predefined]"
     },
     "auto_change": {
         "home-path-el": "Home",
