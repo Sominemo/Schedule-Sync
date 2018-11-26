@@ -486,6 +486,12 @@ var method = {
                 "icon": "people",
                 "text": _("user_fields_att_text"),
                 "related_link": "#b-global_vars.user_fields"
+            },
+            {
+                "name": "pages_config",
+                "icon": "find_in_page",
+                "text": _("pages_config_att_text"),
+                "related_link": "#b-global_vars.pages_config"
             }
             ];
 
@@ -635,13 +641,13 @@ var method = {
 };
 
 function html2MD(s) {
-    s = s.replace(/<br>/gi, "\n");
+    s = s.replace(/<br>/gi, "  \n");
     s = s.replace(/href="(#[^\s]+)"/gi, "href=\"" + app.link + "$1\"");
     s = s.replace(/<a href="([^\s]+)"(.+)?>([^<>]+)<\/a>/gi, "[$3]($1)");
     s = s.replace(/<b>([^<>]+)<\/b>/gi, "**$1**");
     s = s.replace(/<code>([^<>]+)<\/code>/gi, "`$1`");
     s = s.replace(/<\/?ul>/gi, "");
-    s = s.replace(/<li>([^<>]+)<\/li>/gi, "* $1");
+    s = s.replace(/<li>([^<>]+)<\/li>/gi, "  \n* $1\n  ");
     return s;
 }
 

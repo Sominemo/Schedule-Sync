@@ -45,6 +45,10 @@ body {
     transition: max-width .2s ease-in-out;
 }
 
+ul {
+    margin: 15px;
+}
+
 .card {
     background: white;
     border: solid 1px #e4e4e4;
@@ -219,6 +223,7 @@ p {
 
 h1 {
     margin-left: 10px;
+    display: flex;
 }
 
 .icon_container {
@@ -310,4 +315,18 @@ code {
     font-family: 'Roboto Mono', monospace;
     display: inline-block;
     margin: 1px;
+}
+
+.dochub-logo {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    transition: all 1s;
+    margin-right: 10px;
+}
+
+@media (max-width: 500px) {
+    .dochub-logo {
+        display: none;
+    }
 }

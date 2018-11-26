@@ -3,8 +3,8 @@
 
 var app = {
     lang: "en",
-    build: 80,
-    version: "1.83",
+    build: 81,
+    version: "1.84",
     link: "https://sominemo.github.io/Temply-Account/",
     copying: false,
     css_copy_lock_supp: false,
