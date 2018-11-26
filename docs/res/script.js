@@ -2,7 +2,7 @@
 /* exported generateMD_method */
 
 // Generator XXR
-document.getElementById("menu-action").addEventListener("click", function(a) {
+document.getElementById("menu-action").addEventListener("click", function (a) {
     let style0 = getComputedStyle(document.body);
     style0 = parseInt(style0.getPropertyValue("--header-height"));
     let style1 = getComputedStyle(document.getElementById("menu-action"));
@@ -12,14 +12,14 @@ document.getElementById("menu-action").addEventListener("click", function(a) {
     actions.show(a.target.offsetLeft + move1 * 2, a.target.offsetTop + move0, a.target, [
         ["share", _("copy_link"), engines.copyLink],
         ["translate", _("lang"), chooserLang],
-        (app.window_type == "method" ? ["format_indent_increase", _("gen_md"), engines.getMD]: []),
-        ["select_all", _((app.copying ? "deny" : "allow") + "_selection"), () => {engines.copyRule((app.copying ? 0 : 1));}],
+        (app.window_type == "method" ? ["format_indent_increase", _("gen_md"), engines.getMD] : []),
+        ["select_all", _((app.copying ? "deny" : "allow") + "_selection"), () => { engines.copyRule((app.copying ? 0 : 1)); }],
         ["info_outline", _("about"), aboutScreen]
     ]);
     a.preventDefault();
 });
 
-document.onscroll = function() {
+document.onscroll = function () {
     if (window.scrollY > 0) {
         document.documentElement.classList.add("--scrolled-body");
     } else {
@@ -39,10 +39,10 @@ m.setAttribute("name", "theme-color");
 m.setAttribute("content", style01);
 document.head.appendChild(m);
 
-if (engines.CSSsupported("user-select","none") || engines.CSSsupported("-moz-user-select","none") || engines.CSSsupported("-webkit-user-select","none") || engines.CSSsupported("-ms-user-select","none") || engines.CSSsupported("-khtml-user-select","none")) app.css_copy_lock_supp = true;
+if (engines.CSSsupported("user-select", "none") || engines.CSSsupported("-moz-user-select", "none") || engines.CSSsupported("-webkit-user-select", "none") || engines.CSSsupported("-ms-user-select", "none") || engines.CSSsupported("-khtml-user-select", "none")) app.css_copy_lock_supp = true;
 engines.copyRule(localStorage.getItem("copying"));
 
-document.body.onselectstart = function(e) {
+document.body.onselectstart = function (e) {
     if (app.copying == true || app.css_copy_lock_supp == true) return true;
     if (e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA") {
         e.preventDefault();
@@ -55,9 +55,9 @@ function getMain() {
     if (window.location.hash != "") window.location.hash = "";
     app.window_type = "main";
     engines.cleanPath();
-    xhr("data/map/main.json", function() {
+    xhr("data/map/main.json", function () {
 
-        xhr("data/map/" + app.lang + "/sections.json", function(b) {
+        xhr("data/map/" + app.lang + "/sections.json", function (b) {
             b = JSON.parse(b);
             engines.cleanMain();
             b.tabs.forEach(e => {
@@ -101,14 +101,14 @@ function xxhr(a, c) {
     xxhry[g]["done"] = 0;
     xxhry[g]["results"] = [];
     a.forEach(e => {
-        xhr(e, function(m, l) {
+        xhr(e, function (m, l) {
             xxhry[g]["done"]++;
             let ni = a.findIndex((er) => er === l);
             xxhry[g]["results"][ni] = m;
             if (xxhry[g]["done"] === a.length) {
                 c(g);
             }
-        }, function(l) {
+        }, function (l) {
             xxhry[g]["done"]++;
             let ni = a.findIndex((er) => er === l);
             xxhry[g]["results"][ni] = false;
@@ -120,11 +120,11 @@ function xxhr(a, c) {
 }
 
 var section = {
-    open: function(a) {
+    open: function (a) {
         a = a.toString();
-        xhr("data/map/" + app.lang + "/sections.json", function(r) {
+        xhr("data/map/" + app.lang + "/sections.json", function (r) {
             r = JSON.parse(r);
-            xhr("data/map/" + app.lang + "/methods.json", function(b) {
+            xhr("data/map/" + app.lang + "/methods.json", function (b) {
                 b = JSON.parse(b);
                 engines.cleanMain();
                 engines.cleanPath();
@@ -214,7 +214,7 @@ var section = {
                     ls.push("data/methods/" + app.lang + "/" + w + ".json");
                 });
 
-                xxhr(ls, function(kk) {
+                xxhr(ls, function (kk) {
                     xxhry[kk].results.forEach((q, i) => xxhry[kk].results[i] = JSON.parse(q));
                     xxhry[kk].results.sort((a, b) => {
                         if (a == false) return -1;
@@ -290,6 +290,9 @@ function varType(a) {
     case "bool":
         return _("type__bool");
 
+    case "binary":
+        return _("type__binary");
+
     case "mixed":
         return _("type__mixed");
 
@@ -325,8 +328,8 @@ function varType(a) {
 var patt = [];
 
 var method = {
-    open: function(a) {
-        xxhr(["data/map/" + app.lang + "/methods.json", "data/map/" + app.lang + "/sections.json", "data/methods/" + app.lang + "/" + a + ".json"], function(jk) {
+    open: function (a) {
+        xxhr(["data/map/" + app.lang + "/methods.json", "data/map/" + app.lang + "/sections.json", "data/methods/" + app.lang + "/" + a + ".json"], function (jk) {
             let l = xxhry[jk].results;
 
             let w = null;
@@ -417,7 +420,7 @@ var method = {
             sect.classList.add("el");
             sect.id = "home-nav-el";
             sect.innerHTML = d;
-            sect.onclick = function() {
+            sect.onclick = function () {
                 window.location.hash = "#a-" + w;
             };
             document.getElementsByClassName("way-path")[0].appendChild(sect);
@@ -429,7 +432,7 @@ var method = {
             sect.classList.add("el");
             sect.id = "home-meth-el";
             sect.innerHTML = l[2].display;
-            sect.onclick = function() {
+            sect.onclick = function () {
                 window.location.hash = "#b-" + l[2].name;
             };
             document.getElementsByClassName("way-path")[0].appendChild(sect);
@@ -641,13 +644,13 @@ var method = {
 };
 
 function html2MD(s) {
-    s = s.replace(/<br>/gi, "  \n");
-    s = s.replace(/href="(#[^\s]+)"/gi, "href=\"" + app.link + "$1\"");
-    s = s.replace(/<a href="([^\s]+)"(.+)?>([^<>]+)<\/a>/gi, "[$3]($1)");
-    s = s.replace(/<b>([^<>]+)<\/b>/gi, "**$1**");
-    s = s.replace(/<code>([^<>]+)<\/code>/gi, "`$1`");
-    s = s.replace(/<\/?ul>/gi, "");
-    s = s.replace(/<li>([^<>]+)<\/li>/gi, "  \n* $1\n  ");
+    s = s.replace(/<br>/gi, "  \n")
+        .replace(/href="(#[^\s]+)"/gi, "href=\"" + app.link + "$1\"")
+        .replace(/<a href="([^\s]+)"(.+)?>([^<>]+)<\/a>/gi, "[$3]($1)")
+        .replace(/<b>([^<>]+)<\/b>/gi, "**$1**")
+        .replace(/<code>([^<>]+)<\/code>/gi, "`$1`")
+        .replace(/<\/?ul>/gi, "")
+        .replace(/<li>([^<>]+)<\/li>/gi, "  \n* $1\n  ");
     return s;
 }
 
