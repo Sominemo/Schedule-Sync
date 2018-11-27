@@ -1,0 +1,37 @@
+{
+    "name": "class.message",
+    "display": "Класс Message",
+    "purpose": "Описывает объект сообщения",
+    "answer": [
+        {
+            "name": "id",
+            "type": "int",
+            "important": true,
+            "info": "Уникальный ID сообщения"
+        },
+        {
+            "name": "deleted",
+            "type": "int",
+            "important": false,
+            "info": "Если сообщение удалено, это поле равно 1"
+        },
+        {
+            "name": "text",
+            "type": "string",
+            "important": false,
+            "info": "Текст сообщения"
+        },
+        {
+            "name": "from",
+            "type": "class user",
+            "important": false,
+            "info": "Автор сообщения"
+        },
+        {
+            "name": "chat",
+            "type": "class chat",
+            "important": false,
+            "info": "Чат, в котором находится сообщение. ВНИМАНИЕ! В некоторых методах может быть лишь целочисленным ID чата (для избежания рекурсии)"
+        }
+    ]
+}

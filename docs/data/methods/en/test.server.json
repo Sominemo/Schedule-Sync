@@ -66,6 +66,12 @@
             "type": "int timestamp",
             "important": true,
             "info": "Time on API server"
+        },
+        {
+            "name": "mcp",
+            "type": "array mixed",
+            "important": false,
+            "info": "Data from MCP. Returned if get_mcp flag is sent and debug mode is activated on Back-End"
         }
     ]
 }

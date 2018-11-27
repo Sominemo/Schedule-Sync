@@ -1,0 +1,29 @@
+{
+    "name": "messages.get",
+    "display": "messages.get",
+    "purpose": "Get messages by ID",
+    "way": "Getting messages by its unique ID",
+
+    "request": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Auth data"
+        },
+        {
+            "name": "id",
+            "type": "int",
+            "important": true,
+            "info": "ID of the message to find"
+        }
+    ],
+    "answer": [
+        {
+            "name": "response",
+            "type": "array class message",
+            "important": false,
+            "info": "Finded message. False if failed"
+        }
+    ]
+}

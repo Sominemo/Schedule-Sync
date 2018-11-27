@@ -28,6 +28,12 @@
             "type": "int",
             "important": false,
             "info": "Если параметр был задан, API возвращает случайные числа в промежутке от 100000 до 999999"
+        },
+        {
+            "name": "get_mcp",
+            "type": "int",
+            "important": false,
+            "info": "Получить данные из MCP ВНИМАНИЕ: Работает только если на Back-End включен режим отладки"
         }
     ],
     "answer": [
@@ -66,6 +72,12 @@
             "type": "int timestamp",
             "important": true,
             "info": "Время на сервере API"
+        },
+        {
+            "name": "mcp",
+            "type": "array mixed",
+            "important": false,
+            "info": "Данные из MCP. Возвращается, если передан параметр get_mcp и на Back-End активирован режим отладки"
         }
     ]
 }

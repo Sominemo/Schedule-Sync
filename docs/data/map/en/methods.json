@@ -10,33 +10,55 @@
 
         },
         "Account": {
+            "about": "Control current user account data",
             "methods": [
                 "account.shareByCode"
             ]
         },
         "Token": {
+            "about": "Control access key or create new one",
             "methods": [
                 "token.get"
             ]
         },
         "Test": {
+            "about": "Methods to check diferent dalue and functionality",
             "methods": [
                 "test.server"
             ]
         },
-        "Installation": {
+        "About": {
             "about": "Instructions on the go"
         },
         "Classes": {
+            "about": "Objects having exact propreties everywhere in API",
             "methods": [
-                "class.user"
+                "class.user",
+                "class.message",
+                "class.chat",
+                "class.pages"
             ]
         },
         "Global_Vars": {
+            "about": "Parameters which work everywhere in API and can modify the answer",
             "methods": [
-                "global_vars.user_fields"
+                "global_vars.user_fields",
+                "global_vars.pages_config"
+            ]
+        },
+        "Contacts": {
+            "about": "Contacts section works like a friends list. It unlocks more methods to interact with users",
+            "methods": [
+                "contacts.find",
+                "contacts.get"
+            ]
+        },
+        "Messages": {
+            "about": "With messages now users can contact each other: exchanging text and attachments in private and multi-user chats",
+            "methods": [
+                "messages.get"
             ]
         }
     },
-    "build": 13
+    "build": 14
 }

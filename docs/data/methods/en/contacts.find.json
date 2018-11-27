@@ -1,0 +1,35 @@
+{
+    "name": "contacts.find",
+    "display": "contacts.find",
+    "purpose": "Find a contact in list by ID",
+    "way": "Getting info about existance of a user in Contacts list",
+
+    "request": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Auth data"
+        },
+        {
+            "name": "user_fields",
+            "type": "string",
+            "important": true,
+            "info": "Fields for user class"
+        },
+        {
+            "name": "uid",
+            "type": "int",
+            "important": true,
+            "info": "ID for search"
+        }
+    ],
+    "answer": [
+        {
+            "name": "response",
+            "type": "class user",
+            "important": false,
+            "info": "Finded contact. False, if failed."
+        }
+    ]
+}

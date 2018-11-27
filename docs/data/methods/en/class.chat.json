@@ -1,0 +1,49 @@
+{
+    "name": "class.chat",
+    "display": "Chat class",
+    "purpose": "Describes Chat object",
+    "answer": [
+        {
+            "name": "id",
+            "type": "int",
+            "important": true,
+            "info": "Unique message ID"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "important": true,
+            "info": "Chat name"
+        },
+        {
+            "name": "admins",
+            "type": "array class user",
+            "important": true,
+            "info": "Admins list"
+        },
+        {
+            "name": "users",
+            "type": "array class user",
+            "important": true,
+            "info": "Participants list"
+        },
+        {
+            "name": "type",
+            "type": "int",
+            "important": true,
+            "info": "Chat type"
+        },
+        {
+            "name": "default",
+            "type": "int",
+            "important": true,
+            "info": "If it's a private chat and this value = 1, you supposed to use this chat as default message gate for the interlocutor"
+        },
+        {
+            "name": "message",
+            "type": "class message",
+            "important": true,
+            "info": "Last message in the chat. WARNING! The `chat` key is returned as integer ID of chat, not as a class (because of recursion)"
+        }
+    ]
+}

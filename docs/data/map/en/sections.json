@@ -19,6 +19,14 @@
                 {
                     "name": "Test",
                     "display": "Test"
+                },
+                {
+                    "name": "Contacts",
+                    "display": "Contacts"
+                },
+                {
+                    "name": "Messages",
+                    "display": "Messages"
                 }
             ]
         },
@@ -41,11 +49,11 @@
             "display": "Info",
             "sections": [
                 {
-                    "name": "Installation",
-                    "display": "Installation"
+                    "name": "About",
+                    "display": "About"
                 }
             ]
         }
     ],
-    "build": 13
+    "build": 14
 }

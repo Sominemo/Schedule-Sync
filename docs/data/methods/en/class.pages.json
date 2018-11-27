@@ -1,0 +1,32 @@
+{
+    "name": "class.pages",
+    "display": "Pages object",
+    "purpose": "Versatile pagination mechanism",
+    "way": "Returns shortened version of the array in according to set rules. <br><br>Pagination system (dividing by pages) has 4 parameters in strict order. More info about them in Request section. Pagination rules can be individual and universal. <ul><li>Individually</li></ul> Each Pages object has integer ID, which is displayed in documentation. This ID is not strictly individual in one method's range (the control of few Pages objects through one ID). For setting the rules individually for each ID serialization is used. You can get more information about it at <a href=\"#b-global_vars.pages_config\">`pages_config` global var</a> page. For setting rules for an exact ID you should put the ID as a key in the array of rules, and then set rules as the value under the key (example #1). <br><br>Rules are set as 4 integers, divided by comas. If you have a need for default values, instead of the number you can use an underscore (_) (example #3) or just ignore it at all (example #4), if it's situated near the end and if it doesn't mess the rules order. Default rules may differ between the methods. This will be indicated about it in this object description. <ul><li>Universally</li></ul> ID 0 - reserve identificator. It's used to set default values for all objects, if there won't be any limit conflicts in, at least, one of them. It can be used in line with other IDs. If there's no plans for using individual rules, it's possible to use simplified form for universal one - just write the rule for ID 0 without any additional paddings (example #2). System and individual defaults work there too.<br><br>Rules are applied in such order (layers): System defaults [0, 10, 1, 1] -> Individual defaults (from documentation of the exact object) -> User defaults (ID 0) -> Individual user rules. For using defaults from #3 and #4 examples, values are duplicated from bellowing layer.<br><br><ul><li>Examples</li></ul>\n<b>#1</b>: pages_config=|1::0,20,1,0||2::2,10,0,0|<br><b>#2</b>: pages_config=5,_,2<br><b>#3</b>: pages_config=|1::_,_,2,0|<br><b>#4</b>: pages_config=|1::2,3|", 
+    "request": [
+        {
+            "name": "offset",
+            "type": "int",
+            "important": false,
+            "info": "Offset makes the array to start from n element. Recommended way to control page-by-page display: Offset = Count * Page. Minimal value = 0"
+        },
+        {
+            "name": "count",
+            "type": "int",
+            "important": false,
+            "info": "Count sets limits for, of course, the count of objects to be displayed. Different objects may have their own count limits, which are set strictly and can't be changed"
+        },
+        {
+            "name": "page",
+            "type": "int",
+            "important": false,
+            "info": "Page can be used if you don't think that Offset is for you. Displays each [Count] elements"
+        },
+        {
+            "name": "pageJump",
+            "type": "binary",
+            "important": false,
+            "info": "Page jump rule just removes [offset] first elements from the page. This flag denies other page's elements to be displayed (\"other\" page by offset = 0)."
+        }
+    ]
+}

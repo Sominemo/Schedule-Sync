@@ -1,0 +1,49 @@
+{
+    "name": "class.chat",
+    "display": "Класс Chat",
+    "purpose": "Описывает объект диалога",
+    "answer": [
+        {
+            "name": "id",
+            "type": "int",
+            "important": true,
+            "info": "Уникальный ID сообщения"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "important": true,
+            "info": "Назване диалога"
+        },
+        {
+            "name": "admins",
+            "type": "array class user",
+            "important": true,
+            "info": "Администраторы диалога"
+        },
+        {
+            "name": "users",
+            "type": "array class user",
+            "important": true,
+            "info": "Список участников чата"
+        },
+        {
+            "name": "type",
+            "type": "int",
+            "important": true,
+            "info": "Типа чата"
+        },
+        {
+            "name": "default",
+            "type": "int",
+            "important": true,
+            "info": "Если данный диалог является приватным, а это значение = 1, данный диалог следует использовать как канал коммуникации с собеседником по умолчанию"
+        },
+        {
+            "name": "message",
+            "type": "class message",
+            "important": true,
+            "info": "Последнее сообщение в чате. ВНИМАНИЕ! Ключ `chat` возвращается в виде ID чата, а не класса (для избежания рекурсии)"
+        }
+    ]
+}

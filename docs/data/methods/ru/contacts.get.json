@@ -1,0 +1,29 @@
+{
+    "name": "contacts.get",
+    "display": "contacts.get",
+    "purpose": "Получите список своих контактов",
+    "way": "Получение списка всех контактов в виде массива",
+
+    "request": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Данные для авторизации"
+        },
+        {
+            "name": "user_fields",
+            "type": "string",
+            "important": true,
+            "info": "Поля для класса User"
+        }
+    ],
+    "answer": [
+        {
+            "name": "response",
+            "type": "array class user",
+            "important": false,
+            "info": "Список контактов"
+        }
+    ]
+}

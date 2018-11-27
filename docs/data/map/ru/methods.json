@@ -10,33 +10,55 @@
 
         },
         "Account": {
+            "about": "Управление данными аккаунта текущего пользователя",
             "methods": [
                 "account.shareByCode"
             ]
         },
         "Token": {
+            "about": "Управление ключем доступа к API",
             "methods": [
                 "token.get"
             ]
         },
         "Test": {
+            "about": "Методы для проверки корректности и работоспособности различных данных и функций",
             "methods": [
                 "test.server"
             ]
         },
-        "Installation": {
+        "About": {
             "about": "Инструкции на подходе"
         },
         "Classes": {
+            "about": "Объекты, которые имеют четкие свойства и параметры во всех методах API",
             "methods": [
-                "class.user"
+                "class.user",
+                "class.message",
+                "class.chat",
+                "class.pages"
             ]
         },
         "Global_Vars": {
+            "about": "Параметры, которые работают во всех методах и могут влиять на результат ответа",
             "methods": [
-                "global_vars.user_fields"
+                "global_vars.user_fields",
+                "global_vars.pages_config"
+            ]
+        },
+        "Contacts": {
+            "about": "Список контактов является аналогом списка друзей. Он раскрывает более обширные возможности для взаимодействия с пользователями",
+            "methods": [
+                "contacts.find",
+                "contacts.get"
+            ]
+        },
+        "Messages": {
+            "about": "Сообщения открывает возможность коммуникации между пользователями: обмен текстом и вложениями в личных и многопользовательских диалогах",
+            "methods": [
+                "messages.get"
             ]
         }
     },
-    "build": 13
+    "build": 14
 }

@@ -1,0 +1,37 @@
+{
+    "name": "class.message",
+    "display": "Message class",
+    "purpose": "Describes Message object",
+    "answer": [
+        {
+            "name": "id",
+            "type": "int",
+            "important": true,
+            "info": "Unique message ID"
+        },
+        {
+            "name": "deleted",
+            "type": "int",
+            "important": false,
+            "info": "If the message is deleted, this field equals 1"
+        },
+        {
+            "name": "text",
+            "type": "string",
+            "important": false,
+            "info": "Message text"
+        },
+        {
+            "name": "from",
+            "type": "class user",
+            "important": false,
+            "info": "Sender of the message"
+        },
+        {
+            "name": "chat",
+            "type": "class chat",
+            "important": false,
+            "info": "Chat, that contains the message. WARNING! In some methods it can be returned as integer chat ID (because of recursion)"
+        }
+    ]
+}

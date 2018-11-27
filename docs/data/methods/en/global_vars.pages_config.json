@@ -1,0 +1,15 @@
+{
+    "name": "global_vars.pages_config",
+    "display": "pages_config",
+    "purpose": "Set Pages object rules",
+    "way": "Sets the rules for <a href=\"#b-class.pages\">Pages object</a>. It's an associative array (in JS language - an object), which was serialized as a string. Example: |a::1||b::2||c::3| = {a: 1, b: 2, c: 3}. More about the configuration you can read at controlled object page.",
+
+    "request": [
+        {
+            "name": "ID 0",
+            "type": "int",
+            "important": false,
+            "info": "If one of the keys equals 0 or there's no serialization applied at all, incoming information is applied as universal user default, if there's no conflicts"
+        }
+    ]
+}

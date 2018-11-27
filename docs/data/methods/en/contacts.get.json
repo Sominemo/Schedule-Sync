@@ -1,0 +1,29 @@
+{
+    "name": "contacts.get",
+    "display": "contacts.get",
+    "purpose": "Get all your contacts",
+    "way": "Returns all the contacts as array",
+
+    "request": [
+        {
+            "name": "token",
+            "type": "string",
+            "important": true,
+            "info": "Auth data"
+        },
+        {
+            "name": "user_fields",
+            "type": "string",
+            "important": true,
+            "info": "User class fiels"
+        }
+    ],
+    "answer": [
+        {
+            "name": "response",
+            "type": "array class user",
+            "important": false,
+            "info": "Contacts list"
+        }
+    ]
+}
