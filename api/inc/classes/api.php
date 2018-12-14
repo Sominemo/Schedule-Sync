@@ -196,7 +196,7 @@ class api
 
             die();
         } catch (Exception $e) {
-            die('{"code": 0, "info": "We have some troubles right now"}');
+            die('{"code": 100, "info": "We have some troubles right now"}');
         }
     }
 

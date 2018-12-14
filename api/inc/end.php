@@ -11,6 +11,7 @@
 // Setting params for return
 $ra = security::filter($ra, true);
 funcs::recursive_unset($ra, "__protected");
+funcs::recursive_user($ra);
 
 // Doubling
 $the_return_stream = $ra;
