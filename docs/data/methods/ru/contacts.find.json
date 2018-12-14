@@ -1,7 +1,7 @@
 {
     "name": "contacts.find",
     "display": "contacts.find",
-    "purpose": "Найдите контакт за ID в списке",
+    "purpose": "Найдите контакт по ID в списке",
     "way": "Определение, есть ли указанный пользователь в контактах",
 
     "request": [
@@ -10,12 +10,6 @@
             "type": "string",
             "important": true,
             "info": "Данные для авторизации"
-        },
-        {
-            "name": "user_fields",
-            "type": "string",
-            "important": true,
-            "info": "Поля для класса User"
         },
         {
             "name": "uid",
@@ -29,7 +23,7 @@
             "name": "response",
             "type": "class user",
             "important": false,
-            "info": "Искомый контакт. False в случае отсувствия."
+            "info": "Искомый контакт. False в случае отсутствия."
         }
     ]
 }

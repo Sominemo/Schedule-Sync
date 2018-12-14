@@ -12,12 +12,6 @@
             "info": "Auth data"
         },
         {
-            "name": "user_fields",
-            "type": "string",
-            "important": true,
-            "info": "Fields for user class"
-        },
-        {
             "name": "uid",
             "type": "int",
             "important": true,

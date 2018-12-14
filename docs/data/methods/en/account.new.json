@@ -1,6 +1,6 @@
 {
-    "name": "users.new",
-    "display": "users.new",
+    "name": "account.new",
+    "display": "account.new",
     "purpose": "Create new account",
     "way": "Creates profile and returns info about new user",
 

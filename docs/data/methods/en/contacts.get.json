@@ -10,12 +10,6 @@
             "type": "string",
             "important": true,
             "info": "Auth data"
-        },
-        {
-            "name": "user_fields",
-            "type": "string",
-            "important": true,
-            "info": "User class fiels"
         }
     ],
     "answer": [

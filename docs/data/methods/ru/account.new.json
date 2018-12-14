@@ -1,6 +1,6 @@
 {
-    "name": "users.new",
-    "display": "users.new",
+    "name": "account.new",
+    "display": "account.new",
     "purpose": "Создайте новую учетную запись",
     "way": "Создает новую учетную запись и возвращает данные о ней",
 

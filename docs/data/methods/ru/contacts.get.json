@@ -10,12 +10,6 @@
             "type": "string",
             "important": true,
             "info": "Данные для авторизации"
-        },
-        {
-            "name": "user_fields",
-            "type": "string",
-            "important": true,
-            "info": "Поля для класса User"
         }
     ],
     "answer": [

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * users.new
+ * account.new
  *
  * _Create new account_
  *

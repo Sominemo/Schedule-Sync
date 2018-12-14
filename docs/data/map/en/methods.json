@@ -4,15 +4,15 @@
             "about": "Methods to work with User object: get, create, manipulate",
             "methods": [
                 "users.get",
-                "users.getByCode",
-                "users.new"
+                "users.getByCode"
             ]
 
         },
         "Account": {
             "about": "Control current user account data",
             "methods": [
-                "account.shareByCode"
+                "account.shareByCode",
+                "account.new"
             ]
         },
         "Token": {
