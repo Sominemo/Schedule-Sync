@@ -3,20 +3,23 @@
 
 var app = {
     lang: "en",
-    build: 82,
-    version: "1.84",
+    build: 95,
+    version: "1.9",
     link: "https://sominemo.github.io/Temply-Account/",
     copying: false,
     css_copy_lock_supp: false,
+    feedback_mode: false,
     window: {}
 };
 
-function xhr(url, callback, onerror) {
+function xhr(url, callback, onerror, formdata) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
+    let ps = (formdata ? "POST" : "GET");
+    xhr.open(ps, url, true);
+    if (formdata) xhr.send(formdata); else
     xhr.send();
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState != 4) return;
 
 
@@ -41,7 +44,7 @@ function sxhr(url) {
     }
 }
 
-var _ = function(index, p) {
+var _ = function (index, p) {
     p = p || {};
     if (_.prototype.langLib.main[index] !== undefined) {
         return _.prototype.replacer(_.prototype.langLib.main[index], p);
@@ -58,28 +61,28 @@ _.prototype.langLib = {
 };
 
 
-_.prototype.loadLang = function(onLoad) {
+_.prototype.loadLang = function (onLoad) {
     let lng = app.lang;
     localStorage.setItem("lang", lng);
-    xhr("res/lang/" + app.lang + ".json", function(a) {
+    xhr("res/lang/" + app.lang + ".json", function (a) {
         var l = JSON.parse(a);
         _.prototype.langLib = l;
         for (var i in _.prototype.langLib.auto_change) {
-            [].slice.call(document.querySelectorAll("#" + i)).forEach(function(p) {
+            [].slice.call(document.querySelectorAll("#" + i)).forEach(function (p) {
                 p.innerHTML = _.prototype.langLib.auto_change[i];
             });
         }
         if (onLoad !== undefined) onLoad();
-    }, function() {
+    }, function () {
         popup.show(_("cant_load_lang"), _("lang_error"));
         if (lng !== "en") {
             app.lang = "en";
             _.prototype.loadLang(windower);
-            
+
         }
     });
 
-    xhr("data/map/main.json", function(a) {
+    xhr("data/map/main.json", function (a) {
         a = JSON.parse(a);
         app.langs = a.langs;
     });
@@ -90,35 +93,36 @@ _.prototype.replaceLib = {
     "replace::app_build": app.build
 };
 
-_.prototype.replacer = function(text, p) {
+_.prototype.replacer = function (text, p) {
     if (typeof p === "object") {
         let k = Object.keys(p);
-        k.forEach((e) => {
+        k.forEach(function (e){
             text = text.split("{%" + e.toString() + "%}").join(p[e].toString());
         });
     }
-    Object.keys(_.prototype.replaceLib).forEach(function(a) {
+    Object.keys(_.prototype.replaceLib).forEach(function (a) {
         text = text.split("%" + a + "%").join(_.prototype.replaceLib[a].toString());
     });
     return text;
 };
 
 var actions = {
-    show: function(x, y, s, data) {
+    show: function (x, y, s, data, style) {
         actions.hideAll();
         let box = document.createElement("div");
         box.classList.add("actions_box");
+        box.style = style || "";
         box.style.top = (y + 3) + "px";
         box.style.left = (x + 3) + "px";
         box.id = "actions" + Math.random();
-        data.forEach(function(a) {
-            if (a.length > 0) { 
+        data.forEach(function (a) {
+            if (a.length > 0) {
                 let item = document.createElement("div");
                 item.classList.add("actionsItem");
                 if (a[3]) item.classList.add("frozen");
-                if (!a[3]) item.onclick = function() {
+                if (!a[3]) item.onclick = function () {
                     a[2](s);
-                
+
                 };
 
                 let icon = document.createElement("icon");
@@ -149,54 +153,60 @@ var actions = {
             box.style.right = 0;
             box.style.margin = "5px";
         }
-        setInterval(function() {
+        setInterval(function () {
             box.classList.remove("getting");
         }, 0);
     },
-    hideAll: function() {
-        [].slice.call(document.getElementsByClassName("actions_box")).forEach(function(a) {
+    hideAll: function () {
+        [].slice.call(document.getElementsByClassName("actions_box")).forEach(function (a) {
             a.classList.add("dieing");
-            setTimeout(function() {
-                document.body.removeChild(a);
+            setTimeout(function () {
+                try {
+                    document.body.removeChild(a);
+                } catch (e) {
+
+                }
             }, 150);
         });
     }
 };
 
-document.addEventListener("scroll", function() {
+document.addEventListener("scroll", function () {
     actions.hideAll();
 });
 
-window.addEventListener("click", function(a) {
+window.addEventListener("click", function (a) {
     if (!a.target.matches(".--actions-clickable, .--actions-clickable-child *:not(.--actions-do-not-click), .--actions-clickable *:not(.--actions-do-not-click)")) {
         actions.hideAll();
     }
 });
 
-document.addEventListener("contextmenu", function() {
+document.addEventListener("contextmenu", function () {
     actions.hideAll();
 });
 
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
     actions.hideAll();
 });
 
 var engines = {
-    copy: function(s) {
+    copy: function (s) {
+        if (s !== false) {
         window.getSelection().selectAllChildren(s);
+        }
         let CopyResult = document.execCommand("copy");
-        if (CopyResult == true) alert(_("copied"));
+        if (CopyResult == true) snack.show(_("copied"));
         else alert(_("unable2copy"));
         if (window.getSelection) window.getSelection().removeAllRanges();
         else if (document.selection) document.selection.empty();
     },
-    copyLink: function() {
+    copyLink: function () {
         let m = document.getElementById("service");
         m.innerText = window.location.href;
         engines.copy(m);
         m.innerText = "";
     },
-    getMD: function() {
+    getMD: function () {
         let r = generateMD_method();
         let linkid = "d-" + Math.random();
 
@@ -243,31 +253,31 @@ var engines = {
         document.getElementById(linkid).click();
 
         try {
-            navigator.msSaveBlob(Blob([r], {type: "text/plain"}), app.window.method_json.display + ".md");
-        } catch(e) {
+            navigator.msSaveBlob(Blob([r], { type: "text/plain" }), app.window.method_json.display + ".md");
+        } catch (e) {
             // Fail to DL
         }
 
         return true;
     },
-    loading: function() {
+    loading: function () {
         document.getElementById("main").innerHTML = "<div class=\"centration-div\"> <svg width=\"56px\" height=\"56px\" version=\"1\" viewBox=\"0 0 28 28\" xmlns=\"http://www.w3.org/2000/svg\"> <style type=\"text/css\">.qp-circular-loader { width:28px; height:28px; } .qp-circular-loader-path { stroke-dasharray: 58.9; stroke-dashoffset: 58.9; } .qp-circular-loader, .qp-circular-loader * { -webkit-transform-origin: 50% 50%; } /* Rotating the whole thing */ @-webkit-keyframes rotate { from {-webkit-transform: rotate(0deg);} to {-webkit-transform: rotate(360deg);} } .qp-circular-loader { -webkit-animation-name: rotate; -webkit-animation-duration: 1568.63ms; -webkit-animation-iteration-count: infinite; -webkit-animation-timing-function: linear; } /* Filling and unfilling the arc */ @-webkit-keyframes fillunfill { from { stroke-dashoffset: 58.8; } 50% { stroke-dashoffset: 0; } to { stroke-dashoffset: -58.4; } } @-webkit-keyframes rot { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(-360deg); } } @-webkit-keyframes colors { from { stroke: var(--main-color); } to { stroke: var(--main-color); } } .qp-circular-loader-path { -webkit-animation-name: fillunfill, rot, colors; -webkit-animation-duration: 1333ms, 5332ms, 5332ms; -webkit-animation-iteration-count: infinite, infinite, infinite; -webkit-animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1), steps(4), linear; -webkit-animation-play-state: running, running, running; -webkit-animation-fill-mode: forwards; }</style> <g class=\"qp-circular-loader\"> <path class=\"qp-circular-loader-path\" d=\"M 14,1.5 A 12.5,12.5 0 1 1 1.5,14\" fill=\"none\" stroke-linecap=\"square\" stroke-width=\"3\"/> </g> </svg> </div>";
     },
-    cleanMain: function() {
+    cleanMain: function () {
         document.getElementById("main").innerHTML = "";
         app.window = {};
     },
-    cleanPath: function() {
+    cleanPath: function () {
         document.getElementsByClassName("way-path")[0].innerHTML = "<div class=\"el\" id=\"home-path-el\" onclick=\"getMain()\">" + _("home") + "</div>";
     },
 
-    CSSsupported: function(prop, value) {
+    CSSsupported: function (prop, value) {
         var d = document.createElement("div");
         d.style[prop] = value;
         return d.style[prop] === value;
     },
 
-    copyRule: function(s) {
+    copyRule: function (s) {
         if (s && s !== null) {
             localStorage.setItem("copying", "1");
             app.copying = true;
@@ -279,15 +289,64 @@ var engines = {
             else if (document.selection) document.selection.empty();
             if (app.css_copy_lock_supp) document.body.classList.add("no-select");
         }
+    },
+
+    scrollSelectionIntoView: function (t) {
+        if (typeof (t) != "object") return;
+
+        if (t.getRangeAt) {
+            if (t.rangeCount == 0) return;
+            t = t.getRangeAt(0);
+        }
+
+        if (t.cloneRange) {
+            var r = t.cloneRange();
+            r.collapse(true);
+            t = r.startContainer;
+            if (t.nodeType == 1) t = t.childNodes[r.startOffset];
+        }
+        let o = t;
+        while (o && o.nodeType != 1) o = o.previousSibling;
+        t = o || t.parentNode;
+        if (t) t.scrollIntoView();
+        window.scrollBy(0, -(parseInt(getComputedStyle(document.body).getPropertyValue("--header-height")) + 10));
+    },
+
+    isDescendant: function (parent, child) {
+        var node = child.parentNode;
+        while (node != null) {
+            if (node == parent) {
+                return true;
+            }
+            node = node.parentNode;
+        }
+        return false;
+    },
+    b64EncodeUnicode: function (str) {
+        // first we use encodeURIComponent to get percent-encoded UTF-8,
+        // then we convert the percent encodings into raw bytes which
+        // can be fed into btoa.
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+    },
+    b64DecodeUnicode: function (str) {
+        // Going backwards: from bytestream, to percent-encoding, to original string.
+        return decodeURIComponent(atob(str).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
     }
 };
 
 var popup = {
     displayed: [],
-    liteShow: function(text, name) {
+    liteShow: function (text, name) {
         let contents = document.createElement("div");
-        contents.classList.add("popup-container");
         let random = Math.random();
+        contents.classList.add("popup-container");
+        contents.id = "popup-"+random;
+        
 
         let sh = document.createElement("div");
         sh.classList.add("settings_header");
@@ -301,7 +360,7 @@ var popup = {
         clb.classList.add("addripple");
         clb.classList.add("blackripple");
         clb.innerText = "close";
-        clb.onclick = function() {
+        clb.onclick = function () {
             popup.hide(random);
         };
         sh.appendChild(clb);
@@ -315,7 +374,7 @@ var popup = {
         document.getElementById("popups").appendChild(lpopup);
         popup.displayed.push(random);
         document.getElementById("popups").classList.add("active");
-        document.getElementById("popups").onclick = function(a) {
+        document.getElementById("popups").onclick = function (a) {
             if (!a.target.matches("#popups *")) {
                 let clickFunc = a.target.getAttribute("onclick");
                 if (clickFunc === null || clickFunc.indexOf("popup.hide") == -1) {
@@ -323,18 +382,18 @@ var popup = {
                 }
             }
         };
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById("popups").style.opacity = 1;
         }, 50);
 
     },
-    show: function(text, name, params) {
+    show: function (text, name, params) {
         params = params || {};
         if (params.bgImage && !params.imageWasLoaded) {
             let bgImage = new Image;
             bgImage.src = params.bgImage;
             params.imageWasLoaded = 1;
-            bgImage.onload = function() {
+            bgImage.onload = function () {
                 popup.show(text, name, params);
             };
             return;
@@ -353,13 +412,13 @@ var popup = {
         body += "<div class=\"settings_header\"><div class=\"settings_title\">" + name + "</div><icon class=\"addripple blackripple\" onclick=\"popup.hide(" + random_id + ")\">close</icon></div>";
         if (params.bgImage && params.bgColor) body += "</div>";
         body += "<div class=\"contents" + (params.beautifyPtag ? " bpt-padding" : "") + "\"" + (params.bgImage && params.bgColor ? " style=\"padding: 20px; max-width: calc(100% - 40px);\"" : "") + ">" + text.split("%popup_id%").join(random_id);
-        if (params.buttons) body += "<div class=\"settingsDoc\">" + params.buttons.split("%popup_id%").join(random_id) + "</div>";
         body += "</div>";
+        if (params.buttons) body += "<div class=\"settingsDoc\">" + params.buttons.split("%popup_id%").join(random_id) + "</div>";
         lpopup.innerHTML = body;
         document.getElementById("popups").appendChild(lpopup);
         popup.displayed.push(random_id);
         document.getElementById("popups").classList.add("active");
-        document.getElementById("popups").onclick = function(a) {
+        document.getElementById("popups").onclick = function (a) {
             if (!a.target.matches("#popups *")) {
                 let clickFunc = a.target.getAttribute("onclick");
                 if (clickFunc === null || clickFunc.indexOf("popup.hide") == -1) {
@@ -367,20 +426,20 @@ var popup = {
                 }
             }
         };
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById("popups").style.opacity = 1;
             if (params && params.onReadyFunc) params.onReadyFunc();
         }, 50);
     },
 
-    hide: function(id) {
+    hide: function (id) {
         let doc = document.getElementById("popup-" + id);
         let theid = popup.displayed.indexOf(id);
         popup.displayed.splice(theid, 1);
         if (popup.displayed.length == 0) {
 
             document.getElementById("popups").style.opacity = "";
-            setTimeout(function() {
+            setTimeout(function () {
                 doc.parentElement.removeChild(doc);
                 document.getElementById("popups").innerHTML = "";
                 document.getElementById("popups").classList.remove("active");
@@ -390,9 +449,9 @@ var popup = {
         }
     },
 
-    hideAll: function() {
+    hideAll: function () {
         document.getElementById("popups").style.opacity = "";
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById("popups").innerHTML = "";
             document.getElementById("popups").classList.remove("active");
             popup.displayed = [];

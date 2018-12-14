@@ -36,6 +36,11 @@ a:hover {
     -khtml-user-select: none;
 }
 
+html {
+    scroll-behavior: smooth;
+    animation-duration: 0s;
+}
+
 body {
     font-size: 14px;
     color: rgba(0,0,0,.87);
@@ -167,6 +172,7 @@ footer {
     color: rgb(173, 173, 173);
     margin: 10px;
     margin-bottom: 100px;
+    user-select: none;
 } 
 
 .centration-div {
@@ -307,6 +313,8 @@ pre.grey {
     margin: auto;
     display: block;
     transition: flex .2s ease-in-out;
+    width: 100%;
+    overflow: auto;
 }
 
 code {
@@ -330,4 +338,138 @@ code {
     .dochub-logo {
         display: none;
     }
+}
+
+.marker-effect {
+    border-radius: 3px;
+    transition: all .5s;    
+}
+
+.marker-effect.highlighted {
+    cursor: pointer;
+}
+
+.marker-effect.marker-effect.highlighted.begin {
+    background: linear-gradient(to right, var(--main-light) 0%,rgba(255,255,255,0) 30%);
+}
+
+.marker-effect.marker-effect.highlighted.end {
+    background: linear-gradient(to right, rgba(255,255,255,0) 70%,var(--main-light) 100%);
+}
+
+.big_md_ta {
+    border: 0;
+    border-bottom: 2px solid #d0d0d0;
+    transition: all .5s;
+    padding: 5px;
+    margin: 10px;
+    overflow-x: auto;
+    overflow-y: auto;
+    background: transparent;
+    font-size: 13px;
+    overflow: auto;
+    width: calc(100% - 20px);
+    white-space: pre-wrap;
+    outline: 0;
+    display: block;
+    box-sizing: border-box;
+    height: 100px;
+    resize: none;
+}
+
+.big_md_ta:focus {
+    border-bottom-color: var(--main-color);
+}
+
+.md_btn {
+    border: 0;
+    background: var(--main-color);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 5px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.24);
+    margin: 10px;
+    margin-top: 0;
+    float: right;
+    transition: all .2s;
+    outline: 0;
+    cursor: pointer;
+}
+
+.md_btn:hover {
+    background: var(--main-dark);
+}
+
+.md_btn:active {
+    transform: translateY(-7%);
+    box-shadow: -1px 3px 11px rgba(0, 0, 0, 0.3);
+}
+
+.snackbar {
+    background: #323232;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 3px 3px 0 0;
+    font-size: 13px;
+    transition: all .2s;
+    z-index: 11;
+    max-height: 100%;
+    overflow: auto;
+    -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+
+.snackbar.active {
+    transform: translate(-50%, 0);
+}
+
+.snackbar .contents {
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.snackbar .contents .text {
+    text-align: left;
+    padding-right: 5px;
+    width: 100%;
+}
+
+.snackbar .close {
+    color: var(--main-color);
+    text-align: right;
+    cursor: pointer;
+    outline: 0;
+    font-weight: 500;
+}
+
+.settingsDoc {
+    margin-top: auto;
+    float: right;
+    width: 100%;
+}
+
+.actionButton {
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 7px;
+    border-radius: 3px;
+    color: var(--main-color);
+    float: right;
+    cursor: pointer;
+    transition: all .3s;
+    user-select: none;
+}
+
+.actionButton:hover {
+    background: rgba(0,0,0,.05);
+}
+
+.actionButton:active {
+    color: #313131;
+    background: rgba(0,0,0,.1);
 }

@@ -32,7 +32,6 @@
         "deny_selection": "Deny selection",
         "lang_error": "Language Pack Error",
         "404_text": "{%object%} <b>\"{%name%}\"</b> doesn't exist or not documented. Check your spelling and try again.",
-
         "type__int": "integer",
         "type__string": "string",
         "type__ints": "integers",
@@ -42,10 +41,34 @@
         "type__timestamp": "PHP Timestamp",
         "type__bool": "boolean",
         "type__mixed": "[not predefined]",
-        "type__binary": "binary integer [0/1]"
+        "type__binary": "binary integer [0/1]",
+        "disable_feedback_sending": "Disable Feedback mode",
+        "enable_feedback_sending": "Feedback mode",
+        "feedback_mode": "Feedback mode",
+        "welcome_to_feedback_mode": "<p>Welcome to Feedback mode!</p><p>It was created to tell documentation editor about doubts in the documentation. To send feedback select text you think is linked with the problem and choose \"Compose feedback\" in popup menu. To  make editing on mobile phones more comfortable, context menu was disabled. To copy some text use the corresponding option in Feedback mode menu. Compose details field wisely to make the editor understand what exactly you do want to fix. Selected text, its position and your details will be sent to editor panel, where they can be reproduced. </p><p>This modal window is created just for first greeting and it will never disturb you again. You can disable Feedback mode under \"Menu\" button in documentation header.</p>",
+        "compose_feedback": "Compose feedback",
+        "copy": "Copy",
+        "reload_page_without_feedback_viewer_firstly": "In this session you've been viewing a report. Reload page avoiding reproducing mode before composing the feedback.",
+        "error": "Error",
+        "to_reload": "Reload",
+        "feedback_selection_captured": "Selected text and its position have been successfully captured. Add detailed description to your feedback and send it.",
+        "tell_more_feedback": "Tell all the details",
+        "feedback_details_are_going_there": "Click to type...",
+        "send_feedback": "Send feedback",
+        "we_lost_some_parts_of_selection": "We can't reproduce some parts of this selection",
+        "selection_cant_be_reproduced": "Selection reproducing failed",
+        "cant_load_such_feedback_key": "Can't load this feedback key",
+        "feedback_data_loaded": "You are viewing a feedback reproduction",
+        "info": "Information",
+        "collecting_feedback_and_sending": "Collecting and sending...",
+        "failed_contact_the_server": "Failed to contact the server",
+        "feedback_declined_with_error": "The feedback was declined with #{%error%} error",
+        "done_thank_you_for_sending_feedback": "Success. Thanks for your feedback!",
+        "feedback_details_must_be_filled": "Feedback description must be filled"
     },
     "auto_change": {
         "home-path-el": "Home",
-        "main-grand-logo": "Documentation Hub"
+        "main-grand-logo": "Documentation Hub",
+        "snackbar-close": "HIDE"
     }
 }
