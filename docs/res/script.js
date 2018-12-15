@@ -505,6 +505,13 @@ var method = {
                 "icon": "find_in_page",
                 "text": _("pages_config_att_text"),
                 "related_link": "#b-global_vars.pages_config"
+            },
+            {
+                "name": "in_dev_mark",
+                "icon": "build",
+                "text": _("dev_method_att_text"),
+                "related_link": "https://trello.com/invite/b/3J2tPxWb/190dfb8d5c786f4bc959e64518070ed1/temply-api",
+                "hidden": true
             }
             ];
 

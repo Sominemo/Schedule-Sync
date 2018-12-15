@@ -11,9 +11,12 @@
         "about_screen": "<h1><img src=\"res/DocHubFullSmall.png\" class=\"dochub-logo\" onload=\"this.style.opacity=1\">Центр документации %replace::app_version%</h1><p>Сборка %replace::app_build%</p><p>Приспособление для создания документации к API<br>Исходный код: <a href='https://github.com/Sominemo/Temply-Account' target='_blank'>GitHub</a>.<br>Это приложение абсолютно открыто и бесплатно. Проблемы? Добро пожаловать в GitHub.</p><p>Создано Сергеем Дилонгом в 2018 году.</p>",
         "cant_load_lang": "Якыковый пакет недоступен",
         "no_data": "Нет данных",
-        "token_att_text": "Этот объект может требовать авторизацию",
-        "user_fields_att_text": "Ответ этого объекта может быть модифицирован с помощью глобального параметра `user_fields`",
-        "pages_config_att_text": "Ответ этого объекта может быть модифицирован с помощью глобального параметра `pages_config`",
+
+        "token_att_text": "Объект может требовать авторизацию",
+        "user_fields_att_text": "Ответ объекта может быть модифицирован с помощью глобального параметра `user_fields`",
+        "pages_config_att_text": "Ответ объекта может быть модифицирован с помощью глобального параметра `pages_config`",
+        "dev_method_att_text": "Объект ещё в разработке и может часто меняться или работать не так, как ожидается",
+
         "request": "Запрос",
         "hints": "Замечания",
         "required_field": "обязательный параметр",

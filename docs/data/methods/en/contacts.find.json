@@ -6,6 +6,9 @@
 
     "request": [
         {
+            "name": "in_dev_mark"
+        },
+        {
             "name": "token",
             "type": "string",
             "important": true,
