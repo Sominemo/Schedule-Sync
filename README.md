@@ -9,9 +9,9 @@ Usable links:
 - [Example of how the diary will work (written in PHP)][5]
 - [Non-commited yet Documentation][6]
 
-[1]: https://procsec.top
+[1]: https://temply.procsec.top
 [2]: https://sominemo.github.io/Temply-Account
-[3]: https://procsec.top/phpdoc/docs/beauty/
-[4]: https://procsec.top/phpdoc/docs/power
-[5]: https://procsec.top/example
-[6]: https://procsec.top/docs
+[3]: https://docs.temply.procsec.top/beauty
+[4]: https://docs.temply.procsec.top/power
+[5]: https://temply.procsec.top/example
+[6]: https://docs.api.temply.procsec.top
