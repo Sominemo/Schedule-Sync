@@ -798,8 +798,8 @@ window.addEventListener("load", function() {
 
 
 let feedBackTool = {
-    reciever_url: "https://procsec.top/prop/docHub/ComposeFeedBack",
-    loader_url: "https://procsec.top/prop/docHub/LoadFeedBack",
+    reciever_url: "https://temply.procsec.top/prop/docHub/ComposeFeedBack",
+    loader_url: "https://temply.procsec.top/prop/docHub/LoadFeedBack",
     popupString: function () {
         if (app.feedback_mode) return _("disable_feedback_sending");
         return _("enable_feedback_sending");
