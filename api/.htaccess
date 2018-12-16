@@ -1,11 +1,11 @@
 RewriteEngine on
 RewriteRule ^method\/(.*) worker.php?___method_|_name_|_context_|=$1 [QSA]
 
-ErrorDocument 304 /api/ex/api_error_doc.php
-ErrorDocument 400 /api/ex/api_error_500.php
-ErrorDocument 401 /api/ex/api_error_doc.php
-ErrorDocument 403 /api/ex/api_error_doc.php
-ErrorDocument 404 /api/ex/api_error_doc.php
-ErrorDocument 406 /api/ex/api_error_500.php
-ErrorDocument 500 /api/ex/api_error_500.php
-ErrorDocument 502 /api/ex/api_error_500.php
+ErrorDocument 304 /ex/api_error_doc.php
+ErrorDocument 400 /ex/api_error_500.php
+ErrorDocument 401 /ex/api_error_doc.php
+ErrorDocument 403 /ex/api_error_doc.php
+ErrorDocument 404 /ex/api_error_doc.php
+ErrorDocument 406 /ex/api_error_500.php
+ErrorDocument 500 /ex/api_error_500.php
+ErrorDocument 502 /ex/api_error_500.php
