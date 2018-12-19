@@ -11,6 +11,7 @@
         "about_screen": "<h1><img src=\"res/DocHubFullSmall.png\" class=\"dochub-logo\" onload=\"this.style.opacity=1\">Documentation Hub %replace::app_version%</h1><p>Build %replace::app_build%</p><p>Tool for creating API documentation.<br>Source Code: <a href='https://github.com/Sominemo/Temply-Account' target='_blank'>GitHub</a>.<br>This application is fully free and open. Any issues? Check out GitHub.</p><p>Created by Sergey Dilong in 2018.</p>",
         "cant_load_lang": "Language pack is unavailable",
         "no_data": "No data",
+        "OK": "OK",
 
         "token_att_text": "The object could require authentication",
         "user_fields_att_text": "Response of the object could be modificated by `user_fields` global variable",
