@@ -1,5 +1,5 @@
 # Temply Account
-<table><tbody><tr><td width="80"><img src="https://temply.procsec.top/Temply_Logo.svg"></td><th>This repo is source code of Temply Back-End. Temply is a smart diary. It's coded from scratch. Back-End works as RESTful API.</th></tr></tbody></table>
+<table><tbody><tr><td width="80"><img src="https://temply.procsec.top/Temply_Logo.svg"></td><th>This repo is source code of Temply Back-End. Temply is a smart diary. It's coded from scratch. Back-End works as RESTful JSON-pure API.</th></tr></tbody></table>
 
 Usable links:
 - [Project Homepage][1]
