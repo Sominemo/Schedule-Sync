@@ -1,0 +1,25 @@
+{
+    "info": "Group Errors",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Some troubles with groups"
+        },
+        {
+            "code": 1,
+            "info": "There's no such group or access denied"
+        },
+        {
+            "code": 2,
+            "info": "You don't have a linked group"
+        },
+        {
+            "code": 3,
+            "info": "Operation is denied if you are already in a group"
+        },
+        {
+            "code": 4,
+            "info": "Failed to invite"
+        }
+    ]
+}

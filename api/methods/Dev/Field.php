@@ -13,6 +13,5 @@
 
 //new Auth();
 
-$a = new Pages(range(1, 100), 1, [2, 20], []);
-$ra[0] = $a->get();
-$ra[1] = $a->getCurrentRules();
+$a = Group::Create("Test");
+$ra[] = $a->get();

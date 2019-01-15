@@ -32,6 +32,8 @@ try {
         PDO::ATTR_EMULATE_PREPARES => false,
     ]);
 
+    if (!is_array(DBOPT)) throw new apiException(100, ["warning" => "You are using an old PHP version. Recommended version: 7.3", "php_version" => phpversion()]);
+
 // Connecting
     // PDO connection
     $pdo = new PDO(DBDSN, DBUSER, DBPASS, DBOPT);

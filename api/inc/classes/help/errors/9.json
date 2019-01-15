@@ -1,0 +1,25 @@
+{
+    "info": "Time Management Errors",
+    "errors": [
+        {
+            "code": 0,
+            "info": "Some troubles with Time Management components"
+        },
+        {
+            "code": 1,
+            "info": "Can't access the diary"
+        },
+        {
+            "code": 2,
+            "info": "You don't have a linked diary"
+        },
+        {
+            "code": 3,
+            "info": "Operation is denied if you are already have a diary"
+        },
+        {
+            "code": 4,
+            "info": "Erase your diary first"
+        }
+    ]
+}

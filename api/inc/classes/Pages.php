@@ -261,6 +261,6 @@ class Pages
         $props["page_offset"] = $rules[1] * (abs($rules[2]) - 1);
         $work = array_slice($work, $props["page_offset"], $rules[1] - ($rules[3] ? 0 : $rules[0]));  
 
-        return $work;
+        return [$work, count($this->data)];
     }
 }

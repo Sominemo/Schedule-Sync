@@ -255,7 +255,17 @@ class Auth
      */
     public static function User($r = false)
     {
-        return (self::getTokenData()["verify"] ? ($r ? self::$data['user_return'] : self::$data['user']) : false);
+        $a = (self::getTokenData()["verify"] ? ($r ? self::$data['user_return'] : self::$data['user']) : false);
+        if ($a === false) throw new apiException(303);
+        return $a;
+        
+    }
+
+    public static function TableUser() {
+        global $pdo;
+
+        $r = $pdo->prepare("SELECT * from `users` WHERE `id` = ? LIMIT 1")->execute(self::User(true)['id']);
+        return ["__protected" => $r->fetch()];
     }
 
 }

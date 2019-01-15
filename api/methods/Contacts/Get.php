@@ -20,4 +20,5 @@
 new Auth();
 
 // TODO: Page listing
-$ra['response'] = User::ClassesToData(Contacts::Get("me", [], ["U_GET" => true]));
+$r = new Pages(User::ClassesToData(Contacts::Get("me", [], ["U_GET" => true])));
+$ra['response'] = $r->get();

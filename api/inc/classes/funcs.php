@@ -73,7 +73,9 @@ class funcs
     public static function exp($d, $e = false)
     {
         // Check explode type
-        if (!($d[0] === "|" && $d[strlen($d)-1] === "|")) return false;
+        if (!($d[0] === "|" && $d[strlen($d) - 1] === "|")) {
+            return false;
+        }
 
         // Basic explode
         $p = explode("||", substr($d, 1, -1));
@@ -285,6 +287,26 @@ class funcs
             // Unset in subarrays
             if (is_array($value)) {
                 self::recursive_unset($value, $unwanted_key);
+            }
+        }
+    }
+
+    public static function recursive_user(&$u)
+    {
+        $class = "User";
+
+        $a1 = $u instanceof $class;
+        $a2 = is_array($u);
+        if (!$a1 && !$a2) {
+            return;
+        }
+
+        if ($a1) {
+            $u->ReInitUser(['U_GET' => true]);
+            $u = $u->get();
+        } else if ($a2) {
+            foreach ($u as &$value) {
+                    self::recursive_user($value);
             }
         }
     }

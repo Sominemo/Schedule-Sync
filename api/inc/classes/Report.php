@@ -49,7 +49,11 @@ class Report
         // Stop timers, get current user and output
         $global_report_data['result'] = (count($the_return_stream) > 0 ? $the_return_stream : $data);
         $global_report_data['time'] = microtime(true) - $global_report_data['time'];
-        $global_report_data['user_id'] = (Auth::User() ? Auth::User()->get()['id'] : 0);
+        try {
+            $global_report_data['user_id'] = Auth::User()->get()['id'];
+        } catch (apiException $e) {
+            $global_report_data['user_id'] = 0;
+        }
 
         // Save data
         $this->data = $global_report_data;

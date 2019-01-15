@@ -13,6 +13,7 @@ spl_autoload_register(function ($class_name) {
     // Defining folders for namespaces
     $namespaces = [
         "HelpClasses" => "help/classes",
+        "TimeManagement" => "tm"
     ];
 
     // Replacing path
