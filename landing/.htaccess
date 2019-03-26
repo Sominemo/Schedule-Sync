@@ -1,2 +1,7 @@
 ErrorDocument 404 /prop/error/error.php?e=404
 ErrorDocument 403 /prop/error/error.php?e=403
+
+<Files "supported.list">  
+  Order Allow,Deny
+  Deny from all
+</Files>

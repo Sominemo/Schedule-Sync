@@ -40,7 +40,7 @@
                     <div class="description">
                         We are working on Temply Progressive Web App to deliver an
                         application, based on web technologies for you, which doesn't require you to install anything. Also, it
-                        makes easier for us to provide new features to you faster than ever. Works on the most innovative browsers such as Google Chrome.
+                        makes easier for us to provide new features to you faster than ever. Works in the most innovative browsers such as Google Chrome.
                     </div>
                 </div>
             </a>
@@ -54,7 +54,7 @@
                     <div class="description">
                         Also we are developing an Android application, because web technologies
                         can't help us to reach our goals in every situation. Because it's native, it will work fast as
-                        it possible and it has ability to use exclusive Android APIs, accessible only for native apps.
+                        it possible. Furthermore, it has access to exclusive Android APIs, the one are accessible only for native apps.
                     </div>
                 </div>
             </div>
