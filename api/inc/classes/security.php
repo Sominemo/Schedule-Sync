@@ -151,7 +151,7 @@ class security
             }
 
             // Return data
-            return [$ciphertext, $iv, $tag, $key];
+            return [$ciphertext, $iv, $tag, $o["key"]];
         } else {
             return false;
         }
