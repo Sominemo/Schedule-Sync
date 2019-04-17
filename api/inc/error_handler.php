@@ -26,9 +26,7 @@
 function _handleError($code, $description, $file = null, $line = null, $context = null)
 {
     $data = array(
-        'level' => $log,
         'code' => $code,
-        'error' => $error,
         'description' => $description,
         'file' => $file,
         'line' => $line,
