@@ -1,0 +1,3 @@
+[submodule "docs/dochub"]
+	path = docs/dochub
+	url = https://github.com/Sominemo/DocHub.git
