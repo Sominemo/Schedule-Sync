@@ -61,9 +61,9 @@ function getMain(al) {
     if (window.location.hash != "") window.location.hash = "";
     app.window_type = "main";
     engines.cleanPath();
-    xhr("data/map/main.json", function () {
+    xhr(app.data+"map/main.json", function () {
 
-        xhr("data/map/" + app.lang + "/sections.json", function (b) {
+        xhr(app.data+"map/" + app.lang + "/sections.json", function (b) {
             b = JSON.parse(b);
             engines.cleanMain();
             b.tabs.forEach(function (e) {
@@ -130,9 +130,9 @@ function xxhr(a, c) {
 var section = {
     open: function (a, ol) {
         a = a.toString();
-        xhr("data/map/" + app.lang + "/sections.json", function (r) {
+        xhr(app.data + "map/" + app.lang + "/sections.json", function (r) {
             r = JSON.parse(r);
-            xhr("data/map/" + app.lang + "/methods.json", function (b) {
+            xhr(app.data + "map/" + app.lang + "/methods.json", function (b) {
                 b = JSON.parse(b);
                 engines.cleanMain();
                 engines.cleanPath();
@@ -219,7 +219,7 @@ var section = {
 
                 let ls = [];
                 l.forEach(function(w) {
-                    ls.push("data/methods/" + app.lang + "/" + w + ".json");
+                    ls.push(app.data + "methods/" + app.lang + "/" + w + ".json");
                 });
 
                 xxhr(ls, function (kk) {
@@ -313,7 +313,7 @@ function varType(a) {
 
         var re = "";
 
-        var o = sxhr("data/methods/" + app.lang + "/class." + a[1] + ".json");
+        var o = sxhr(app.data + "methods/" + app.lang + "/class." + a[1] + ".json");
         var name;
         try {
             o = JSON.parse(o);
@@ -337,7 +337,7 @@ var patt = [];
 
 var method = {
     open: function (a, ol) {
-        xxhr(["data/map/" + app.lang + "/methods.json", "data/map/" + app.lang + "/sections.json", "data/methods/" + app.lang + "/" + a + ".json"], function (jk) {
+        xxhr([app.data + "map/" + app.lang + "/methods.json", app.data + "map/" + app.lang + "/sections.json", app.data + "methods/" + app.lang + "/" + a + ".json"], function (jk) {
             let l = xxhry[jk].results;
 
             let w = null;

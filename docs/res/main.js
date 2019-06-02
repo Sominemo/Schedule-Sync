@@ -4,8 +4,10 @@
 var app = {
     lang: "en",
     build: 98,
-    version: "1.9",
+    version: "1.10",
     link: "https://sominemo.github.io/Temply-Account/",
+    languages: "res/lang/",
+    data: "data/",
     copying: false,
     css_copy_lock_supp: false,
     feedback_mode: false,
@@ -64,7 +66,7 @@ _.prototype.langLib = {
 _.prototype.loadLang = function (onLoad) {
     let lng = app.lang;
     localStorage.setItem("lang", lng);
-    xhr("res/lang/" + app.lang + ".json", function (a) {
+    xhr(app.languages + app.lang + ".json", function (a) {
         var l = JSON.parse(a);
         _.prototype.langLib = l;
         for (var i in _.prototype.langLib.auto_change) {
@@ -82,7 +84,7 @@ _.prototype.loadLang = function (onLoad) {
         }
     });
 
-    xhr("data/map/main.json", function (a) {
+    xhr(app.data + "map/main.json", function (a) {
         a = JSON.parse(a);
         app.langs = a.langs;
     });
