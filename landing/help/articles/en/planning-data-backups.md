@@ -1,4 +1,6 @@
 # Backup planning data
+
+[tags]: # (back, plan, export, database, db, stor, rest, sav, recover, mov, chang, device, comp, phone, pc)
  Temply can back up planning data to restore schedules and tasks on any device.
 
 ## Backup

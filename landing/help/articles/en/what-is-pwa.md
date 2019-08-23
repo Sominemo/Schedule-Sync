@@ -1,5 +1,6 @@
 # What is a Progressive Web App?
 
+[tags]: # (pwa, progressive, web, app, browser, updat, upgrad, load)
 ## Intro
 
 Temply PWA (or Temply Lite) — a web app. It means Temply PWA doesn't work like a native app (e.g. "Camera" is a native app) but runs in your browser. In conclusion, Temply works in something like a container.

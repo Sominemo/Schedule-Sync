@@ -1,4 +1,6 @@
 # Loading Error in Temply PWA
+
+[tags]: # (trouble, load, err, doesn't, not, fatal, support, incomp, clea, cach, cookie, delet)
 In some situations, Temply may not load, showing a Loading Error message.
 This article aims to identify the cause and find a solution to this problem.
 
