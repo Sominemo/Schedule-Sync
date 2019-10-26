@@ -27,6 +27,16 @@ Restart the application two or three times, making a small delay before closing 
 5. Restart the application.
 
 ##### Chrome for phone
+1. Open browser settings
+2. Find and choose **Privacy**
+3. Choose **Clear browsing data**
+4. Select **Advanced** tab
+5. Make sure the "Time range" below is set to **All time**
+6. Remove the checkboxes from every item except **Cached images and files**
+7. Tap the "Clear data" button
+
+If the described steps have no effect: 
+
 **Warning!** These actions will delete all saved data, such as the schedule
 1. Open Temply in a browser
 2. Click on the lock icon in the address bar
